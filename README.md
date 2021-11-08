@@ -28,7 +28,7 @@
 |<img src="https://cdn.discordapp.com/attachments/869625117158825988/907180163329052692/aae8a6315b17f71b.png" width=100>|<img src="https://media.discordapp.net/attachments/869625117158825988/907180717287559188/IMG_2473.jpg?width=586&height=586" width=100>|<img src="https://media.discordapp.net/attachments/869625117158825988/907181056355106826/unknown.png?width=452&height=586" width=100>|<img src="https://media.discordapp.net/attachments/869625117158825988/907180161731018802/1a9bad7de9f0a7ea.jpeg?width=552&height=586" width=100>|
 |[GWANGUIAN](https://github.com/GWANGUIAN)|[limuubin](https://github.com/lim-yubin)| [sohhyeonkim](https://github.com/sohhyeonkim) |[moonseonyeong](https://github.com/moonseonyeong)|
 
-
+<test1>
 
 ## Tech Stack 🛠
 
@@ -39,4 +39,5 @@
 <기획서>
 <IA>
 <db스키마??>
+  
 ## 왜안돼  
