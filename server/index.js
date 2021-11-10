@@ -11,13 +11,15 @@ const userRouter = require('./router/userRouter');
 const app = express();
 
 app.use(express.json({ strict: false }));
-app.use(
-  cors({
-    origin: ['http://localhost:3000'],
-    credentials: true,
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
-  })
-);
+app.use(cors())
+// app.use(
+//   cors({
+//     origin: ['http://localhost:3000'],
+//     credentials: true,
+//     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+//   })
+// );
+
 
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -40,7 +42,9 @@ app.use('/admin', adminRouter);
 app.use('/mail', mailRouter);
 app.use('/user', userRouter);
 
-const PORT = 4000;
+// const PORT = 4000;
+
+const PORT = 80;
 
 let server = app.listen(PORT, () =>
   console.log(`🚀 Server is starting on ${PORT}`)
