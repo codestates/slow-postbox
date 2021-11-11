@@ -1,0 +1,56 @@
+.signUp-container {
+  border: solid 1px black;
+  min-width: 800px;
+  max-width: 800px;
+  height: 550px;
+  margin: 150px auto 150px auto;
+  display: flex;
+  flex-direction: column;
+}
+.signUp-container #title {
+  font-size: 30px;
+  text-align: center;
+  border: solid 1px blue;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.signUp-container #input-containers {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px green;
+  margin: auto;
+}
+
+.signUp-container .margin-container {
+  border: solid 1px purple;
+  width: 100px;
+  height: 460px;
+  margin: auto;
+}
+.signUp-container .input-container {
+  border: solid 1px coral;
+}
+
+.signUp-container .section-email {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.signUp-container .section-name {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.signUp-container .section-password {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.signUp-container .section-complete-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
