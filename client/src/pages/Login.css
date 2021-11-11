@@ -10,14 +10,12 @@
 .login-container #title {
   color: black;
   text-align: center;
-  /* border: solid black; */
   font-size: 30px;
   margin-top: auto;
 }
 .login-container .login-input {
   display: flex;
   flex-direction: column;
-  /* border: solid blue; */
   width: 300px;
   margin-top: auto;
 }
@@ -41,7 +39,6 @@
 .login-container .login-buttons {
   display: flex;
   flex-direction: column;
-  /* border: solid green; */
   width: 300px;
   margin-top: auto;
   margin-bottom: 20px;
@@ -53,9 +50,3 @@
   margin-top: 5px;
   cursor: pointer;
 }
-
-.login-container .login-button {
-}
-.login-container .signup-button {
-}
-.login-container .oauth-button {

@@ -1,0 +1,47 @@
+.findUserInfo-container {
+  border: solid 1px black;
+  min-width: 800px;
+  max-width: 800px;
+  height: 550px;
+  margin: 150px auto 150px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.findUserInfo-container .title {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: solid black 1px;
+}
+
+.findUserInfo-container .findPassword-section {
+  border-left: black solid 1px;
+  border-right: black solid 1px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 600px;
+  height: 700px;
+}
+
+.findUserInfo-container .findPassword-title {
+  font-size: 20px;
+  border-bottom: black solid 1px;
+  padding-left: 20px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+.findUserInfo-container .main-section {
+}
+
+.findUserInfo-container .bottom-section {
+  height: 130px;
+  border-top: solid black 1px;
+}
+
+.findUserInfo-container .confirm-email {
+  width: 150px;
+  height: 40px;
+}

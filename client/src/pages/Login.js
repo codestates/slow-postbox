@@ -11,9 +11,7 @@ export default function Login() {
                 <input className="input-email" placeholder="이메일을 입력하세요"></input>
                 <input className="input-password" placeholder="비밀번호를 입력하세요"></input>
             </div>
-            {/* <Link to="/finduserinfo"> */}
             <div id="find-password">비밀번호찾기</div>
-            {/* </Link> */}
             <div className="login-buttons">
                 <button className="login-button">로그인</button>
                 <button className="signup-button">회원가입</button>

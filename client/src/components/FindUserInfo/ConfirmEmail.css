@@ -1,0 +1,50 @@
+.confirmEmail-container {
+  height: 50px;
+  text-align: center;
+}
+.confirmEmail-container .section-email {
+  margin-left: 50px;
+  margin-top: 100px;
+  font-size: 20px;
+  width: 500px;
+}
+.confirmEmail-container .input-email {
+  width: 100px;
+  height: 30px;
+}
+.confirmEmail-container .input-domain {
+  width: 100px;
+  height: 30px;
+}
+
+.confirmEmail-container .section-auth {
+  margin-left: 50px;
+  margin-top: 20px;
+  width: 500px;
+}
+.confirmEmail-container .input-authcode {
+  width: 100px;
+  height: 30px;
+}
+
+.confirmEmail-container .send-authcode-button {
+  height: 30px;
+  margin-left: 20px;
+  width: 100px;
+}
+
+.confirmEmail-container .check-auth {
+  height: 30px;
+  margin-left: 20px;
+  width: 100px;
+}
+
+.confirmEmail-container .title-email {
+  font-size: 15px;
+  margin-right: 100px;
+}
+
+.confirmEmail-container .title-auth {
+  font-size: 15px;
+  margin-right: 212px;
+}
