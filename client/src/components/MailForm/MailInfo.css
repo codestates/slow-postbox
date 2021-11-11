@@ -1,0 +1,30 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+.mailinfo-container {
+  width: 100%;
+  display: flex;
+  border: 2px solid black;
+  flex-direction: column;
+}
+.mailinfo-container label {
+  padding: 0.3rem 0.2rem;
+  border: 2px solid red;
+  display: flex;
+  align-items: center;
+}
+
+.mailinfo-container .mailinfo-input {
+  flex: 1 1 auto;
+  padding: 0.45rem 0.2rem;
+}
+
+.mailinfo-container .mailinfo-input-title {
+  margin-left: 1.8rem;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  display: block;
+}
