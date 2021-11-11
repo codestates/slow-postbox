@@ -1,0 +1,39 @@
+.previewModal-container {
+  width: 100%;
+  height: 100vh;
+  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.previewModal-container .modal-box {
+  padding: 3em 2em;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.previewModal-container span {
+  flex: 1 1 auto;
+}
+.previewModal-container .btn-close {
+  padding: 0.25em 1em;
+  min-width: 100px;
+  margin-top: 20px;
+  border: 1px solid palevioletred;
+  background-color: white;
+}
+.previewModal-container .btn-close:hover {
+  cursor: pointer;
+}
+.previewModal-container .btn-close:active {
+  border: 1px solid white;
+  background-color: palevioletred;
+  color: white;
+}

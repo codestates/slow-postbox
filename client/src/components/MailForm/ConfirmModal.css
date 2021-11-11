@@ -1,0 +1,44 @@
+.confirmModal-container {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.confirmModal-container .modal-box {
+  padding: 3em 2em;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid green;
+}
+
+.confirmModal-container p {
+  border: 3px solid red;
+  font-size: 20px;
+}
+.confirmModal-container .btn-box {
+  width: 200px;
+  border: 1px solid green;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.confirmModal-container button {
+  border: 1px solid palevioletred;
+  background-color: white;
+  padding: 0.25em 1em;
+  flex-basis: 80px;
+}
+.confirmModal-container button:hover {
+  cursor: pointer;
+}
+.confirmModal-container button:active {
+  border: white;
+  background-color: palevioletred;
+  color: white;
+}
