@@ -1,10 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function MailInfo() {
-    
-    return (
-        <div className="mailInfo-container">
-            MailInfo
-        </div>
-    )
+  return <div className='mailInfo-container'>MailInfo</div>;
 }
