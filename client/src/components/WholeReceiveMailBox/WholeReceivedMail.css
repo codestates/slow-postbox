@@ -1,0 +1,89 @@
+
+.wholeMailBox-container{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.wholeMailBox-container .wholeMailBox-grid{
+  display: grid;
+  width: 80%;
+	grid-template-rows: 1fr 1fr 8fr 1fr;
+  min-height: 90vh;
+  border: rgb(216, 124, 124) 1px solid;
+}
+
+
+.wholeMailBox-grid > div{
+  background-color: rgb(255, 255, 255);
+  border-bottom: rgb(216, 124, 124) 1px solid;
+}
+
+.wholeMailBox-container .sort-receiver{
+  align-self: center;
+  font-size: 1.8em;
+  padding: 2% 1% 1% 5%;
+}
+
+.wholeMailBox-container .btn-receiveMail{
+
+}
+
+.wholeMailBox-container .btn-reservedMail{
+
+}
+
+.wholeMailBox-container .toggle-boxcheck{
+  position : absolute;
+  color: green;
+  font-size: 40px;
+  left: 135px;
+  bottom: 10px;  
+}
+
+button{
+  background:#116e4f94;
+  color:#fff;
+  border:none;
+  position:relative;
+  height: 30px;
+  font-size: 1.1em;
+  margin: 1rem;
+  padding: 0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+
+
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+
+
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
