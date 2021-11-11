@@ -1,0 +1,140 @@
+.adminPage-container {
+  width: 1040px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.adminPage-container .admin-name {
+  margin: 10px;
+  font-size: 17pt;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.adminPage-container .tab-menu {
+}
+
+.adminPage-container .menu-users {
+  margin: 10px;
+  font-size: 13pt;
+  cursor: pointer;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  color: #808080;
+  font-weight: bold;
+}
+
+.adminPage-container .menu-mails {
+  margin: 10px;
+  font-size: 13pt;
+  cursor: pointer;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  color: #808080;
+  font-weight: bold;
+}
+
+.adminPage-container .selected {
+  margin: 10px;
+  font-size: 13pt;
+  color: #ffffff;
+  cursor: pointer;
+  border: solid 4px rgb(170, 170, 170);
+  background-color: rgb(170, 170, 170);
+  border-radius: 30px;
+  padding-bottom: 4px;
+}
+
+.adminPage-container .box-contents {
+  height: 60vh;
+}
+
+/* 유저관리 */
+.adminUser-container .box-search {
+  text-align: right;
+}
+
+.adminUser-container .box-table {
+  height: 50vh;
+}
+
+.adminUser-container .box-table table {
+  width: 100%;
+}
+
+.adminUser-container .box-table table tr {
+  text-align: center;
+  height: 40px;
+}
+
+/* 편지관리 */
+.adminMail-container .box-search {
+  text-align: right;
+}
+
+.adminMail-container .box-table {
+  height: 50vh;
+}
+
+.adminMail-container .box-table table {
+  width: 100%;
+}
+
+.adminMail-container .box-table table tr {
+  text-align: center;
+  height: 40px;
+}
+
+/* 페이지네이션 */
+.adminPage-container .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.adminPage-container ul {
+  list-style: none;
+  padding: 0;
+}
+.adminPage-container ul.pagination li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+.adminPage-container ul.pagination li:first-child {
+  border-radius: 30px 0 0 30px;
+}
+.adminPage-container ul.pagination li:last-child {
+  border-radius: 0 30px 30px 0;
+}
+.adminPage-container ul.pagination li a {
+  text-decoration: none;
+  color: #6c9ee4;
+  font-size: 1rem;
+}
+.adminPage-container ul.pagination li.active a {
+  color: white;
+}
+.adminPage-container ul.pagination li.active {
+  background-color: #6c9ee4;
+}
+.adminPage-container ul.pagination li a:hover,
+ul.pagination li a.active {
+  color: #4a6b9b;
+}
+.adminPage-container .page-selection {
+  width: 48px;
+  height: 30px;
+  color: #6c9ee4;
+}

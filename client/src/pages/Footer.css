@@ -1,0 +1,29 @@
+.footer-container {
+  background-color: #ffddd9;
+  height: 160px;
+  padding-top: 25px;
+}
+
+.footer-container .table-footer {
+  margin: 0 auto;
+}
+
+.footer-container .table-footer th {
+  color: rgb(128, 128, 128);
+}
+
+.footer-container .table-footer ul {
+  list-style: none;
+}
+
+.footer-container .table-footer li a {
+  font-size: 10pt;
+  text-decoration: none;
+  color: gray;
+}
+
+.footer-container .copyright {
+  font-size: 10pt;
+  color: gray;
+  text-align: center;
+}

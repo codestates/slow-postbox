@@ -11,6 +11,7 @@ const userRouter = require('./router/userRouter');
 const app = express();
 
 app.use(express.json({ strict: false }));
+// app.use(cors())
 app.use(
   cors({
     origin: ['http://localhost:3000'],
@@ -41,6 +42,8 @@ app.use('/mail', mailRouter);
 app.use('/user', userRouter);
 
 const PORT = 4000;
+
+// const PORT = 80;
 
 let server = app.listen(PORT, () =>
   console.log(`🚀 Server is starting on ${PORT}`)
