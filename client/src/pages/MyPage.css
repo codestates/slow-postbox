@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+.mypage-container {
+  width: 60%;
+  padding: 2rem 5rem;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+.mypage-container .tab-wrapper {
+  width: 70%;
+  margin: 200px auto;
+  padding: 2rem 3rem;
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+}
+.mypage-container .styledTabContent-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 5px solid purple;
+}
+
+.mypage-container span.tab-divider {
+  font-size: 1.5rem;
+}
+
+.mypage-container span.tab-text {
+  cursor: pointer;
+}
+
+.mypage-container .tab-text,
+.mypage-container .tab-divider {
+  margin-right: 15px;
+}
+.mypage-container img.emptyImg {
+  width: 100%;
+  opacity: 0.4;
+  border: 1px solid red;
+}
+.mypage-container p.no-logs {
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  text-align: center;
+  color: gray;
+}
+.mypage-container .active-tabs {
+  font-weight: bold;
+  color: blueviolet;
+}
+.mypage-container .active-content {
+  display: block;
+  flex: 1 1 auto;
+}
+.mypage-container .inactive-content {
+  display: none;
+}
+
+/*비밀번호 변경*/
+.mypage-container .form-renewPw {
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+}
+.mypage-container .p-renew-pw {
+  border: 1px solid green;
+  flex: 1 1 auto;
+  padding: 0.25em 1em;
+}
+.mypage-container .input-renew-pw {
+  max-width: 200px;
+  margin-left: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  border: 0.115em solid gray;
+}
+.mypage-container span.span-alert {
+  margin-left: 1em;
+  font-size: 0.75em;
+}
+.mypage-container span.unavailable {
+  color: tomato;
+}
+.mypage-container span.available {
+  color: green;
+}
+.mypage-container button.btn-submit {
+  border: none;
+  margin-top: 1rem;
+  padding: 0.55em 1em;
+  border-radius: 3px;
+  background-color: lightgray;
+}
+.mypage-container button.btn-submit:hover,
+button.btn-withdrawal {
+  cursor: pointer;
+}
+.mypage-container button.btn-submit:active {
+  background-color: palevioletred;
+  color: white;
+}
+.mypage-container button.btn-withdrawal {
+  border: none;
+  padding: 0.55em 1em;
+  border-radius: 3px;
+  background-color: whitesmoke;
+  color: gray;
+}
+.mypage-container button.btn-withdrawal:active {
+  background-color: lightgray;
+  color: white;
+  border-top: 1px solid whitesmoke;
+}
