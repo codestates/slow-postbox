@@ -1,0 +1,239 @@
+.home-container {
+  margin: 0 auto;
+  height: 290vh;
+  padding-top: 60px;
+  overflow-x: hidden;
+}
+
+.home-container .box-main {
+  cursor: url('../img/paper_plane_icon.svg'), auto;
+  padding-top: 60px;
+  height: 580px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 200px;
+  animation: fadein 3s;
+  background-color: #fbf2ee;
+  width: 100%;
+  -moz-animation: fadein 3s; /* Firefox */
+  -webkit-animation: fadein 3s; /* Safari and Chrome */
+  -o-animation: fadein 3s; /* Opera */
+  border: 1px solid #fbf2ee;
+  box-shadow: 5px 10px 20px rgb(187, 187, 187);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.home-container div.home-img {
+  height: 330px;
+  pointer-events: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-container img.home-img-1 {
+  margin: 20px 0;
+  height: 300px;
+  pointer-events: none;
+  animation: animatedbang 8s infinite;
+}
+
+.home-container img.home-img-2 {
+  position: absolute;
+  left: 780px;
+  margin: 20px 0;
+  height: 300px;
+  pointer-events: none;
+  animation: animatedbang 3s infinite;
+}
+
+@keyframes animatedbang {
+  0% {
+    transform: translateY(10px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/* .home-container #img-mail{
+    text-align: center;
+    width: 100%;
+    font-size: 75pt;
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+} */
+
+.home-container .box-main .title {
+  text-align: center;
+  font-size: 23pt;
+  font-weight: 800;
+  color: #e84b35;
+}
+
+.home-container .box-counting {
+  display: flex;
+  align-items: center;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.home-container .num-counting-up {
+  color: rgb(58, 58, 58);
+  flex: 1;
+  width: 100px;
+  font-weight: 900;
+}
+
+div.animated-container {
+  width: 150px;
+  margin-left: auto;
+}
+
+.home-container .words-counting-up {
+  color: rgb(75, 75, 75);
+  font-size: 18pt;
+  font-weight: 700;
+  flex: 1.5;
+}
+
+.home-container .btn-write {
+  display: block;
+  margin: 40px auto;
+  text-align: center;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-size: 13pt;
+  font-weight: 600;
+  background-color: #e84b35;
+  width: 200px;
+  height: 50px;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.home-container .scroll-down {
+  text-align: center;
+  cursor: pointer;
+  -webkit-animation: blink 1.2s ease-in-out infinite alternate;
+  -moz-animation: blink 1.2s ease-in-out infinite alternate;
+  animation: blink 1.2s ease-in-out infinite alternate;
+}
+
+.home-container .home-explanation {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-top: 250px;
+}
+
+.home-container .box-script-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 400px;
+}
+
+.home-container .img-script-1 img {
+  width: 500px;
+  height: 500px;
+}
+
+.home-container .explanation-script-1 {
+  width: 500px;
+  text-align: center;
+  font-size: 20pt;
+  font-weight: 800;
+}
+
+.home-container .explanation-script-1 .sub-text {
+  font-size: 12pt;
+  font-weight: 180;
+}
+
+.home-container .box-script-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-container .img-script-2 img {
+  height: 430px;
+}
+
+.home-container .explanation-script-2 {
+  text-align: center;
+  width: 500px;
+  font-size: 20pt;
+  font-weight: 800;
+}
+
+.home-container .explanation-script-2 .sub-text {
+  font-size: 12pt;
+  font-weight: 180;
+}
