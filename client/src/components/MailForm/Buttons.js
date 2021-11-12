@@ -19,22 +19,23 @@ function Buttons({ handleConfirmModal, handlePreviewModal }) {
   );
 }
 const StyledDiv = styled.div`
-  width: 240px;
-  height: 36px;
-  border: 1px solid red;
-  margin: 1em auto;
+  width: 190px;
+  height: 30px;
+  /* border: 1px solid red; */
+  margin: 0 auto;
+  padding: 17px 0;
 `;
 const StyledButton = styled.button`
-  background: ${(props) => (props.send ? 'palevioletred' : 'white')};
-  color: ${(props) => (props.send ? 'white' : 'palevioletred')};
+  background: ${(props) => (props.send ? '#E84B35' : '#8D93AB')};
+  color: white;
+  font-weight: bold;
   float: ${(props) => (props.send ? 'right' : 'left')};
   &:hover {
     cursor: pointer;
   }
-  font-size: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
+  border: none;
+  padding: 0.35em 1em;
+  border-radius: 10px;
 `;
 
 export default Buttons;
