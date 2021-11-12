@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Pagination from 'react-js-pagination';
 import Loding from '../Loding/Loding';
 
 export default function AdminUser() {
   const [page, setPage] = useState(1);
   const [isLoding, setIsLoding] = useState(false);
+  const [ confirm, setConfirm ] = useState(false);
+  const [ modal, setModal ] = useState(false);
 
   const count = 40;
 
@@ -94,24 +98,34 @@ export default function AdminUser() {
   return (
     <div className='adminUser-container'>
       <div className='box-search'>
+        <div class='search-box'>
+          <input
+            type='text'
+            id='search'
+            placeholder='검색어를 입력하세요'
+          ></input>
+          <span>
+            <button id='searchButton'>
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </span>
+        </div>
         <select>
           <option value='name' selected='selected'>
             이름
           </option>
           <option value='email'>이메일</option>
         </select>
-        <input type='text'></input>
-        <button>검색</button>
       </div>
       <div className='box-table'>
         <table>
-          <th>id</th>
+          <th className="id"><span>id</span></th>
           <th>이름</th>
           <th>이메일</th>
           <th>보낸 편지 수</th>
           <th>받은 편지 수</th>
           <th>가입일</th>
-          <th>탈퇴</th>
+          <th className="withdraw"><span>탈퇴</span></th>
           {isLoding ? (
             <tr>
               <td colSpan='7'>
@@ -120,7 +134,7 @@ export default function AdminUser() {
             </tr>
           ) : (
             dummyData.map((el, id) => {
-              return <UserList el={el} key={id} />;
+              return <UserList setConfirm={setConfirm} el={el} key={id} />;
             })
           )}
         </table>
@@ -136,11 +150,13 @@ export default function AdminUser() {
           onChange={setPage}
         />
       </div>
+      {confirm?<ConfirmUser setModal={setModal} setConfirm={setConfirm}/>:""}
+      {modal?<ModalUser setModal={setModal}/>:""}
     </div>
   );
 }
 
-function UserList({ el }) {
+function UserList({ el, setConfirm }) {
   return (
     <tr>
       <td>{el.id}</td>
@@ -149,7 +165,32 @@ function UserList({ el }) {
       <td>{el.numOfSent}</td>
       <td>{el.numOfReceived}</td>
       <td>{el.created_at.slice(0, 10)}</td>
-      <td>탈퇴</td>
+      <td className="withdraw"><FontAwesomeIcon icon={faTrashAlt} onClick={()=>{setConfirm(true)}}/></td>
     </tr>
+  );
+}
+
+function ConfirmUser({setConfirm, setModal}) {
+  return (
+    <div className="confirmUser-container">
+    <div className="box-confirm">
+      <img src="img/delete.svg"/>
+      <div className="confirm-message">해당 유저 정보를 삭제하시겠습니까?</div>
+      <div className="box-confirm-btn"><span id="btn-cancel" onClick={()=>{setConfirm(false)}}>취소</span><span id="btn-confirm" onClick={()=>{setConfirm(false)
+      setModal(true)}}>확인</span></div>
+    </div>
+  </div>
+  );
+}
+
+function ModalUser({setModal}) {
+  return (
+    <div className="modalUser-container">
+    <div className="box-modal">
+      <img src="img/success.svg"/>
+      <div className="modal-message">삭제되었습니다.</div>
+      <div><span onClick={()=>{setModal(false)}}>확인</span></div>
+    </div>
+  </div>
   );
 }
