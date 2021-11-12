@@ -33,6 +33,12 @@
     "redux-thunk": "^2.3.0",
     "web-vitals": "^1.1.2",
     "react-icons": "^4.3.1"
+    "styled-components": "^5.3.3",
+    "ckeditor4": "^4.16.2",
+    "ckeditor4-react": "^2.0.1",
+    "date-fns": "^2.25.0",
+    "history": "^5.1.0"
+
   },
   "scripts": {
     "start": "react-scripts start",
