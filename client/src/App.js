@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-import Mailform from './pages/MailForm';
+import Mypage from './pages/MyPage';
+
 function App() {
   return (
     <div>
-      <Mailform />
+      <Mypage />
     </div>
   );
 }

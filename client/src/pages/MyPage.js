@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import './Mypage.css';
+import './MyPage.css';
 import emptyImg from '../img/empty.png';
 import { useState, useEffect } from 'react';
-import Withdrawal from './Withdrawal';
+import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
 function Mypage() {
   const [toggleState, setToggleState] = useState(1);
