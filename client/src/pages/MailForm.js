@@ -1,12 +1,13 @@
-import Mailinfo from './Mailinfo';
-import Editor from './Editor';
-import Buttons from './Buttons';
-import ConfirmModal from './ConfirmModal';
-import CompleteModal from './CompleteModal';
-import './Mailform.css';
+import Mailinfo from '../components/MailForm/MailInfo';
+import Editor from '../components/MailForm/Editor';
+import Buttons from '../components/MailForm/Buttons';
+import ConfirmModal from '../components/MailForm/ConfirmModal';
+import CompleteModal from '../components/MailForm/CompleteModal';
+import PreviewModal from '../components/MailForm/PreviewModal';
+import './MailForm.css';
 import { useState } from 'react';
-import PreviewModal from './PreviewModal';
-function Mailform() {
+
+function MailForm() {
   //Buttons에서 <전송하기> 버튼 눌렀을때 상태변경해서 모달창 띄우기
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const handleConfirmModal = () => {
@@ -51,4 +52,4 @@ function Mailform() {
     </>
   );
 }
-export default Mailform;
+export default MailForm;
