@@ -11,7 +11,7 @@ function CompleteModal({ handleCompleteModal }) {
     <>
       <div className='completeModal-container' onClick={handleClose}>
         <div className='modal-box'>
-          <h3>느린 우체통</h3>
+          <h3 className='modal-title'>느린 우체통</h3>
           <p>편지 예약이 완료되었습니다.</p>
           <p>
             <span>dagachi@gmail.com</span>님께 <span>2022.11.09</span>일에
