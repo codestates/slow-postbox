@@ -1,18 +1,15 @@
-body {
-  margin: 0;
-  box-sizing: border-box;
-}
 .mypage-container {
+  max-width: 1024px;
+  min-width: 768px;
   width: 60%;
-  padding: 2rem 5rem;
   margin: 0 auto;
-  border: 1px solid black;
+  margin-top: 100px;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 20px;
+  box-shadow: 5px 10px 20px rgb(187, 187, 187);
 }
 .mypage-container .tab-wrapper {
-  width: 70%;
-  margin: 200px auto;
-  padding: 2rem 3rem;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
 }
@@ -20,11 +17,12 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  border: 5px solid purple;
+  /* border: 5px solid purple; */
 }
 
 .mypage-container span.tab-divider {
   font-size: 1.5rem;
+  color: rgb(235, 235, 235);
 }
 
 .mypage-container span.tab-text {
@@ -38,7 +36,7 @@ body {
 .mypage-container img.emptyImg {
   width: 100%;
   opacity: 0.4;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .mypage-container p.no-logs {
   width: 300px;
@@ -52,7 +50,7 @@ body {
 }
 .mypage-container .active-tabs {
   font-weight: bold;
-  color: blueviolet;
+  color: #e84b35;
 }
 .mypage-container .active-content {
   display: block;
@@ -64,21 +62,26 @@ body {
 
 /*비밀번호 변경*/
 .mypage-container .form-renewPw {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  font-size: 1em;
+  text-align: center;
+  box-shadow: 5px 10px 30px rgb(187, 187, 187);
+  border-radius: 20px;
 }
 .mypage-container .p-renew-pw {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   flex: 1 1 auto;
-  padding: 0.25em 1em;
+  padding: 0.05em 1em;
 }
 .mypage-container .input-renew-pw {
-  max-width: 200px;
-  margin-left: 1em;
-  padding: 0.25em 1em;
+  max-width: 240px;
+  margin: 0 auto;
+  padding: 0.15em 1em;
   border-radius: 3px;
-  border: 0.115em solid gray;
+  border: 1px solid #a6a6a6;
 }
 .mypage-container span.span-alert {
   margin-left: 1em;
@@ -91,21 +94,23 @@ body {
   color: green;
 }
 .mypage-container button.btn-submit {
+  width: 100px;
+  margin: 1.3em auto 0 auto;
   border: none;
   margin-top: 1rem;
   padding: 0.55em 1em;
   border-radius: 3px;
-  background-color: lightgray;
+  background-color: #e84b35;
+  color: white;
+  font-weight: bold;
 }
 .mypage-container button.btn-submit:hover,
 button.btn-withdrawal {
   cursor: pointer;
 }
-.mypage-container button.btn-submit:active {
-  background-color: palevioletred;
-  color: white;
-}
 .mypage-container button.btn-withdrawal {
+  width: 100px;
+  margin: 0 auto 1.3em auto;
   border: none;
   padding: 0.55em 1em;
   border-radius: 3px;
@@ -116,4 +121,41 @@ button.btn-withdrawal {
   background-color: lightgray;
   color: white;
   border-top: 1px solid whitesmoke;
+}
+
+/*받은 편지, 보낸편지 ul*/
+.mypage-container .ul-mailbox {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  /* border: 3px solid red; */
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 20px;
+}
+.mypage-container .li-mail {
+  width: 100%;
+  padding: 0.55em 0;
+  display: flex;
+  vertical-align: middle;
+  border-bottom: 1px solid rgb(235, 235, 235);
+}
+.mypage-container .li-icon {
+  flex: 0.1;
+  height: 30px;
+  padding-top: 4px;
+  /* border: 1px solid green; */
+}
+.mypage-container .li-title {
+  display: inline-block;
+  flex: 1;
+  padding-top: 4px;
+  /* border: 1px solid red; */
+  text-align: center;
+}
+.mypage-container .li-date {
+  flex: 0.2;
+  padding-top: 4px;
+  /* border: 1px solid green; */
+  text-align: center;
+  font-size: 0.8em;
 }
