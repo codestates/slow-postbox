@@ -1,36 +1,80 @@
 .completeSignUp-container {
-  border: solid 1px black;
-  min-width: 800px;
-  max-width: 800px;
-  height: 550px;
+  min-width: 70%;
+  max-width: 70%;
+  height: 100%;
   margin: 150px auto 150px auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 30px;
+  box-shadow: 5px 10px 20px rgb(187, 187, 187);
+  border-radius: 10px;
 }
 
-.completeSignUp-container .completeSignUp-message {
-  text-align: center;
-  margin-top: 50px;
+.completeSignUp-container .title {
   font-size: 30px;
-  font-weight: bold;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+.completeSignUp-container .completeSignUp-title {
+  width: 300px;
+}
+.completeSignUp-container .completeSignUp-message {
+  font-size: 1.25em;
+  padding-left: 20px;
+  line-height: 50px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.signUp-container .signUp-section {
+  font-size: 1.25em;
+  border-top: solid #f06e5c 2px;
+  padding-left: 20px;
+  line-height: 50px;
+  vertical-align: middle;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 .completeSignUp-container .explain-section {
   text-align: center;
   height: 300px;
   line-height: 300px;
-  width: 600px;
-  border: black solid 1px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 80%;
   vertical-align: middle;
-}
-.completeSignUp-container .button-section {
+  font-size: 1.25em;
+  border-top: solid #f06e5c 2px;
+  border-bottom: solid #f06e5c 2px;
+  vertical-align: middle;
   text-align: center;
-  margin-bottom: 50px;
+  margin-right: auto;
+  margin-left: auto;
 }
-.completeSignUp-container .button-section > button {
-  width: 100px;
-  height: 40px;
+
+.completeSignUp-container .login-button {
+  display: block;
+  margin: 40px auto;
+  text-align: center;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-size: 13pt;
+  font-weight: 600;
+  background-color: #e84b35;
+  width: 200px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+.completeSignUp-container .bottom-section {
+  height: 130px;
+  border-top: solid rgb(192, 192, 192) 2px;
+  background-color: #f06e5c;
+  border-radius: 0 0 10px 10px;
+}
+.completeSignUp-container .login-button:hover {
+  text-decoration: underline;
 }
