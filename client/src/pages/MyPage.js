@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import './MyPage.css';
 import emptyImg from '../img/empty.png';
+import receivedmail from '../img/receivedmail.svg';
 import { useState, useEffect } from 'react';
 import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
-function Mypage() {
+function MyPage() {
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
@@ -125,8 +126,35 @@ function Mypage() {
                         : 'inactive-content'
                     }
                   >
-                    <img src={emptyImg} alt='empty' className='emptyImg' />
-                    <p className='no-logs'>내역이 없습니다</p>
+                    <ul className='ul-mailbox'>
+                      <li className='li-mail'>
+                        <img
+                          src={receivedmail}
+                          className='li-icon flex-item'
+                          alt='받은메일'
+                        />
+                        <span className='li-title'>제목부분입니다</span>
+                        <span className='li-date'>날짜</span>
+                      </li>
+                      <li className='li-mail'>
+                        <img
+                          src={receivedmail}
+                          className='li-icon flex-item'
+                          alt='받은메일'
+                        />
+                        <span className='li-title'>제목부분입니다</span>
+                        <span className='li-date'>날짜</span>
+                      </li>
+                      <li className='li-mail'>
+                        <img
+                          src={receivedmail}
+                          className='li-icon flex-item'
+                          alt='받은메일'
+                        />
+                        <span className='li-title'>제목부분입니다</span>
+                        <span className='li-date'>날짜</span>
+                      </li>
+                    </ul>
                   </div>
                   <div
                     className={
@@ -136,7 +164,7 @@ function Mypage() {
                     }
                   >
                     <img src={emptyImg} alt='empty' className='emptyImg' />
-                    <p className='no-logs'>내역이 있습니다</p>
+                    <p className='no-logs'>내역이 없습니다</p>
                   </div>
                 </StyledLogs>
               </StyledTabContent>
@@ -213,24 +241,20 @@ const StyledTabContent = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  border: 4px solid palevioletred;
-  border-radius: 3px;
+  /* border: 4px solid palevioletred; */
 `;
 
 const StyledTabs = styled.div`
   flex: 1 1 auto;
-  background: ${(props) => (props.send ? 'palevioletred' : 'white')};
-  color: ${(props) => (props.send ? 'white' : 'palevioletred')};
   font-size: ${(props) => (props.innerTab ? '1em' : '1.2em')};
-  padding: ${(props) => (props.innerTab ? '1.2em' : '0.25em 1em')};
-  border: 2px solid palevioletred;
-  border-radius: 3px;
+  padding: ${(props) => (props.innerTab ? '1.2em' : '0.55em 1em')};
+  color: #a6a6a6;
 `;
 
 const StyledLogs = styled.div`
   width: 100%;
-  border: 3px solid green;
-  position: relative;
+  /* border: 3px solid green; */
+  display: block;
 `;
 
-export default Mypage;
+export default MyPage;

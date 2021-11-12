@@ -1,18 +1,30 @@
 .withdrawal-container {
   flex: 1 1 auto;
-  padding: 2em 3em;
   margin: 0 auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .withdrawal-container .form-withdrawal {
-  border: 1px solid green;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   text-align: center;
+  box-shadow: 5px 10px 30px rgb(187, 187, 187);
+  border-radius: 20px;
 }
 
+.withdrawal-container .withdrawal-title {
+  margin-bottom: 7px;
+  font-size: 1.1em;
+  font-weight: bold;
+  /* border: 1px solid green; */
+}
 .withdrawal-container input.input-withdrawal-pw {
-  max-width: 350px;
+  max-width: 240px;
   margin: 0 auto;
-  padding: 0.25em 1em;
+  padding: 0.15em 1em;
+  border-radius: 3px;
+  border: 1px solid #a6a6a6;
 }
