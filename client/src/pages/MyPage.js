@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import './Mypage.css';
-import emptyImg from './resources/empty.png';
+import emptyImg from '../img/empty.png';
 import { useState, useEffect } from 'react';
 import Withdrawal from './Withdrawal';
-const { availablePw, matchingPw } = require('./funcs/userFuncs');
+const { availablePw, matchingPw } = require('../funcs/userFuncs');
 function Mypage() {
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
