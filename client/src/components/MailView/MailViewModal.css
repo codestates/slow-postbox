@@ -1,0 +1,29 @@
+
+
+.mailViewModal-contanier{
+  width: 100%;
+  height: 100vh;
+  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.mailViewModal-contanier .modal-show{
+  position : absolute;
+  top: 38%;
+  right: 13%;
+  background-color: white;
+  width: 133px;
+
+}
+
+
+.mailViewModal-contanier .btn-Modalclose{ 
+  background-color: rgb(253, 163, 163);
+  text-align: right;
+  font-size: 20px;
+
+}
