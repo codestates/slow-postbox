@@ -10,7 +10,9 @@
     display: flex;
     height: 60px;
     align-items: center;
-    max-width: 1040px;
+    width: 100%;
+    max-width: 1024px;
+    min-width: 768px;
     margin: 0 auto;
 }
 
@@ -60,6 +62,10 @@
     height: 30px;
     border-radius: 10px;
     font-weight: 700;
+}
+
+.navBar-container .bar .login span:hover{
+    background-color:rgb(74,184,161);
 }
 
 .navBar-container .bar .signup{
