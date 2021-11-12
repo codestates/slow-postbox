@@ -83,9 +83,9 @@ export default function Home() {
             <img alt='img-script-2' src='img/undraw_team.svg' />
           </div>
           <div className='explanation-script-2'>
-            도착하기 전까지 확인할 수 없는
+            편지가 도착할 때 까지
             <br />
-            편지의 설렘을 느끼며 기다려보세요.
+            설렘을 느끼며 기다려보세요.
             <br />
             <br />
             <p className='sub-text'>
