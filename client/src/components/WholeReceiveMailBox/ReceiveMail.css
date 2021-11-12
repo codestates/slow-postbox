@@ -1,0 +1,34 @@
+.mailbox-container-empty{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.mailbox-container{
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  border-bottom:rgb(44, 16, 90) solid 1px;
+}
+
+
+.mailbox-container .sort-readCheck:nth-child(1) {
+	grid-column: 2 / 3;
+  text-align: right;
+  padding: 1rem 1rem 0 0;
+}
+
+.mailbox-container .icon-mail:nth-child(2){
+  grid-row: 1 / 4;
+  text-align : center;
+  align-self: center;
+  color: green;
+}
+
+.mailbox-container .text-mail{
+  text-align : center;
+  align-self: center;
+}
+
+
