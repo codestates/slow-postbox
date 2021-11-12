@@ -1,8 +1,12 @@
 import React from 'react';
-import './App.css'
-
+import './App.css';
+import Mailform from './pages/MailForm';
 function App() {
-  return <div>App</div>;
+  return (
+    <div>
+      <Mailform />
+    </div>
+  );
 }
 
 export default App;
