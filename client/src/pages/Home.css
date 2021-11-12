@@ -154,7 +154,7 @@ div.animated-container {
 }
 
 .home-container .btn-write:hover{
-  background-color:rgb(74,184,161);
+  text-decoration: underline;
 }
 
 @-webkit-keyframes blink {
