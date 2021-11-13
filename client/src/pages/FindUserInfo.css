@@ -1,11 +1,12 @@
 .findUserInfo-container {
-  border: solid 1px black;
-  min-width: 800px;
-  max-width: 800px;
-  height: 550px;
+  min-width: 70%;
+  max-width: 70%;
+  height: 600px;
   margin: 150px auto 150px auto;
   display: flex;
   flex-direction: column;
+  box-shadow: 5px 10px 20px rgb(187, 187, 187);
+  border-radius: 10px;
 }
 
 .findUserInfo-container .title {
@@ -13,32 +14,37 @@
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: solid black 1px;
+  color: white;
+  border-radius: 10px 10px 0 0;
 }
-
+.findUserInfo-container .findUserInfo-title {
+  width: 300px;
+}
 .findUserInfo-container .findPassword-section {
-  border-left: black solid 1px;
-  border-right: black solid 1px;
   margin-right: auto;
   margin-left: auto;
-  width: 600px;
-  height: 700px;
+  margin-bottom: auto;
+  height: auto;
+}
+.findUserInfo-container .main-section {
+  margin-top: 20%;
+  width: 100%;
 }
 
 .findUserInfo-container .findPassword-title {
-  font-size: 20px;
-  border-bottom: black solid 1px;
+  font-size: 1.25em;
+  border-bottom: solid #f06e5c 2px;
   padding-left: 20px;
   line-height: 50px;
   vertical-align: middle;
-}
-
-.findUserInfo-container .main-section {
+  text-align: center;
 }
 
 .findUserInfo-container .bottom-section {
   height: 130px;
-  border-top: solid black 1px;
+  border-top: solid rgb(192, 192, 192) 2px;
+  background-color: #f06e5c;
+  border-radius: 0 0 10px 10px;
 }
 
 .findUserInfo-container .confirm-email {

@@ -3,9 +3,10 @@
   flex-direction: column;
   width: 300px;
   height: 500px;
-  border: solid black;
+  border: 2px solid #e84b35;
   margin: 160px auto 150px auto;
   padding: 20px;
+  border-radius: 10px;
 }
 .login-container #title {
   color: black;
@@ -23,10 +24,19 @@
 .login-container .input-email {
   height: 40px;
   margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(192, 192, 192);
+  font-size: 1em;
 }
 .login-container .input-password {
   height: 40px;
   margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(192, 192, 192);
+  font-size: 1em;
+}
+.login-container #find-password:hover {
+  text-decoration: underline black;
 }
 
 .login-container #find-password {
@@ -34,6 +44,7 @@
   margin-right: 10px;
   margin-top: 10px;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .login-container .login-buttons {
@@ -49,4 +60,25 @@
   height: 45px;
   margin-top: 5px;
   cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  font-size: 1em;
+  font-weight: 500;
+}
+.login-container .login-button {
+  background-color: #e84b35;
+  color: white;
+}
+
+.login-container .signup-button {
+  background-color: #f06e5c;
+  color: white;
+}
+
+.login-container .login-title {
+  width: 250px;
+}
+
+.login-container button:hover {
+  text-decoration: underline;
 }
