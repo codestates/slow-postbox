@@ -1,28 +1,31 @@
-import './CompleteModal.css';
-
-function CompleteModal({ handleCompleteModal }) {
+import './ConfirmModal.css';
+function ConfirmModal({ handleConfirmModal, handleCompleteModal }) {
   const handleClose = (e) => {
-    if (e.target === e.currentTarget || e.target.className === 'btn-close') {
+    if (e.target === e.currentTarget) {
+      handleConfirmModal();
+    } else if (e.target.className === 'btn-submit') {
+      handleConfirmModal();
       handleCompleteModal();
-      //todo 보낸 메일함으로 이동
     }
   };
   return (
     <>
-      <div className='completeModal-container' onClick={handleClose}>
+      <div className='confirmModal-container' onClick={handleClose}>
         <div className='modal-box'>
-          <h3>느린 우체통</h3>
-          <p>편지 예약이 완료되었습니다.</p>
           <p>
-            <span>dagachi@gmail.com</span>님께 <span>2022.11.09</span>일에
-            편지가 전달될 예정입니다
+            예약이 완료된 편지는 전송취소가 불가합니다. 편지를 보내시겠습니까?
           </p>
-          <button className='btn-close' onClick={handleClose}>
-            확인
-          </button>
+          <div className='btn-box'>
+            <button className='btn-close' onClick={handleConfirmModal}>
+              취소
+            </button>
+            <button className='btn-submit' onClick={handleClose}>
+              보내기
+            </button>
+          </div>
         </div>
       </div>
     </>
   );
 }
-export default CompleteModal;
+export default ConfirmModal;
