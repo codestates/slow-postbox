@@ -133,10 +133,6 @@ select::-ms-expand {
   border: 2px solid #E84B35;
 }
 
-.adminUser-container #searchButton:hover{
-  background-color:rgb(74,184,161);
-  border: 2px solid rgb(74,184,161);
-}
 
 .adminUser-container .box-table{
   height: 100%;
@@ -251,13 +247,6 @@ select::-ms-expand {
   margin-left: 5px;
 }
 
-.confirmUser-container span#btn-confirm:hover{
-  background-color:rgb(74,184,161);
-}
-
-.confirmUser-container span#btn-cancel:hover{
-  background-color:rgb(56, 56, 56);
-}
 
 /*유저 모달*/
 .modalUser-container{
@@ -314,9 +303,6 @@ select::-ms-expand {
   cursor: pointer;
 }
 
-.modalUser-container span:hover{
-  background-color:rgb(74,184,161);
-}
 
 /* 편지관리 */
 .adminMail-container .box-search{
@@ -376,10 +362,6 @@ select::-ms-expand {
   border: 2px solid #E84B35;
 }
 
-.adminMail-container #searchButton:hover{
-  background-color:rgb(74,184,161);
-  border: 2px solid rgb(74,184,161);
-}
 
 .adminMail-container .box-table{
   height: 100%;
@@ -495,13 +477,6 @@ select::-ms-expand {
   margin-left: 5px;
 }
 
-.confirmMail-container span#btn-confirm:hover{
-  background-color:rgb(74,184,161);
-}
-
-.confirmMail-container span#btn-cancel:hover{
-  background-color:rgb(56, 56, 56);
-}
 
 /*유저 모달*/
 .modalMail-container{
@@ -558,9 +533,6 @@ select::-ms-expand {
   cursor: pointer;
 }
 
-.modalMail-container span:hover{
-  background-color:rgb(74,184,161);
-}
 
 /* 페이지네이션 */
 .adminPage-container .pagination { display: flex; justify-content: center; margin-top: 15px; }
