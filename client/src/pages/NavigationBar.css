@@ -64,10 +64,6 @@
     font-weight: 700;
 }
 
-.navBar-container .bar .login span:hover{
-    background-color:rgb(74,184,161);
-}
-
 .navBar-container .bar .signup{
     flex: 0.4;
     text-align: right;

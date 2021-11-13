@@ -14,31 +14,30 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid green;
+  border-radius: 20px;
+  text-align: center;
 }
 
-.confirmModal-container p {
-  border: 3px solid red;
-  font-size: 20px;
-}
 .confirmModal-container .btn-box {
-  width: 200px;
-  border: 1px solid green;
+  width: 220px;
+  /* border: 1px solid green; */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 .confirmModal-container button {
-  border: 1px solid palevioletred;
-  background-color: white;
-  padding: 0.25em 1em;
-  flex-basis: 80px;
-}
-.confirmModal-container button:hover {
-  cursor: pointer;
-}
-.confirmModal-container button:active {
-  border: white;
-  background-color: palevioletred;
+  border: none;
   color: white;
+  font-weight: bold;
+  height: 35px;
+  flex-basis: 100px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.confirmModal-container button.btn-close {
+  background-color: #8d93ab;
+}
+.confirmModal-container button.btn-submit {
+  background-color: #e84b35;
 }
