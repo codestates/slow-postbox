@@ -4,9 +4,19 @@ import "./SignUp.css"
 export default function SignUp() {
 
     return (
+        <>
+        <head>
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap'
+          rel='stylesheet'
+        />
+        </head>
         <div className="signUp-container">
             <div className='title'>
-                <img className='signUp-title' src='img/Logintitle.png'></img>
+                <img alt='login-title' className='login-title' src='img/logo.svg'></img>
+                <span className='login-logo'>느린 우체통</span>
             </div>
             <div className='signUp-section'>
                 <div className='main-section'>
@@ -54,7 +64,7 @@ export default function SignUp() {
             </div>
             <div className='bottom-section'></div>
         </div>
-
+        </>
 
 
     )

@@ -3,7 +3,7 @@
     width: 100vw;
     height: 60px;
     background-color: white;
-    z-index: 9999;
+    z-index: 99;
 }
 
 .navBar-container .bar{
@@ -17,7 +17,7 @@
 }
 
 .navBar-container .bar div{
-    font-size: 12pt;
+    font-size: 1em;
     text-align: left;
     cursor: pointer;
     color: rgb(90, 90, 90);

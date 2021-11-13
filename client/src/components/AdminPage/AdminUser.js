@@ -7,8 +7,8 @@ import Loding from '../Loding/Loding';
 export default function AdminUser() {
   const [page, setPage] = useState(1);
   const [isLoding, setIsLoding] = useState(false);
-  const [ confirm, setConfirm ] = useState(false);
-  const [ modal, setModal ] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  const [modal, setModal] = useState(false);
 
   const count = 40;
 
@@ -119,13 +119,17 @@ export default function AdminUser() {
       </div>
       <div className='box-table'>
         <table>
-          <th className="id"><span>id</span></th>
+          <th className='id'>
+            <span>id</span>
+          </th>
           <th>이름</th>
           <th>이메일</th>
           <th>보낸 편지 수</th>
           <th>받은 편지 수</th>
           <th>가입일</th>
-          <th className="withdraw"><span>탈퇴</span></th>
+          <th className='withdraw'>
+            <span>탈퇴</span>
+          </th>
           {isLoding ? (
             <tr>
               <td colSpan='7'>
@@ -150,8 +154,12 @@ export default function AdminUser() {
           onChange={setPage}
         />
       </div>
-      {confirm?<ConfirmUser setModal={setModal} setConfirm={setConfirm}/>:""}
-      {modal?<ModalUser setModal={setModal}/>:""}
+      {confirm ? (
+        <ConfirmUser setModal={setModal} setConfirm={setConfirm} />
+      ) : (
+        ''
+      )}
+      {modal ? <ModalUser setModal={setModal} /> : ''}
     </div>
   );
 }
@@ -165,32 +173,66 @@ function UserList({ el, setConfirm }) {
       <td>{el.numOfSent}</td>
       <td>{el.numOfReceived}</td>
       <td>{el.created_at.slice(0, 10)}</td>
-      <td className="withdraw"><FontAwesomeIcon icon={faTrashAlt} onClick={()=>{setConfirm(true)}}/></td>
+      <td className='withdraw'>
+        <FontAwesomeIcon
+          icon={faTrashAlt}
+          onClick={() => {
+            setConfirm(true);
+          }}
+        />
+      </td>
     </tr>
   );
 }
 
-function ConfirmUser({setConfirm, setModal}) {
+function ConfirmUser({ setConfirm, setModal }) {
   return (
-    <div className="confirmUser-container">
-    <div className="box-confirm">
-      <img src="img/delete.svg"/>
-      <div className="confirm-message">해당 유저 정보를 삭제하시겠습니까?</div>
-      <div className="box-confirm-btn"><span id="btn-cancel" onClick={()=>{setConfirm(false)}}>취소</span><span id="btn-confirm" onClick={()=>{setConfirm(false)
-      setModal(true)}}>확인</span></div>
+    <div className='confirmUser-container'>
+      <div className='box-confirm'>
+        <img src='img/delete.svg' />
+        <div className='confirm-message'>
+          해당 유저 정보를 삭제하시겠습니까?
+        </div>
+        <div className='box-confirm-btn'>
+          <span
+            id='btn-cancel'
+            onClick={() => {
+              setConfirm(false);
+            }}
+          >
+            취소
+          </span>
+          <span
+            id='btn-confirm'
+            onClick={() => {
+              setConfirm(false);
+              setModal(true);
+            }}
+          >
+            확인
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
   );
 }
 
-function ModalUser({setModal}) {
+function ModalUser({ setModal }) {
   return (
-    <div className="modalUser-container">
-    <div className="box-modal">
-      <img src="img/success.svg"/>
-      <div className="modal-message">삭제되었습니다.</div>
-      <div><span onClick={()=>{setModal(false)}}>확인</span></div>
+    <div className='modalUser-container'>
+      <div className='box-modal'>
+        <img src='img/success.svg' />
+        <div className='modal-message'>삭제되었습니다.</div>
+        <div>
+          <span
+            onClick={() => {
+              setModal(false);
+            }}
+          >
+            확인
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
   );
 }

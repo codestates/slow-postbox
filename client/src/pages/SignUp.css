@@ -9,17 +9,35 @@
   border-radius: 10px;
 }
 
-.signUp-container .title {
+/* .signUp-container .title {
   font-size: 30px;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
   color: white;
   border-radius: 10px 10px 0 0;
+} */
+
+.signUp-container .title {
+  color: black;
+  text-align: center;
+  font-size: 2.2em;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
 }
 
-.signUp-container .signUp-title {
-  width: 300px;
+.signUp-container .login-title{
+  height: 50px;
+  width: 50px;
+  margin-right: 5px;
+}
+
+.signUp-container .login-logo{
+  font-family: 'Gaegu', cursive;
+  margin-left: 5px;
+  font-weight: 550;
 }
 
 .signUp-container .signUp-section {
