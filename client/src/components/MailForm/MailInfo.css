@@ -1,29 +1,35 @@
-body {
-  box-sizing: border-box;
-  margin: 0;
-}
 .mailinfo-container {
   width: 100%;
   display: flex;
-  border: 2px solid black;
   flex-direction: column;
 }
 .mailinfo-container label {
-  padding: 0.3rem 0.2rem;
-  border: 2px solid red;
+  padding: 0.3em 1.5em;
+  border-bottom: 1px solid rgb(235, 235, 235);
   display: flex;
   align-items: center;
+  font-size: 0.9em;
+}
+.mailinfo-container .checkbox-tome {
+  border: none;
+  font-size: 0.85em;
+  color: #a6a6a6;
 }
 
 .mailinfo-container .mailinfo-input {
   flex: 1 1 auto;
-  padding: 0.45rem 0.2rem;
+  padding: 0.2em 0.2em;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 5px;
 }
-
 .mailinfo-container .mailinfo-input-title {
-  margin-left: 1.8rem;
+  margin-left: 3rem;
 }
-
+.mailinfo-container .select-date {
+  margin-left: 3em;
+  font-size: 0.8em;
+  background-color: white;
+}
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
   display: block;

@@ -68,7 +68,6 @@ function MailInfo() {
               minDate={subDays(new Date(), -1)}
               maxDate={addDays(new Date(), 365)}
               // className="Mailinfo-input datepicker-custom"
-              popperModifiers={{ preventOverflow: { enable: true } }}
             />
           </label>
         </form>
