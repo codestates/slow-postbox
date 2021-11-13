@@ -4,44 +4,140 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+  min-width: 768px; 
+
+  margin-top:50px;
 }
 
 .wholeMailBox-container .wholeMailBox-grid{
   display: grid;
-  width: 80%;
-	grid-template-rows: 1fr 1fr 8fr 1fr;
-  min-height: 90vh;
-  border: rgb(216, 124, 124) 1px solid;
+  width: 100%;
+  max-width: 1024px;
+  min-width: 768px; 
+  min-height: 90%;
+  grid-template-rows: 0.5fr 0.5fr 9fr 0.5fr;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 30px;
+  box-shadow: 5px 10px 20px rgb(187, 187, 187);
+
 }
 
 
 .wholeMailBox-grid > div{
   background-color: rgb(255, 255, 255);
-  border-bottom: rgb(216, 124, 124) 1px solid;
 }
 
 .wholeMailBox-container .sort-receiver{
-  align-self: center;
-  font-size: 1.8em;
+  font-size: 1.5em;
   padding: 2% 1% 1% 5%;
+  font-weight: 600;
+  
 }
 
-.wholeMailBox-container .btn-receiveMail{
+
+
+
+
+.tabmenu-container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;
 
 }
 
-.wholeMailBox-container .btn-reservedMail{
-
+.tabmenu-container .bar-tabmenu{
+  display: flex;
+  justify-content: left; 
+  align-items: center;
+  max-width: 1024px;
+  width: 100%;
+  border-bottom: 1px solid rgb(189, 189, 189);
+  
 }
+
+.tabmenu-container .bar-tabmenu div{
+  flex: 0.1;
+  /* min-width: 80px; */
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  color:gray;
+  margin-left: 2%;
+ 
+}
+
+.tabmenu-container .bar-tabmenu div.tab-selected{
+  border-bottom: 3px solid #E84B35;
+  font-weight: 700;
+  color:black;
+  position:relative;
+}
+
+.tabmenu-container .bar-tabmenu div.toggle-onoff{
+  position:relative;
+}
+
 
 .wholeMailBox-container .toggle-boxcheck{
   position : absolute;
-  color: green;
-  font-size: 40px;
-  left: 135px;
+  color: #b63e2e;
+  font-size: 15px;
+  left: 85px;
   bottom: 10px;  
+  z-index: 100;
 }
 
+
+
+
+/* .wholeMailBox-container .btn-MailboxLoad{
+  text-align: center;
+  background-color:#E84B35;
+  color: white;
+  width: 90px;
+  height: 35px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 10px 0 0 20px;
+  border: none;
+  outline: none;
+  position:relative;
+}
+
+
+.wholeMailBox-container .btn-MailboxLoad:hover{
+  background-color:rgb(74 184 161);
+} */
+
+/* 
+display: block;
+text-align: center;
+background-color:#E84B35;
+color: white;
+width: 90px;
+height: 35px;
+border-radius: 10px;
+font-weight: 700;
+cursor: pointer;
+margin: 10px 0;
+border: none;
+outline: none;
+
+button
+L: 200px 50px 10px(border-radius)
+M: 90px 35px 10px(border-radius)
+font-weight: 400;
+background-color:#
+:hover{
+    background-color:rgb(74 184 161);
+} */
+
+
+
+/* 
 button{
   background:#116e4f94;
   color:#fff;
@@ -86,4 +182,4 @@ button:hover:before,button:hover:after{
   transition:800ms ease all;
 }
 
-
+ */
