@@ -1,7 +1,7 @@
 .findUserInfo-container {
   min-width: 768px;
-  width: 1024px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 1024px;
   height: 600px;
   margin: 150px auto 150px auto;
   display: flex;
