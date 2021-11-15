@@ -10,7 +10,8 @@ const {
   viewSent,
   create,
   receivedlogs,
-  sentlogs
+  sentlogs,
+  getPaginatedMails,
 } = require('../controllers/mail');
 const express = require('express');
 const router = express.Router();
@@ -27,5 +28,5 @@ router.patch('/sent', patchSent);
 router.post('./create', create);
 router.get('./receivedlogs', receivedlogs);
 router.get('./sentlogs', sentlogs);
-
+router.get('/getpaginatedmail', getPaginatedMails);
 module.exports = router;

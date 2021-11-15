@@ -1,0 +1,31 @@
+.paging-container {
+  width: 400px;
+  padding: 0.25em 1em;
+  border: 1px solid red;
+  margin: 15px auto;
+  display: flex;
+}
+.paging-container .pages-wrapper {
+  flex: 1;
+  display: flex;
+  border: 1px solid green;
+  justify-content: space-evenly;
+  text-align: center;
+}
+.paging-container .pages {
+  flex-basis: 20px;
+  cursor: pointer;
+  border: 1px solid red;
+  font-size: 0.85em;
+}
+.paging-container .active-page {
+  font-weight: bold;
+}
+.paging-container button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.6em;
+  background-color: #e84b35;
+  color: white;
+}
