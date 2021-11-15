@@ -25,8 +25,9 @@ router.get('/sent', getSent);
 router.get('/willsend', getWillsend);
 router.get('/sent/:mailsid', viewSent);
 router.patch('/sent', patchSent);
-router.post('./create', create);
-router.get('./receivedlogs', receivedlogs);
-router.get('./sentlogs', sentlogs);
+router.post('/create', create);
+router.get('/receivedlogs', receivedlogs);
+router.get('/sentlogs', sentlogs);
 router.get('/getpaginatedmail', getPaginatedMails);
+
 module.exports = router;
