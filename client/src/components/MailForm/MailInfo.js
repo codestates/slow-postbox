@@ -6,18 +6,17 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { addDays, subDays } from 'date-fns';
 const { getTomorrow } = require('../../funcs/dateFuncs');
 
-function MailInfo() {
-  const startDate = getTomorrow();
+function MailInfo({ formInfo, setFormInfo }) {
   registerLocale('ko', ko);
 
-  const [emailInfo, setEmailInfo] = useState({
-    title: '',
-    receiver: '',
-  });
-  const [reservDate, setReservDate] = useState('');
-  console.log(reservDate);
+  const [reservedDate, setReservedDate] = useState(getTomorrow());
+
   const handleChange = (e) => {
-    setEmailInfo({ ...emailInfo, [e.target.name]: e.target.value });
+    setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
+  };
+  const handleDateChange = (date) => {
+    setReservedDate(date);
+    setFormInfo({ ...formInfo, reservedDate: date });
   };
 
   return (
@@ -35,7 +34,7 @@ function MailInfo() {
               name='receiver'
               placeholder='수신이메일을 작성해주세요'
               className='mailinfo-input'
-              value={emailInfo.receiver}
+              value={formInfo.receiver}
               onChange={handleChange}
             />
           </label>
@@ -46,7 +45,7 @@ function MailInfo() {
               name='title'
               placeholder='제목을 작성해주세요'
               className='mailinfo-input mailinfo-input-title'
-              value={emailInfo.title}
+              value={formInfo.title}
               onChange={handleChange}
             />
           </label>
@@ -61,13 +60,12 @@ function MailInfo() {
               <option value='1년 후'>1년 후</option>
             </select>
             <DatePicker
-              selected={startDate}
-              onChange={setReservDate}
+              selected={reservedDate}
+              onChange={(date) => handleDateChange(date)}
               locale='ko'
               dateFormat='yyyy-MM-dd'
               minDate={subDays(new Date(), -1)}
               maxDate={addDays(new Date(), 365)}
-              // className="Mailinfo-input datepicker-custom"
             />
           </label>
         </form>

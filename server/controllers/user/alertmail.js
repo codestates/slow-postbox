@@ -477,7 +477,7 @@ module.exports = async (req, res) => {
                                     margin-bottom: 15px;
                                   "
                                 >
-                                <button type="button" style="border:none; border-radius:10px; background-color:#E84B35; width:100px; height:35px;" onClick="location.href='https//www.slow-postbox.com'">느린우체통으로 이동</button>
+                                <a href="https://www.slow-postbox" style="border:none; border-radius:10px; background-color:#E84B35; width:100px; height:35px; color:white; font-weight:bold;">느린우체통으로 이동</a>
                                 </div>
                                 <!--[if mso]>&nbsp;<![endif]-->
                               </div>

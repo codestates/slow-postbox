@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-function Buttons({ handleConfirmModal, handlePreviewModal }) {
-  const tempSave = () => {
-    handlePreviewModal();
-  };
-  const sendMail = () => {
-    handleConfirmModal();
-  };
+function Buttons({
+  tempSave,
+  sendMail,
+  handleConfirmModal,
+  handlePreviewModal,
+}) {
   return (
     <>
       <StyledDiv>
