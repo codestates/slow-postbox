@@ -18,7 +18,7 @@ function MailForm() {
     reservedDate: '',
     content: '',
   });
-  //console.log(formInfo);
+  console.log(formInfo);
 
   //Buttons에서 <전송하기> 버튼 눌렀을때 상태변경해서 모달창 띄우기
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
@@ -41,43 +41,32 @@ function MailForm() {
     handlePreviewModal();
   };
   const sendMail = () => {
-    if (formInfo.title === '') {
-      alert('빈 제목으로 보내시겠습니까?');
-    }
-    if (formInfo.receiver !== '' && formInfo.reservedDate && formInfo.content) {
-      axios({
-        method: 'POST',
-        url: `${process.env.REACT_APP_SERVER_API}/mail/create`,
-        body: {
-          writerEmail: email,
-          receiverEmail: formInfo.receiver,
-          title: formInfo.title,
-          content: formInfo.content,
-          reservedDate: formInfo.reservedDate,
-        },
+    axios
+      .post(`${process.env.REACT_APP_SERVER_API}/mail/create`, {
+        writerEmail: email,
+        receiverEmail: formInfo.receiver,
+        title: formInfo.title,
+        content: formInfo.content,
+        reservedDate: formInfo.reservedDate,
       })
-        .then((res) => {
-          axios({
-            method: 'POST',
-            url: `${process.env.REACT_APP_SERVER_API}/user/alertmail`,
-            body: {
-              name,
-              receiverEmail: formInfo.receiver,
-              reservedDate: formInfo.reservedDate,
-            },
+      .then((res) => {
+        axios
+          .post(`${process.env.REACT_APP_SERVER_API}/user/alertmail`, {
+            name,
+            receiverEmail: formInfo.receiver,
+            reservedDate: formInfo.reservedDate,
           })
-            .then((res) => {
-              console.log(res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    handleConfirmModal();
+          .then((res) => {
+            console.log(res);
+            handleCompleteModal();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <>
@@ -87,8 +76,8 @@ function MailForm() {
         <Buttons
           handleConfirmModal={handleConfirmModal}
           handlePreviewModal={handlePreviewModal}
-          sendMail={sendMail}
           tempSave={tempSave}
+          formInfo={formInfo}
         />
         {isPreviewModalOpen && (
           <PreviewModal handlePreviewModal={handlePreviewModal} />
@@ -97,12 +86,14 @@ function MailForm() {
           <ConfirmModal
             handleConfirmModal={handleConfirmModal}
             handleCompleteModal={handleCompleteModal}
+            sendMail={sendMail}
           />
         )}
         {isCompleteModalOpen && (
           <CompleteModal
             handleConfirmModal={handleConfirmModal}
             handleCompleteModal={handleCompleteModal}
+            formInfo={formInfo}
           />
         )}
       </div>

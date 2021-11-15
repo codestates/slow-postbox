@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       host: 'smtp.gmail.com',
-      //host: "smtp.ethereal.email",
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
@@ -544,7 +543,7 @@ module.exports = async (req, res) => {
       </style>
     </body>`,
     });
-
+    console.log(info);
     return res.status(201).json({ message: '메시지가 전송되었습니다' });
   } catch (err) {
     return res.status(500).json({ message: '서버 에러' });

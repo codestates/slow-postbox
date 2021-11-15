@@ -2,9 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-//const multer = require('multer');
-const multipart = require('connect-multiparty'); /*추가*/
-const MultipartyMiddleware = multipart({ uploadDir: './images' }); /*추가*/
+const multipart = require('connect-multiparty');
+const MultipartyMiddleware = multipart({ uploadDir: './images' });
 const path = require('path');
 const fs = require('fs');
 const homeRouter = require('./router/homeRouter');
@@ -24,21 +23,8 @@ app.use(
   })
 );
 
-// let storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'public/');
-//   },
-//   filename: function (req, file, cb) {
-//     let ext = file.originalname.split('.');
-//     ext = ext[ext.length - 1];
-//     cb(null, `${Date.now()}.${ext}`);
-//   },
-// });
-
-//const upload = multer({ storage: storage });
-
 app.use(cookieParser());
-// app.use([express.static('public'), upload.array('files')]);
+
 app.use(express.static('uploads'));
 app.post('/uploads', MultipartyMiddleware, (req, res) => {
   const tempFile = req.files.upload;

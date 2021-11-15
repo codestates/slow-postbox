@@ -2,6 +2,7 @@ const db = require('../../db');
 
 module.exports = async (req, res) => {
   try {
+    console.log(req.body);
     const { writerEmail, receiverEmail, title, content } = req.body;
     const sql =
       'INSERT INTO mails (writerEmail, receiverEmail, title, content) VALUES (?,?,?,?)';
@@ -10,6 +11,7 @@ module.exports = async (req, res) => {
 
     if (error) {
       console.log(error);
+      return res.status(404).send('실패');
     } else {
       return res.status(201).send('성공!');
     }
