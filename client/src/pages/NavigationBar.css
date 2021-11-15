@@ -39,6 +39,15 @@
     flex: 1;
 }
 
+.navBar-container .noti-on::after{
+    position:absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: rgb(250, 127, 127);
+    border-radius: 50%;
+}
+
 .navBar-container .bar .sent{
     flex: 1;
 }
