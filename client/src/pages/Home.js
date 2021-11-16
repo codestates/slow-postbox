@@ -69,12 +69,7 @@ export default function Home() {
             <img
               alt='home-img-1'
               className='home-img-1'
-              src='img/mailbox_1.svg'
-            />
-            <img
-              alt='home-img-2'
-              className='home-img-2'
-              src='img/mailbox_2.svg'
+              src='img/mailbox.svg'
             />
           </div>
           <button className='btn-write' onClick={hadleWriteMail}>편지쓰기</button>

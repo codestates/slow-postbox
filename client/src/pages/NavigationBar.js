@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
 
-export default function NavigationBar({isChecked}) {
-  const { isLogin, isAdmin } = useSelector(state => state.loginReducer);
+export default function NavigationBar({ isChecked }) {
+  const { isLogin, isAdmin } = useSelector((state) => state.loginReducer);
 
   return (
     <>
@@ -28,72 +28,70 @@ export default function NavigationBar({isChecked}) {
           >
             느린 우체통
           </div>
-          <div className={isLogin ? (isChecked? 'mailBox noti-on': 'mailBox') : 'mailBox hidden'}>
-            <Link
-              to='/mailbox'
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
-            >
-              받은 편지함
-            </Link>
-          </div>
-          
-          <div className={isLogin ? 'sent' : 'sent hidden'}>
-            <Link
-              to='/sent-mailbox'
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
-            >
-              보낸 편지함
-            </Link>
-          </div>
-          <div className={isLogin ? 'write' : 'write hidden'}>
-            <Link
-              to='/mailform'
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
-            >
-              편지 쓰기
-            </Link>
-          </div>
+          <Link
+            to='/mailbox'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+            className={
+              isLogin ? 'mailBox' : 'mailBox hidden'
+            }
+          >
+            <div className={
+                isChecked
+                  ? 'mailBox noti-on'
+                  : ''
+            }>받은 편지함</div>
+          </Link>
+          <Link
+            to='/sent-mailbox'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+            className={isLogin ? 'sent' : 'sent hidden'}
+          >
+            <div>보낸 편지함</div>
+          </Link>
+          <Link
+            to='/mailform'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+            className={isLogin ? 'write' : 'write hidden'}
+          >
+            <div>편지 쓰기</div>
+          </Link>
           {isLogin ? (
             <>
-              <div className='mypage'>
-                <Link
-                  to='/mypage'
-                  style={{ color: 'inherit', textDecoration: 'inherit' }}
-                >
-                  마이페이지
-                </Link>
-              </div>
-              <div className='login'>
-                <span>
-                  <Link
-                    to='/login'
-                    style={{ color: 'inherit', textDecoration: 'inherit' }}
-                  >
-                    로그아웃
-                  </Link>
-                </span>
-              </div>
+              <Link
+                to='/mypage'
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+                className='mypage'
+              >
+                <div>마이페이지</div>
+              </Link>
+              <Link
+                to='/login'
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+                className='login'
+              >
+                <div>
+                  <span>로그아웃</span>
+                </div>
+              </Link>
             </>
           ) : (
             <>
-              <div className='login'>
-                <span>
-                  <Link
-                    to='/login'
-                    style={{ color: 'inherit', textDecoration: 'inherit' }}
-                  >
-                    로그인
-                  </Link>
-                </span>
-              </div>
-              <div className='signup'>
-                <Link
-                  to='/signup'
-                  style={{ color: 'inherit', textDecoration: 'inherit' }}
-                >
-                  회원가입
-                </Link>
-              </div>
+              <Link
+                to='/login'
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+                className='login'
+              >
+                <div>
+                  <span>로그인</span>
+                </div>
+              </Link>
+              <Link
+                to='/signup'
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+                className='signup'
+              >
+                <div>회원가입</div>
+              </Link>
             </>
           )}
           {isLogin && isAdmin ? (
