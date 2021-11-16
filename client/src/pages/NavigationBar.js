@@ -39,7 +39,7 @@ export default function NavigationBar({ isChecked }) {
                 isChecked
                   ? 'mailBox noti-on'
                   : ''
-            }>받은 편지함</div> ""
+            }>받은 편지함</div>
           </Link>
           <Link
             to='/sent-mailbox'
