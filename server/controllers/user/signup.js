@@ -5,14 +5,16 @@ module.exports = async (req, res) => {
     const {
       name,
       email,
-      password,
+      salt,
+      hashPassword,
     } = req.body;
     const sql =
-      "INSERT INTO users (name, email, password) VALUES(?,?,?)";
+      "INSERT INTO users (name, email, salt, password) VALUES(?,?,?,?)";
     const params = [
       name,
       email,
-      password,
+      salt,
+      hashPassword,
     ];
     db.query(sql, params, (err, result) => {
       if (err) throw err;
