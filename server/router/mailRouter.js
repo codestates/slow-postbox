@@ -2,7 +2,7 @@ const {
   getReceive,
   getReserved,
   getSent,
-  getWillsend,
+  getReservedSent,
   patchReceive,
   patchReserved,
   patchSent,
@@ -22,7 +22,7 @@ router.patch('/reserved', patchReserved);
 router.get('/receive/:mailsid', viewReceive);
 router.patch('/receive', patchReceive);
 router.get('/sent', getSent);
-router.get('/willsend', getWillsend);
+router.get('/reservedsent', getReservedSent);
 router.get('/sent/:mailsid', viewSent);
 router.patch('/sent', patchSent);
 router.post('/create', create);
