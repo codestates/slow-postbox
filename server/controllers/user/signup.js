@@ -7,14 +7,16 @@ module.exports = async (req, res) => {
       email,
       salt,
       hashPassword,
+      oauth
     } = req.body;
     const sql =
-      "INSERT INTO users (name, email, salt, password,oauth,admin) VALUES(?,?,?,?,0,0)";
+      "INSERT INTO users (name, email, salt, password,oauth,admin) VALUES(?,?,?,?,?,0)";
     const params = [
       name,
       email,
       salt,
       hashPassword,
+      oauth
     ];
     const [result, fields, err] = await db.query(sql, params)
     if (err) throw err;
