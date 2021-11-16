@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
 
-export default function NavigationBar() {
-  const [isLogin, setIsLogin] = useState(true);
-
-  const [isAdmin, setIsAdmin] = useState(true);
+export default function NavigationBar({isChecked}) {
+  const { isLogin, isAdmin } = useSelector(state => state.loginReducer);
 
   return (
     <>
@@ -29,7 +28,7 @@ export default function NavigationBar() {
           >
             느린 우체통
           </div>
-          <div className={isLogin ? 'mailBox' : 'mailBox hidden'}>
+          <div className={isLogin ? (isChecked? 'mailBox noti-on': 'mailBox') : 'mailBox hidden'}>
             <Link
               to='/mailbox'
               style={{ color: 'inherit', textDecoration: 'inherit' }}
@@ -37,6 +36,7 @@ export default function NavigationBar() {
               받은 편지함
             </Link>
           </div>
+          
           <div className={isLogin ? 'sent' : 'sent hidden'}>
             <Link
               to='/sent-mailbox'

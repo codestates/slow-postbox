@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Pagination from 'react-js-pagination';
@@ -9,91 +10,86 @@ export default function AdminUser() {
   const [isLoding, setIsLoding] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [modal, setModal] = useState(false);
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
+  const [selected, setSelected] = useState('이름');
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [searchWord, setSearchWord] = useState('');
+  const [deleteId, setDeleteId] = useState(null);
 
-  const count = 40;
+  const selectList = ['이름', '이메일'];
 
-  const dummyData = [
-    {
-      id: 1,
-      name: 'Lyssa Prozillo',
-      email: 'lprozillo0@nyu.edu',
-      numOfSent: 44,
-      numOfReceived: 76,
-      created_at: '2021-07-18',
-    },
-    {
-      id: 2,
-      name: 'Sher Motion',
-      email: 'smotion1@engadget.com',
-      numOfSent: 23,
-      numOfReceived: 26,
-      created_at: '2021-11-07',
-    },
-    {
-      id: 3,
-      name: 'Wynne Atkirk',
-      email: 'watkirk2@chicagotribune.com',
-      numOfSent: 15,
-      numOfReceived: 37,
-      created_at: '2021-07-15',
-    },
-    {
-      id: 4,
-      name: 'Elwira Headland',
-      email: 'eheadland3@columbia.edu',
-      numOfSent: 100,
-      numOfReceived: 96,
-      created_at: '2021-07-20',
-    },
-    {
-      id: 5,
-      name: 'Francisca Haney`',
-      email: 'fhaney4@state.tx.us',
-      numOfSent: 100,
-      numOfReceived: 27,
-      created_at: '2021-10-18',
-    },
-    {
-      id: 6,
-      name: 'Jazmin Meineken',
-      email: 'jmeineken5@g.co',
-      numOfSent: 79,
-      numOfReceived: 18,
-      created_at: '2021-05-13',
-    },
-    {
-      id: 7,
-      name: 'Venita Vasquez',
-      email: 'vvasquez6@xinhuanet.com',
-      numOfSent: 7,
-      numOfReceived: 64,
-      created_at: '2021-07-23',
-    },
-    {
-      id: 8,
-      name: 'Brion Gillean',
-      email: 'bgillean7@mtv.com',
-      numOfSent: 13,
-      numOfReceived: 69,
-      created_at: '2021-07-14',
-    },
-    {
-      id: 9,
-      name: 'Angelle Piotrkowski',
-      email: 'apiotrkowski8@mit.edu',
-      numOfSent: 66,
-      numOfReceived: 59,
-      created_at: '2021-08-25',
-    },
-    {
-      id: 10,
-      name: 'Fidelity Giacubbo',
-      email: 'fgiacubbo9@stumbleupon.com',
-      numOfSent: 23,
-      numOfReceived: 94,
-      created_at: '2021-02-26',
-    },
-  ];
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
+    setSearchWord('');
+    setName(null);
+    setEmail(null);
+  };
+  const handleSearchWord = (e) => {
+    if (selected === '이름') {
+      setSearchWord(e.target.value);
+      setName(e.target.value);
+      setEmail(null);
+    } else {
+      setSearchWord(e.target.value);
+      setName(null);
+      setEmail(e.target.value);
+    }
+  };
+
+  const getUserData = async () => {
+    await setIsLoding(true);
+    await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/admin/user-list`,
+      { params: { page, name, email } }
+    )
+    .then((res)=>{
+      setData(res.data.data);
+      setCount(res.data.count);
+    })
+    await setIsLoding(false);
+  };
+
+  const getUserDataPage = async () => {
+    axios.get(
+      `${process.env.REACT_APP_SERVER_API}/admin/user-list`,
+      { params: { page, name, email } }
+    )
+    .then((res)=>{
+      setData(res.data.data);
+      setCount(res.data.count);
+    })
+  };
+
+  const getFilterdData = async () => {
+    await setIsLoding(true);
+    await setPage(1);
+    const res = await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/admin/user-list`,
+      { params: { page, name, email } }
+    );
+    await setData(res.data.data);
+    await setCount(res.data.count);
+    await setIsLoding(false);
+  };
+
+  const deleteUserData = async () => {
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/admin/user`, {
+      data: { id: deleteId },
+      withCredentials: true,
+    });
+    
+  };
+
+  useEffect(() => {
+    getUserDataPage();
+  }, [page]);
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
 
   return (
     <div className='adminUser-container'>
@@ -103,18 +99,21 @@ export default function AdminUser() {
             type='text'
             id='search'
             placeholder='검색어를 입력하세요'
+            value={searchWord}
+            onChange={handleSearchWord}
           ></input>
           <span>
             <button id='searchButton'>
-              <FontAwesomeIcon icon={faSearch} />
+              <FontAwesomeIcon icon={faSearch} onClick={getFilterdData} />
             </button>
           </span>
         </div>
-        <select>
-          <option value='name' selected='selected'>
-            이름
-          </option>
-          <option value='email'>이메일</option>
+        <select onChange={handleSelect} value={selected}>
+          {selectList.map((item) => (
+            <option value={item} key={item}>
+              {item}
+            </option>
+          ))}
         </select>
       </div>
       <div className='box-table'>
@@ -131,15 +130,30 @@ export default function AdminUser() {
             <span>탈퇴</span>
           </th>
           {isLoding ? (
-            <tr>
+            <tr className='box-loding'>
               <td colSpan='7'>
                 <Loding />
               </td>
             </tr>
           ) : (
-            dummyData.map((el, id) => {
-              return <UserList setConfirm={setConfirm} el={el} key={id} />;
+            data.length!==0 ? (
+              data.map((el, id) => {
+              return (
+                <UserList
+                  setDeleteId={setDeleteId}
+                  setConfirm={setConfirm}
+                  el={el}
+                  key={id}
+                />
+              );
             })
+            ) : (
+              <tr className='box-none'>
+              <td colSpan='7'>
+                일치하는 데이터가 없습니다.
+              </td>
+            </tr>
+            )
           )}
         </table>
       </div>
@@ -155,29 +169,35 @@ export default function AdminUser() {
         />
       </div>
       {confirm ? (
-        <ConfirmUser setModal={setModal} setConfirm={setConfirm} />
+        <ConfirmUser
+          setDeleteId={setDeleteId}
+          setConfirm={setConfirm}
+          setModal={setModal}
+          deleteUserData={deleteUserData}
+        />
       ) : (
         ''
       )}
-      {modal ? <ModalUser setModal={setModal} /> : ''}
+      {modal ? <ModalUser setDeleteId={setDeleteId} setModal={setModal} getUserData={getUserData}/> : ''}
     </div>
   );
 }
 
-function UserList({ el, setConfirm }) {
+function UserList({ el, setConfirm, setDeleteId }) {
   return (
     <tr>
       <td>{el.id}</td>
       <td>{el.name}</td>
       <td>{el.email}</td>
-      <td>{el.numOfSent}</td>
-      <td>{el.numOfReceived}</td>
+      <td>{el.writeNum}</td>
+      <td>{el.receiveNum}</td>
       <td>{el.created_at.slice(0, 10)}</td>
       <td className='withdraw'>
         <FontAwesomeIcon
           icon={faTrashAlt}
           onClick={() => {
             setConfirm(true);
+            setDeleteId(el.id);
           }}
         />
       </td>
@@ -185,7 +205,7 @@ function UserList({ el, setConfirm }) {
   );
 }
 
-function ConfirmUser({ setConfirm, setModal }) {
+function ConfirmUser({ setConfirm, setModal, setDeleteId, deleteUserData }) {
   return (
     <div className='confirmUser-container'>
       <div className='box-confirm'>
@@ -198,6 +218,7 @@ function ConfirmUser({ setConfirm, setModal }) {
             id='btn-cancel'
             onClick={() => {
               setConfirm(false);
+              setDeleteId(null);
             }}
           >
             취소
@@ -207,6 +228,7 @@ function ConfirmUser({ setConfirm, setModal }) {
             onClick={() => {
               setConfirm(false);
               setModal(true);
+              deleteUserData();
             }}
           >
             확인
@@ -217,7 +239,7 @@ function ConfirmUser({ setConfirm, setModal }) {
   );
 }
 
-function ModalUser({ setModal }) {
+function ModalUser({ setModal, setDeleteId, getUserData }) {
   return (
     <div className='modalUser-container'>
       <div className='box-modal'>
@@ -227,6 +249,8 @@ function ModalUser({ setModal }) {
           <span
             onClick={() => {
               setModal(false);
+              setDeleteId(null);
+              getUserData();
             }}
           >
             확인
