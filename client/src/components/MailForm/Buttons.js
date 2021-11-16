@@ -1,17 +1,31 @@
 import styled from 'styled-components';
 
-function Buttons({ handleConfirmModal, handlePreviewModal }) {
-  const tempSave = () => {
-    handlePreviewModal();
+function Buttons({ tempSave, handleConfirmModal, formInfo }) {
+  const showConfirmModal = () => {
+    if (formInfo.receiver === '') {
+      alert('수신자 이메일을 확인해주세요');
+      return;
+    }
+    if (formInfo.reservedDate === '') {
+      alert('전송날짜를 선택해주세요');
+      return;
+    }
+    if (formInfo.content === '') {
+      alert('메일내용을 작성해주세요');
+      return;
+    }
+    if (formInfo.title === '') {
+      if (window.confirm('빈 제목으로 보내시겠습니까?')) {
+        handleConfirmModal();
+      }
+    }
   };
-  const sendMail = () => {
-    handleConfirmModal();
-  };
+
   return (
     <>
       <StyledDiv>
         <StyledButton onClick={tempSave}>미리보기</StyledButton>
-        <StyledButton send onClick={sendMail}>
+        <StyledButton send onClick={showConfirmModal}>
           전송하기
         </StyledButton>
       </StyledDiv>

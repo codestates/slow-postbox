@@ -1,11 +1,12 @@
 import './ConfirmModal.css';
-function ConfirmModal({ handleConfirmModal, handleCompleteModal }) {
+function ConfirmModal({ handleConfirmModal, sendMail }) {
   const handleClose = (e) => {
     if (e.target === e.currentTarget) {
       handleConfirmModal();
     } else if (e.target.className === 'btn-submit') {
       handleConfirmModal();
-      handleCompleteModal();
+      //todo 로딩 이미지 적용
+      sendMail();
     }
   };
   return (
