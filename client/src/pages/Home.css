@@ -124,15 +124,18 @@
 }
 
 div.animated-container {
-  width: 150px;
-  margin-left: auto;
+  width: 100%;
+  justify-content: flex-end;
+  padding-right: 50px;
 }
+
 
 .home-container .words-counting-up {
   color: rgb(75, 75, 75);
   font-size: 1.5em;
   font-weight: 700;
   flex: 1.5;
+  margin-left: 20px;
 }
 
 .home-container .btn-write {

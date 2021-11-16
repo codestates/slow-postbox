@@ -1,6 +1,7 @@
 .findUserInfo-container {
-  min-width: 70%;
-  max-width: 70%;
+  min-width: 768px;
+  width: 100%;
+  max-width: 1024px;
   height: 600px;
   margin: 150px auto 150px auto;
   display: flex;
@@ -9,17 +10,37 @@
   border-radius: 10px;
 }
 
-.findUserInfo-container .title {
+/* .findUserInfo-container .title {
   font-size: 30px;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
   color: white;
   border-radius: 10px 10px 0 0;
+} */
+
+.findUserInfo-container .title {
+  color: black;
+  text-align: center;
+  font-size: 2em;
+  margin-top: auto;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
 }
-.findUserInfo-container .findUserInfo-title {
-  width: 300px;
+
+.findUserInfo-container .findUserInfo-title{
+  height: 50px;
+  width: 50px;
+  margin-right: 5px;
 }
+
+.findUserInfo-container .findUserInfo-logo{
+  font-family: 'Gaegu', cursive;
+  margin-left: 5px;
+  font-weight: 550;
+}
+
 .findUserInfo-container .findPassword-section {
   margin-right: auto;
   margin-left: auto;
