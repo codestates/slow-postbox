@@ -3,10 +3,11 @@ const db = require('../../db');
 module.exports = async (req, res) => {
   try {
     console.log(req.body);
-    const { writerEmail, receiverEmail, title, content } = req.body;
+    const { writerEmail, receiverEmail, title, content, reserved_at } =
+      req.body;
     const sql =
-      'INSERT INTO mails (writerEmail, receiverEmail, title, content) VALUES (?,?,?,?)';
-    const params = [writerEmail, receiverEmail, title, content];
+      'INSERT INTO mails (writerEmail, receiverEmail, title, content, reserved_at) VALUES (?,?,?,?,?)';
+    const params = [writerEmail, receiverEmail, title, content, reserved_at];
     const [row, fields, error] = await db.query(sql, params);
 
     if (error) {

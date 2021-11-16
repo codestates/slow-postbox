@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
-import axios from 'axios'
+import axios from 'axios';
 import AnimatedNumbers from 'react-animated-numbers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -12,24 +12,26 @@ import 'aos/dist/aos.css';
 import './Home.css';
 
 export default function Home() {
-
   const { isLogin } = useSelector((state) => state.loginReducer);
-  const history = useHistory()
+  const history = useHistory();
 
   const getMailNum = () => {
-    axios.get(`${process.env.REACT_APP_SERVER_API}/home/total-mails`)
-    .then((res) => {setNum(res.data.num)})
-  }
+    axios
+      .get(`${process.env.REACT_APP_SERVER_API}/home/total-mails`)
+      .then((res) => {
+        setNum(res.data.num);
+      });
+  };
 
-  const hadleWriteMail = () =>{
+  const hadleWriteMail = () => {
     if (isLogin) {
-      history.push('/mailform')
+      history.push('/mailform');
     } else {
-      history.push('/login')
+      history.push('/login');
     }
-  }
+  };
 
-  const [ num, setNum ] = useState(null);
+  const [num, setNum] = useState(null);
 
   useEffect(() => {
     AOS.init({
@@ -72,7 +74,9 @@ export default function Home() {
               src='img/mailbox.svg'
             />
           </div>
-          <button className='btn-write' onClick={hadleWriteMail}>편지쓰기</button>
+          <button className='btn-write' onClick={hadleWriteMail}>
+            편지쓰기
+          </button>
           <SCLink to='home-explanation' spy={true} smooth={true} duration={500}>
             <div className='scroll-down'>
               <FontAwesomeIcon className='scroll-down' icon={faChevronDown} />

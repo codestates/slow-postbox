@@ -9,7 +9,7 @@ const {
   signup,
   withdraw,
   alertmail,
-
+  alertdday,
 } = require('../controllers/user');
 const express = require('express');
 const router = express.Router();
