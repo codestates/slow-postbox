@@ -3,6 +3,7 @@ import axios from "axios"
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CompleteSignUp from '../components/SignUp/CompleteSignUp'
+const crypto = require('crypto')
 
 export default function SignUp() {
 
@@ -21,7 +22,7 @@ export default function SignUp() {
     const [isPossiblePassword, setIsPossiblePassword] = useState(0);
     const [isConfirmPassword, setIsConfirmPassword] = useState(0);
     const [isConfirmEmail, setIsConFirmEmail] = useState(0);
-    const [completeSignUp, setCompleteSignUp] = useState(false)
+    const [completeSignUp, setCompleteSignUp] = useState(0)
 
 
 
@@ -41,41 +42,47 @@ export default function SignUp() {
         // console.log(emailCode);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const {
             name,
             password,
             emailId,
             emailDomain,
         } = userInfo;
-
+        const salt = crypto.randomBytes(128).toString('base64');
+        const realPassword = userInfo.password
         const email = `${emailId}@${emailDomain}`;
+        const hashPassword = crypto.createHash('sha512').update(realPassword + salt).digest('hex');
 
         if (isConfirmEmail === -1 || isConfirmEmail === 0) {
             return alert("이메일 인증 절차를 진행하세요");
         }
 
         if (name && password && emailId && emailDomain) {
-            axios({
+            await axios({
                 url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
                 method: "post",
                 data: {
                     name,
-                    password,
+                    hashPassword,
+                    salt,
                     email,
                 },
-            }).then(() => {
-                console.log("회원가입 완료");
-                setCompleteSignUp(true)
-                console.log(completeSignUp)
             })
+                .then((res) => {
+                    console.log(res);
+                    setCompleteSignUp(1)
+                    // history.push('/signup')
+                })
                 .catch((err) => {
                     console.log(err);
                 });
         } else {
             return alert("입력하지 않은 항목이 존재합니다.");
         }
+        console.log('회원가입완료')
     };
+
 
 
     const handleConfirmPassword = (e) => {
@@ -104,13 +111,11 @@ export default function SignUp() {
                 if (res.data.data) {
                     //res.data.data 가 문자열일때 (이메일 계정으로 회원가입 가능)
                     setEmailCode(res.data.data);
-                    // console.log(res.data.data)
                     setIsConFirmEmail(1);
                 } else {
-                    //res.data.data === null (해당 이메일 계정이 이미 존재할때)
                     setIsConFirmEmail(-1);
                 }
-                //console.log(emailCode);
+
             })
             .catch((err) => {
                 console.log(err);
@@ -139,7 +144,7 @@ export default function SignUp() {
 
     return (
         <>
-            {completeSignUp
+            {completeSignUp === 1
                 ? (
                     <CompleteSignUp />
                 )
