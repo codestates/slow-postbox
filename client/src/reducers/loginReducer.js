@@ -1,6 +1,16 @@
-import { LOGIN, LOGOUT } from "../actions/index";
+import { LOGIN, LOGOUT } from '../actions/index';
 
-const loginReducer = (state = { isLogin: false, isAdmin: false, id: null, name: null, email: null, oauth: false }, action) => {
+const loginReducer = (
+  state = {
+    isLogin: false,
+    isAdmin: false,
+    id: null,
+    name: null,
+    email: null,
+    oauth: false,
+  },
+  action
+) => {
   switch (action.type) {
     case LOGIN:
       return {
@@ -10,10 +20,18 @@ const loginReducer = (state = { isLogin: false, isAdmin: false, id: null, name: 
         id: action.payload.id,
         name: action.payload.name,
         email: action.payload.email,
-        oauth: action.payload.oauth
+        oauth: action.payload.oauth,
       };
     case LOGOUT:
-      return { ...state, isLogin: false, isAdmin: false, id: null, name: null, email: null, oauth: false };
+      return {
+        ...state,
+        isLogin: false,
+        isAdmin: false,
+        id: null,
+        name: null,
+        email: null,
+        oauth: false,
+      };
 
     default:
       return state;

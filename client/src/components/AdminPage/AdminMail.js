@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Pagination from 'react-js-pagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import {
   faEnvelope,
   faEnvelopeOpen,
@@ -11,94 +12,89 @@ import Loding from '../Loding/Loding';
 
 export default function AdminMail() {
   const [page, setPage] = useState(1);
-  const [isLoding, setIsLoding] = useState(false);
+  const [isLoding, setIsLoding] = useState(true);
   const [confirm, setConfirm] = useState(false);
   const [modal, setModal] = useState(false);
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
+  const [selected, setSelected] = useState('받는 사람');
+  const [receiverEmail, setReceiverEmail] = useState(null);
+  const [writerEmail, setWriterEmail] = useState(null);
+  const [searchWord, setSearchWord] = useState('');
+  const [deleteId, setDeleteId] = useState(null);
 
-  const count = 40;
+  const selectList = ['받는 사람', '보낸 사람'];
 
-  const dummyData = [
-    {
-      id: 1,
-      writerEmail: 'sunyeong2222@gmail.com',
-      receiverEmail: 'sohhyeonkim@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 2,
-      writerEmail: 'yubineric@gmail.com',
-      receiverEmail: 'sunyeong2222@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 3,
-      writerEmail: 'sohhyeonkim@gmail.com',
-      receiverEmail: 'yubineric@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 4,
-      writerEmail: 'sunyeong2222@gmail.com',
-      receiverEmail: 'sohhyeonkim@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 5,
-      writerEmail: 'yubineric@gmail.com',
-      receiverEmail: 'sunyeong2222@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 6,
-      writerEmail: 'sohhyeonkim@gmail.com',
-      receiverEmail: 'yubineric@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 7,
-      writerEmail: 'sunyeong2222@gmail.com',
-      receiverEmail: 'sohhyeonkim@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 8,
-      writerEmail: 'yubineric@gmail.com',
-      receiverEmail: 'sunyeong2222@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 9,
-      writerEmail: 'sohhyeonkim@gmail.com',
-      receiverEmail: 'yubineric@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-    {
-      id: 10,
-      writerEmail: 'sunyeong2222@gmail.com',
-      receiverEmail: 'sohhyeonkim@gmail.com',
-      isRead: 0,
-      reserved_at: '2021-12-30T15:00:00.000Z',
-      created_at: '2021-11-09T01:25:02.000Z',
-    },
-  ];
+
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
+    setSearchWord('');
+    setReceiverEmail(null);
+    setWriterEmail(null);
+  };
+  const handleSearchWord = (e) => {
+    if (selected === '받는 사람') {
+      setSearchWord(e.target.value);
+      setReceiverEmail(e.target.value);
+      setWriterEmail(null);
+    } else {
+      setSearchWord(e.target.value);
+      setReceiverEmail(null);
+      setWriterEmail(e.target.value);
+    }
+  };
+
+  const getMailData = async () => {
+    await setIsLoding(true);
+    await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
+      { params: { page, receiverEmail, writerEmail } }
+    )
+    .then((res)=>{
+      setData(res.data.data);
+      setCount(res.data.count);
+    })
+    await setIsLoding(false);
+  };
+
+  const getMailDataPage = async () => {
+    axios.get(
+      `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
+      { params: { page, receiverEmail, writerEmail } }
+    )
+    .then((res)=>{
+      setData(res.data.data);
+      setCount(res.data.count);
+    })
+  };
+
+  const getFilterdData = async () => {
+    await setIsLoding(true);
+    await setPage(1);
+    const res = await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
+      { params: { page, receiverEmail, writerEmail } }
+    );
+    await setData(res.data.data);
+    await setCount(res.data.count);
+    await setIsLoding(false);
+  };
+
+  const deleteMailData = async () => {
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/admin/mail`, {
+      data: { id: deleteId },
+      withCredentials: true,
+    });
+    
+  };
+
+  useEffect(() => {
+    getMailDataPage();
+  }, [page]);
+
+  useEffect(() => {
+    getMailData();
+  }, []);
 
   return (
     <div className='adminMail-container'>
@@ -108,18 +104,21 @@ export default function AdminMail() {
             type='text'
             id='search'
             placeholder='검색어를 입력하세요'
+            value={searchWord}
+            onChange={handleSearchWord}
           ></input>
           <span>
             <button id='searchButton'>
-              <FontAwesomeIcon icon={faSearch} />
+              <FontAwesomeIcon icon={faSearch} onClick={getFilterdData}/>
             </button>
           </span>
         </div>
-        <select>
-          <option value='receiverEmail' selected='selected'>
-            받는 사람
-          </option>
-          <option value='writerEmail'>보낸 사람</option>
+        <select onChange={handleSelect} value={selected}>
+        {selectList.map((item) => (
+            <option value={item} key={item}>
+              {item}
+            </option>
+          ))}
         </select>
       </div>
       <div className='box-table'>
@@ -127,7 +126,7 @@ export default function AdminMail() {
           <th className='id'>
             <span>id</span>
           </th>
-          <th>읽음/안읽음</th>
+          <th className='read'>읽음/안읽음</th>
           <th>보낸 사람</th>
           <th>받는 사람</th>
           <th>전송 날짜</th>
@@ -136,15 +135,23 @@ export default function AdminMail() {
             <span>삭제</span>
           </th>
           {isLoding ? (
-            <tr>
-              <td colSpan='7'>
+            <tr className='box-loding'>
+              <td  colSpan='7'>
                 <Loding />
               </td>
             </tr>
           ) : (
-            dummyData.map((el, id) => {
-              return <MailList setConfirm={setConfirm} el={el} key={id} />;
+            data.length!==0 ? (
+              data.map((el, id) => {
+              return <MailList setDeleteId={setDeleteId} setConfirm={setConfirm} el={el} key={id} />;
             })
+            ) : (
+              <tr className='box-none'>
+              <td colSpan='7'>
+                일치하는 데이터가 없습니다.
+              </td>
+            </tr>
+            )
           )}
         </table>
       </div>
@@ -160,19 +167,22 @@ export default function AdminMail() {
         />
       </div>
       {confirm ? (
-        <ConfirmMail setModal={setModal} setConfirm={setConfirm} />
+        <ConfirmMail setDeleteId={setDeleteId}
+        setConfirm={setConfirm}
+        setModal={setModal}
+        deleteMailData={deleteMailData} />
       ) : (
         ''
       )}
-      {modal ? <ModalMail setModal={setModal} /> : ''}
+      {modal ? <ModalMail setDeleteId={setDeleteId} setModal={setModal} getMailData={getMailData} /> : ''}
     </div>
   );
 }
 
-function MailList({ el, setConfirm }) {
+function MailList({ el, setConfirm, setDeleteId }) {
   return (
     <tr>
-      <td>{el.id}</td>
+      <td className='el-id'>{el.id}</td>
       <td>
         {el.isRead ? (
           <FontAwesomeIcon icon={faEnvelopeOpen} />
@@ -180,8 +190,8 @@ function MailList({ el, setConfirm }) {
           <FontAwesomeIcon icon={faEnvelope} />
         )}
       </td>
-      <td>{el.writerEmail}</td>
-      <td>{el.receiverEmail}</td>
+      <td className='email'><span>{el.writerEmail}</span></td>
+      <td className='email'><span>{el.receiverEmail}</span></td>
       <td>{el.created_at.slice(0, 10)}</td>
       <td>{el.reserved_at.slice(0, 10)}</td>
       <td className='delete'>
@@ -189,6 +199,7 @@ function MailList({ el, setConfirm }) {
           icon={faTrashAlt}
           onClick={() => {
             setConfirm(true);
+            setDeleteId(el.id);
           }}
         />
       </td>
@@ -196,7 +207,7 @@ function MailList({ el, setConfirm }) {
   );
 }
 
-function ConfirmMail({ setConfirm, setModal }) {
+function ConfirmMail({ setConfirm, setModal, setDeleteId, deleteMailData }) {
   return (
     <div className='confirmMail-container'>
       <div className='box-confirm'>
@@ -207,6 +218,7 @@ function ConfirmMail({ setConfirm, setModal }) {
             id='btn-cancel'
             onClick={() => {
               setConfirm(false);
+              setDeleteId(null);
             }}
           >
             취소
@@ -216,6 +228,7 @@ function ConfirmMail({ setConfirm, setModal }) {
             onClick={() => {
               setConfirm(false);
               setModal(true);
+              deleteMailData();
             }}
           >
             확인
@@ -226,7 +239,7 @@ function ConfirmMail({ setConfirm, setModal }) {
   );
 }
 
-function ModalMail({ setModal }) {
+function ModalMail({ setModal, setDeleteId, getMailData }) {
   return (
     <div className='modalMail-container'>
       <div className='box-modal'>
@@ -236,6 +249,8 @@ function ModalMail({ setModal }) {
           <span
             onClick={() => {
               setModal(false);
+              setDeleteId(null);
+              getMailData();
             }}
           >
             확인

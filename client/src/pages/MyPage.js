@@ -1,7 +1,9 @@
+import axios from 'axios';
 import styled from 'styled-components';
 import './MyPage.css';
 import emptyImg from '../img/empty.png';
 import receivedmail from '../img/receivedmail.svg';
+import Pagination from '../components/Pagination/Pagination';
 import { useState, useEffect } from 'react';
 import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
@@ -25,6 +27,33 @@ function MyPage() {
   const handleChange = (e) => {
     setPasswords({ ...passwords, [e.target.name]: e.target.value });
   };
+
+  const [posts, setPosts] = useState([]); //변경x
+  const [loading, setLoading] = useState(false); //변경x
+  const [currentPage, setCurrentPage] = useState(1); //변경x
+  const [postsPerPage, setPostsPerPage] = useState(10); //변경d
+  const [total, setTotal] = useState(0); //변경x
+  const [minPage, setMinPage] = useState(1); //변경x
+  const [maxPage, setMaxPage] = useState(5); //변경x
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get(
+        `http://localhost:4000/mail/getpaginatedmail?page=${currentPage}&limit=${postsPerPage}`
+      );
+      setPosts(res.data.data);
+      setLoading(false);
+      setTotal(res.data.total);
+      // if (res.data.total) {
+      //   setMinPage(1);
+      // }
+      if (Math.ceil(res.data.total / postsPerPage) < 5) {
+        setMaxPage(Math.ceil(res.data.total / postsPerPage));
+      }
+      console.log('working');
+    };
+    fetchPosts();
+  }, [currentPage, postsPerPage]);
 
   useEffect(() => {
     let timer;
@@ -127,33 +156,19 @@ function MyPage() {
                     }
                   >
                     <ul className='ul-mailbox'>
-                      <li className='li-mail'>
-                        <img
-                          src={receivedmail}
-                          className='li-icon flex-item'
-                          alt='받은메일'
-                        />
-                        <span className='li-title'>제목부분입니다</span>
-                        <span className='li-date'>날짜</span>
-                      </li>
-                      <li className='li-mail'>
-                        <img
-                          src={receivedmail}
-                          className='li-icon flex-item'
-                          alt='받은메일'
-                        />
-                        <span className='li-title'>제목부분입니다</span>
-                        <span className='li-date'>날짜</span>
-                      </li>
-                      <li className='li-mail'>
-                        <img
-                          src={receivedmail}
-                          className='li-icon flex-item'
-                          alt='받은메일'
-                        />
-                        <span className='li-title'>제목부분입니다</span>
-                        <span className='li-date'>날짜</span>
-                      </li>
+                      {posts.map((post) => {
+                        return (
+                          <li key={post.id} className='li-mail'>
+                            <img
+                              src={receivedmail}
+                              className='li-icon flex-item'
+                              alt='받은메일'
+                            />
+                            <span className='li-title'>{post.title}</span>
+                            <span className='li-date'>{post.date}</span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                   <div
@@ -166,6 +181,18 @@ function MyPage() {
                     <img src={emptyImg} alt='empty' className='emptyImg' />
                     <p className='no-logs'>내역이 없습니다</p>
                   </div>
+                  <Pagination
+                    setPosts={setPosts}
+                    setLoading={setLoading}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    postsPerPage={postsPerPage}
+                    total={total}
+                    minPage={minPage}
+                    setMinPage={setMaxPage}
+                    maxPage={maxPage}
+                    setMaxPage={setMaxPage}
+                  />
                 </StyledLogs>
               </StyledTabContent>
             </div>

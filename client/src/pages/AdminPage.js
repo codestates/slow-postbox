@@ -4,6 +4,7 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import AdminUser from '../components/AdminPage/AdminUser'
 import AdminMail from '../components/AdminPage/AdminMail'
 import './AdminPage.css';
+import './AdminPage(480px).css'
 
 export default function AdminPage() {
 

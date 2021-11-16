@@ -1,10 +1,8 @@
-const db = require("../../db");
+const db = require('../../db');
 
 module.exports = async (req, res) => {
   try {
-
     const { testemail } = req.query
-
 
     const sql1 = `select A.id, A.writerEmail, A.receiverEmail, A.reserved_at, A.title, A.content, A.isChecked, A.isRead, A.created_at, A.updated_at, users.name 
     from mails AS A
@@ -23,11 +21,9 @@ module.exports = async (req, res) => {
         data: rows1
       })
     }
-
-
-
   }
   catch (err) {
     throw err
+
   }
 };

@@ -1,0 +1,598 @@
+/* 모바일 세로*/
+@media (min-width:320px) and (max-width:480px) {
+
+    .adminPage-container {
+  max-width: 470px;
+  width: 100%;
+  min-width: 320px;
+  height: 90vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.adminPage-container .box-admin{
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 20px;
+  box-shadow: 5px 10px 20px rgb(187, 187, 187);
+  height: 100%;
+
+}
+
+.adminPage-container .admin-name{
+  margin: 10px;
+  padding: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+  text-align: left;
+  font-weight: bold;
+}
+
+.adminPage-container .tab-menu{
+  display: flex;
+  justify-content: left; 
+  align-items: center;
+  max-width: 1040px;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgb(189, 189, 189);
+}
+
+.adminPage-container .menu-users{
+  flex: 0.08;
+  min-width: 80px;
+  line-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  color:gray
+}
+
+.adminPage-container .menu-mails{
+  flex: 0.08;
+  min-width: 80px;
+  line-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  color:gray
+}
+
+.adminPage-container .selected{
+  border-bottom: 3px solid #E84B35;
+  font-weight: 700;
+  color:black;
+}
+
+
+
+.adminPage-container .box-contents{
+  height: 60vh;
+}
+
+
+/* 유저관리 */
+
+.adminUser-container .box-search{
+  display: flex;
+  flex-direction:row-reverse;
+  margin: 5px;
+  align-items: center;
+}
+
+.adminUser-container select{
+  width:100px;
+  height: 40px;
+  margin-right: 5px;
+  padding-left:10px;
+  padding-right: 30px;
+  border:1px solid rgb(192, 192, 192);
+  background:url('../img/down.svg') no-repeat 97% 50%/15px auto;
+  border-radius:3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance : none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.adminUser-container .search-box{
+  padding: 5px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.adminUser-container #search {
+  padding: 0;
+  width: 200px;
+  border:none;
+  background: none;
+  outline: none;
+  float: left;
+  font-size: 1rem;
+  line-height: 30px;
+  margin-left: 20px;
+}
+
+.adminUser-container #searchButton {
+  text-decoration: none;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background-color: #E84B35;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+  border: 2px solid #E84B35;
+}
+
+
+.adminUser-container .box-table{
+  height: 60vh;
+}
+
+.adminUser-container .box-table table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.adminUser-container .box-table table th{
+  color:white;
+  background-color: #E84B35;
+  height: 30px;
+  vertical-align: middle;
+  font-size: 0.8em;
+}
+
+.adminUser-container .box-table table th.id span{
+  visibility: hidden;
+}
+
+.adminUser-container .box-table table th.id {
+    display: none;
+}
+
+.adminUser-container .box-table table td.el-id{
+    display: none;
+}
+
+.adminUser-container .box-table table th.withdraw span{
+  visibility: hidden;
+}
+
+.adminUser-container .box-table table tr{
+  text-align: center;
+  max-height: 30px;
+  height:45px;
+  min-height: 10px;
+  color: rgb(98, 98, 98);
+  border-bottom: 1px solid rgb(185, 185, 185);
+  font-size: 0.8em;
+}
+
+.adminUser-container .box-table table tr.box-loding{
+  height: 60vh;
+}
+
+.adminUser-container .box-table table tr.box-none{
+  height: 60vh;
+}
+
+.adminUser-container .box-table table td.withdraw *{
+  cursor: pointer;
+}
+
+/*유저 삭제 컨펌*/
+.confirmUser-container{
+  width: 100%;
+  height: 100%;
+  top: 0; 
+  left: 0;
+  position: fixed;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  text-align: center;
+}
+
+.confirmUser-container .box-confirm{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%; /*조절필요*/
+  height: 30%; /*조절필요*/
+  min-width: 300px;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;
+}
+
+
+.confirmUser-container img{
+  width: 90px;
+}
+
+.confirmUser-container .confirm-message{
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+.confirmUser-container .box-confirm-btn{
+  display: flex;
+}
+
+.confirmUser-container span#btn-cancel{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#bdbdbd;
+  padding-top: 3px;
+  color: white;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.confirmUser-container span#btn-confirm{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#E84B35;
+  padding-top: 3px;
+  color: white;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+
+/*유저 모달*/
+.modalUser-container{
+  width: 100%;
+  height: 100%; /*실제 적용시 100% */
+  top: 0; /*실제 적용시 0 */
+  left: 0;
+  position: absolute; /*실제 적용시 fixed */
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  text-align: center;
+}
+
+.modalUser-container .box-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%; /*조절필요*/
+  height: 30%; /*조절필요*/
+  min-width: 300px;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;
+}
+
+
+.modalUser-container img{
+  width: 90px;
+}
+
+.modalUser-container .modal-message{
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.modalUser-container span{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#E84B35;
+  padding-top: 3px;
+  color: white;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* 편지관리 */
+.adminMail-container .box-search{
+  display: flex;
+  flex-direction:row-reverse;
+  margin: 5px;
+  align-items: center;
+}
+
+.adminMail-container select{
+  width:100px;
+  height: 40px;
+  margin-right: 5px;
+  padding-left:10px;
+  padding-right: 30px;
+  border:1px solid rgb(192, 192, 192);
+  background:url('../img/down.svg') no-repeat 97% 50%/15px auto;
+  border-radius:3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance : none;
+}
+
+.adminMail-container .search-box{
+  padding: 5px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.adminMail-container #search {
+  padding: 0;
+  width: 200px;
+  border:none;
+  background: none;
+  outline: none;
+  float: left;
+  font-size: 1rem;
+  line-height: 30px;
+  margin-left: 20px;
+}
+
+.adminMail-container #searchButton {
+  text-decoration: none;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background-color: #E84B35;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+  border: 2px solid #E84B35;
+}
+
+
+.adminMail-container .box-table{
+  height: 60vh;
+}
+
+
+.adminMail-container .box-table table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.adminMail-container .box-table table th{
+  color:white;
+  background-color: #E84B35;
+  height: 30px;
+  vertical-align: middle;
+  font-size: 0.8em;
+}
+
+.adminMail-container .box-table table th.id span{
+  visibility: hidden;
+}
+
+.adminMail-container .box-table table th.id{
+    display: none;
+}
+
+.adminMail-container .box-table table td.el-id{
+    display: none;
+}
+
+.adminMail-container .box-table table td.email span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80px;
+    display: inline-block;
+}
+
+
+.adminMail-container .box-table table th.read{
+    font-size: 0em;
+}
+
+.adminMail-container .box-table table th.delete span{
+  visibility: hidden;
+}
+
+.adminMail-container .box-table table tr{
+  text-align: center;
+  max-height: 30px;
+  height:45px;
+  min-height: 10px;
+  color: rgb(98, 98, 98);
+  border-bottom: 1px solid rgb(185, 185, 185);
+  font-size: 0.8em;
+}
+
+.adminMail-container .box-table table tr.box-loding{
+    height: 60vh;
+}
+
+.adminMail-container .box-table table tr.box-none{
+    height: 60vh;
+}
+
+.adminMail-container .box-table table td.delete *{
+  cursor: pointer;
+}
+
+/*메일 삭제 컨펌*/
+.confirmMail-container{
+  width: 100%;
+  height: 100%;
+  top: 0; 
+  left: 0;
+  position: fixed;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  text-align: center;
+}
+
+.confirmMail-container .box-confirm{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%; /*조절필요*/
+  height: 30%; /*조절필요*/
+  min-width: 300px;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;
+}
+
+
+.confirmMail-container img{
+  width: 90px;
+}
+
+.confirmMail-container .confirm-message{
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+.confirmMail-container .box-confirm-btn{
+  display: flex;
+}
+
+.confirmMail-container span#btn-cancel{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#bdbdbd;
+  padding-top: 3px;
+  color: white;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.confirmMail-container span#btn-confirm{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#E84B35;
+  padding-top: 3px;
+  color: white;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+
+/*유저 모달*/
+.modalMail-container{
+  width: 100%;
+  height: 100%; /*실제 적용시 100% */
+  top: 0; /*실제 적용시 0 */
+  left: 0;
+  position: absolute; /*실제 적용시 fixed */
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  text-align: center;
+}
+
+.modalMail-container .box-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%; /*조절필요*/
+  height: 30%; /*조절필요*/
+  min-width: 300px;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;
+}
+
+
+.modalMail-container img{
+  width: 90px;
+}
+
+.modalMail-container .modal-message{
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.modalMail-container span{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#E84B35;
+  padding-top: 3px;
+  color: white;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* 페이지네이션 */
+.adminPage-container .pagination { display: flex; justify-content: center; margin-top: 15px; }
+.adminPage-container ul { list-style: none; padding: 0; }
+.adminPage-container ul.pagination li { display: inline-block; width: 30px; height: 30px; border: 1px solid #e2e2e2; display: flex; justify-content: center; align-items: center; font-size: 1rem; } 
+.adminPage-container ul.pagination li:first-child{ border-radius: 30px 0 0 30px; } 
+.adminPage-container ul.pagination li:last-child{ border-radius: 0 30px 30px 0; } 
+.adminPage-container ul.pagination li a { text-decoration: none; color: #E84B35; font-size: 1rem; } 
+.adminPage-container ul.pagination li.active a { color: white; } 
+.adminPage-container ul.pagination li.active { background-color: #E84B35; } 
+.adminPage-container ul.pagination li a:hover, ul.pagination li a.active { color: #ac4437;} 
+.adminPage-container .page-selection { width: 48px; height: 30px; color: #E84B35; }
+
+}

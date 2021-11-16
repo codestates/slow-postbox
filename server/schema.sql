@@ -17,8 +17,8 @@ CREATE TABLE `mails` (
   `reserved_at` date,
   `title` varchar(255),
   `content` varchar(10000),
-  `isChecked` boolean,
-  `isRead` boolean,
+  `isChecked` boolean DEFAULT 0,
+  `isRead` boolean DEFAULT 0,
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

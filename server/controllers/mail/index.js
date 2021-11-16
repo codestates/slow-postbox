@@ -10,5 +10,6 @@ module.exports = {
     viewSent: require('./viewSent'),
     create: require('./create'),
     receivedlogs: require('./receivedlogs'),
-    sentlogs: require('./sentlogs')
+    sentlogs: require('./sentlogs'),
+    getPaginatedMails: require('./getPaginatedMails'),
 }
