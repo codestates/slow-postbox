@@ -126,7 +126,7 @@ export default function AdminMail() {
           <th className='id'>
             <span>id</span>
           </th>
-          <th>읽음/안읽음</th>
+          <th className='read'>읽음/안읽음</th>
           <th>보낸 사람</th>
           <th>받는 사람</th>
           <th>전송 날짜</th>
@@ -182,7 +182,7 @@ export default function AdminMail() {
 function MailList({ el, setConfirm, setDeleteId }) {
   return (
     <tr>
-      <td>{el.id}</td>
+      <td className='el-id'>{el.id}</td>
       <td>
         {el.isRead ? (
           <FontAwesomeIcon icon={faEnvelopeOpen} />
@@ -190,8 +190,8 @@ function MailList({ el, setConfirm, setDeleteId }) {
           <FontAwesomeIcon icon={faEnvelope} />
         )}
       </td>
-      <td>{el.writerEmail}</td>
-      <td>{el.receiverEmail}</td>
+      <td className='email'><span>{el.writerEmail}</span></td>
+      <td className='email'><span>{el.receiverEmail}</span></td>
       <td>{el.created_at.slice(0, 10)}</td>
       <td>{el.reserved_at.slice(0, 10)}</td>
       <td className='delete'>

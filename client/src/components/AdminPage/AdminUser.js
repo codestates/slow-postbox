@@ -186,7 +186,7 @@ export default function AdminUser() {
 function UserList({ el, setConfirm, setDeleteId }) {
   return (
     <tr>
-      <td>{el.id}</td>
+      <td className='el-id'>{el.id}</td>
       <td>{el.name}</td>
       <td>{el.email}</td>
       <td>{el.writeNum}</td>
