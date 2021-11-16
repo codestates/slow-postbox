@@ -40,7 +40,7 @@ function MailInfo({ formInfo, setFormInfo }) {
     const reserved = getDateStr(calcDate);
     setOptionSelected(e.target.value);
     setFormInfo({ ...formInfo, reservedDate: reserved });
-    setReservedDate(getTomorrow()); //datePicker 초기화
+    setReservedDate(calcDateOption(e.target.value)); //해당 날짜로 변경
   };
 
   const handleCheck = () => {
@@ -87,10 +87,10 @@ function MailInfo({ formInfo, setFormInfo }) {
           </label>
           <label htmlFor='rsvDate'>
             전송날짜
-            <span>D-{dday}</span>
+            
             <select
               name='rsvDate'
-              className='mailinfo-input select-date'
+              className='select-date'
               onChange={handleDateSelect}
             >
               <option
@@ -105,6 +105,7 @@ function MailInfo({ formInfo, setFormInfo }) {
               <option value='6개월 후'>6개월 후</option>
               <option value='1년 후'>1년 후</option>
             </select>
+            <div>
             <DatePicker
               selected={reservedDate}
               onChange={(date) => handleDatePicker(date)}
@@ -113,6 +114,8 @@ function MailInfo({ formInfo, setFormInfo }) {
               minDate={subDays(new Date(), -1)}
               maxDate={addDays(new Date(), 365)}
             />
+            </div>
+            <span className='d-day'>D-{dday}</span>
           </label>
         </form>
       </div>

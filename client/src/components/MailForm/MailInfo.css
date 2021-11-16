@@ -26,11 +26,18 @@
   margin-left: 3rem;
 }
 .mailinfo-container .select-date {
-  margin-left: 3em;
+  margin-left: 1.31rem;
   font-size: 0.8em;
   background-color: white;
+  padding: 0.2em 0.2em;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 5px;
 }
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
   display: block;
+}
+
+.mailinfo-container .d-day{
+  margin-left: 0.8rem;
 }
