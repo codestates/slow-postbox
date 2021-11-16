@@ -10,12 +10,15 @@
 }
 
 .completeSignUp-container .title {
-  font-size: 30px;
+  color: black;
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: white;
-  border-radius: 10px 10px 0 0;
+  font-size: 2em;
+  margin-top: auto;
+  margin-bottom: 20px;
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .completeSignUp-container .completeSignUp-title {
   width: 300px;
@@ -77,4 +80,17 @@
 }
 .completeSignUp-container .login-button:hover {
   text-decoration: underline;
+}
+
+.completeSignUp-container .login-title {
+  height: 50px;
+  width: 50px;
+  margin-right: 5px;
+}
+
+.completeSignUp-container .login-logo {
+  font-family: 'Gaegu', cursive;
+  margin-left: 5px;
+  font-weight: 550;
+  color: black;
 }

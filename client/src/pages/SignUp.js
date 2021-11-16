@@ -28,7 +28,6 @@ export default function SignUp() {
 
     const handleChange = (e) => {
         setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-        // console.log(userInfo)
     };
 
     let history = useHistory()
@@ -39,7 +38,6 @@ export default function SignUp() {
         } else {
             setEmailCode(-1);
         }
-        // console.log(emailCode);
     };
 
     const handleSubmit = async () => {
@@ -72,7 +70,7 @@ export default function SignUp() {
                 .then((res) => {
                     console.log(res);
                     setCompleteSignUp(1)
-                    // history.push('/signup')
+
                 })
                 .catch((err) => {
                     console.log(err);
