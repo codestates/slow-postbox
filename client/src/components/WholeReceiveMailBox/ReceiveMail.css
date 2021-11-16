@@ -17,6 +17,7 @@
 	grid-column: 2 / 3;
   text-align: right;
   padding: 1rem 1rem 0 0;
+  height: 16px;
 }
 
 .mailbox-container .icon-mail:nth-child(2){

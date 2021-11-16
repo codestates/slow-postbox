@@ -5,14 +5,11 @@ module.exports = async (req, res) => {
 
     const { testemail } = req.query
 
-    const sql1 = `select * from users where users.email = "sunyeong2222@gmail.com"`
-
-
     const sql2 = `select A.id, A.writerEmail, A.receiverEmail, A.reserved_at, A.title, A.content, A.isChecked, A.isRead, A.created_at, A.updated_at, users.name 
     from mails AS A
     left join users 
     ON A.receiverEmail = users.email 
-    Where writerEmail = "${testemail}" and date(reserved_at) <= date_format(now(), '%Y%m%d')  
+    Where writerEmail = "${testemail}" and date(reserved_at) >= date_format(now(), '%Y%m%d')  
     GROUP BY A.id, users.name;`
 
     const [rows1, fields1, err1] = await db.query(sql2);

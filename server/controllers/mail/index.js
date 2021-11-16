@@ -2,7 +2,7 @@ module.exports = {
     getReceive: require('./getReceive'),
     getReserved: require('./getReserved'),
     getSent: require('./getSent'),
-    getWillsend: require('./getWillsend'),
+    getReservedSent: require('./getReservedSent'),
     patchReceive: require('./patchReceive'),
     patchReserved: require('./patchReserved'),
     patchSent: require('./patchSent'),

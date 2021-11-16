@@ -1,26 +1,34 @@
 import React from 'react'
 import { GoMailRead, GoMail } from "react-icons/go";
 
-export default function ReservedSentMail() {
-	const dummydata2 = []
+export default function ReservedSentMail({ reservedsent }) {
+
+	function getDay(e) {
+		const today = new Date() // Tue Nov 16 2021 14:09:45 GMT+0900 (한국 표준시)
+		const setDate = new Date(e.slice(0, 10)) // Thu Dec 30 2021 09:00:00 GMT+0900 (한국 표준시)
+		const distance = setDate.getTime() - today.getTime();
+
+		const day = Math.floor(distance / (1000 * 60 * 60 * 24));
+		return day
+	}
+
 
 	return (
 		<>
-			{dummydata2.length === 0
+			{reservedsent.length === 0
 				? <div className="mailbox-container-empty"> 전달예정 편지가 없습니다.</div>
-				: dummydata2.map(el => {
+				: reservedsent.map((el, id) => {
 					return (
 						<>
-							<div className="mailbox-container" >
-								<div className="sort-readCheck"> {el.isRead === false ? "안읽음" : "읽음"} </div>
+							<div className="mailbox-container" key={id} >
+								<div className="sort-readCheck">  </div>
 								<div className="icon-mail">
-									{el.isRead === false
+									{el.isRead === 0
 										? <GoMail size="60" />
 										: <GoMailRead size="60" />}
 								</div>
-								<div className="text-mail"> {el.title} </div>
 								<div className="text-mail" >
-									{el.writerName} / {el.received_at}
+									<div className="text-mail">  {getDay(el.reserved_at)}일 후 편지 전달예정 </div>
 								</div>
 							</div>
 						</>
