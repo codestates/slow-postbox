@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 function Buttons({ tempSave, handleConfirmModal, formInfo }) {
   const showConfirmModal = () => {
+    console.log('clicked');
     if (formInfo.receiver === '') {
       alert('수신자 이메일을 확인해주세요');
       return;
@@ -18,6 +19,8 @@ function Buttons({ tempSave, handleConfirmModal, formInfo }) {
       if (window.confirm('빈 제목으로 보내시겠습니까?')) {
         handleConfirmModal();
       }
+    } else {
+      handleConfirmModal();
     }
   };
 

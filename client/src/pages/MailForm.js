@@ -47,14 +47,14 @@ function MailForm() {
         receiverEmail: formInfo.receiver,
         title: formInfo.title,
         content: formInfo.content,
-        reservedDate: formInfo.reservedDate,
+        reserved_at: formInfo.reservedDate,
       })
       .then((res) => {
         axios
           .post(`${process.env.REACT_APP_SERVER_API}/user/alertmail`, {
             name,
             receiverEmail: formInfo.receiver,
-            reservedDate: formInfo.reservedDate,
+            reserved_at: formInfo.reservedDate,
           })
           .then((res) => {
             console.log(res);
