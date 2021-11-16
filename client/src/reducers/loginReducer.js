@@ -5,8 +5,8 @@ const loginReducer = (
     isLogin: false,
     isAdmin: false,
     id: null,
-    name: null,
-    email: null,
+    name: '김소현',
+    email: 'sohhyeonkim@gmail.com',
     oauth: false,
   },
   action
