@@ -2,11 +2,10 @@ const db = require("../../db");
 
 module.exports = async (req, res) => {
   try {
-
-    const email = req.body.data.testemail
+    const email = req.body.email
 
     const sql1 = `update mails set isChecked = 1 
-                  where writerEmail = "${email}" and date(reserved_at) >= date_format(now(), '%Y%m%d');`
+                  where receiverEmail = "${email}" and date(reserved_at) > date_format(now(), '%Y%m%d');`
 
     const [rows1, fields1, err1] = await db.query(sql1);
 

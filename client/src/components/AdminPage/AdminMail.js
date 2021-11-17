@@ -50,10 +50,10 @@ export default function AdminMail() {
       `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
       { params: { page, receiverEmail, writerEmail } }
     )
-    .then((res)=>{
-      setData(res.data.data);
-      setCount(res.data.count);
-    })
+      .then((res) => {
+        setData(res.data.data);
+        setCount(res.data.count);
+      })
     await setIsLoding(false);
   };
 
@@ -62,10 +62,10 @@ export default function AdminMail() {
       `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
       { params: { page, receiverEmail, writerEmail } }
     )
-    .then((res)=>{
-      setData(res.data.data);
-      setCount(res.data.count);
-    })
+      .then((res) => {
+        setData(res.data.data);
+        setCount(res.data.count);
+      })
   };
 
   const getFilterdData = async () => {
@@ -85,7 +85,7 @@ export default function AdminMail() {
       data: { id: deleteId },
       withCredentials: true,
     });
-    
+
   };
 
   useEffect(() => {
@@ -109,12 +109,12 @@ export default function AdminMail() {
           ></input>
           <span>
             <button id='searchButton'>
-              <FontAwesomeIcon icon={faSearch} onClick={getFilterdData}/>
+              <FontAwesomeIcon icon={faSearch} onClick={getFilterdData} />
             </button>
           </span>
         </div>
         <select onChange={handleSelect} value={selected}>
-        {selectList.map((item) => (
+          {selectList.map((item) => (
             <option value={item} key={item}>
               {item}
             </option>
@@ -136,21 +136,21 @@ export default function AdminMail() {
           </th>
           {isLoding ? (
             <tr className='box-loding'>
-              <td  colSpan='7'>
+              <td colSpan='7'>
                 <Loding />
               </td>
             </tr>
           ) : (
-            data.length!==0 ? (
+            data.length !== 0 ? (
               data.map((el, id) => {
-              return <MailList setDeleteId={setDeleteId} setConfirm={setConfirm} el={el} key={id} />;
-            })
+                return <MailList setDeleteId={setDeleteId} setConfirm={setConfirm} el={el} key={id} />;
+              })
             ) : (
               <tr className='box-none'>
-              <td colSpan='7'>
-                일치하는 데이터가 없습니다.
-              </td>
-            </tr>
+                <td colSpan='7'>
+                  일치하는 데이터가 없습니다.
+                </td>
+              </tr>
             )
           )}
         </table>
@@ -168,9 +168,9 @@ export default function AdminMail() {
       </div>
       {confirm ? (
         <ConfirmMail setDeleteId={setDeleteId}
-        setConfirm={setConfirm}
-        setModal={setModal}
-        deleteMailData={deleteMailData} />
+          setConfirm={setConfirm}
+          setModal={setModal}
+          deleteMailData={deleteMailData} />
       ) : (
         ''
       )}

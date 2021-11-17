@@ -1,17 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
 import axios from 'axios';
 
-export default function NavigationBar({ isChecked }) {
-  const { isLogin, isAdmin } = useSelector((state) => state.loginReducer);
+
+export default function NavigationBar({ isChecked, setIsChecked }) {
+  const { email, isLogin, isAdmin } = useSelector((state) => state.loginReducer);
+  const handleCheckReceived = () => {
+		axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/checked-received`, { email })
+		.then((res) => {
+		  axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email } })
+      .then((res) => { setIsChecked(res.data.isChecked) })
+		})
+	  }
+
   const handleLogout = async () => {
     axios.post(`${process.env.REACT_APP_SERVER_API}/user/logout`, "", { withCredentials: true })
       .then(window.location.replace("/"))
   }
+
 
   return (
     <>
@@ -39,6 +50,7 @@ export default function NavigationBar({ isChecked }) {
             className={
               isLogin ? 'mailBox' : 'mailBox hidden'
             }
+            onClick={handleCheckReceived}
           >
             <div className={
               isChecked
