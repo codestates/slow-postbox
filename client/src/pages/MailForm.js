@@ -80,7 +80,10 @@ function MailForm() {
           formInfo={formInfo}
         />
         {isPreviewModalOpen && (
-          <PreviewModal handlePreviewModal={handlePreviewModal} />
+          <PreviewModal
+            handlePreviewModal={handlePreviewModal}
+            formInfo={formInfo}
+          />
         )}
         {isConfirmModalOpen && (
           <ConfirmModal

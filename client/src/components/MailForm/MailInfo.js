@@ -79,6 +79,7 @@ function MailInfo({ formInfo, setFormInfo }) {
             <input
               type='text'
               name='title'
+              maxlength='30'
               placeholder='제목을 작성해주세요'
               className='mailinfo-input mailinfo-input-title'
               value={formInfo.title}
@@ -87,7 +88,6 @@ function MailInfo({ formInfo, setFormInfo }) {
           </label>
           <label htmlFor='rsvDate'>
             전송날짜
-            
             <select
               name='rsvDate'
               className='select-date'
@@ -106,14 +106,14 @@ function MailInfo({ formInfo, setFormInfo }) {
               <option value='1년 후'>1년 후</option>
             </select>
             <div>
-            <DatePicker
-              selected={reservedDate}
-              onChange={(date) => handleDatePicker(date)}
-              locale='ko'
-              dateFormat='yyyy-MM-dd'
-              minDate={subDays(new Date(), -1)}
-              maxDate={addDays(new Date(), 365)}
-            />
+              <DatePicker
+                selected={reservedDate}
+                onChange={(date) => handleDatePicker(date)}
+                locale='ko'
+                dateFormat='yyyy-MM-dd'
+                minDate={subDays(new Date(), -1)}
+                maxDate={addDays(new Date(), 365)}
+              />
             </div>
             <span className='d-day'>D-{dday}</span>
           </label>
