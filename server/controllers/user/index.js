@@ -11,4 +11,5 @@ module.exports = {
   withdraw: require('./withdraw'),
   alertmail: require('./alertmail'),
   modifypw: require('./modifypw'),
+  kakaowithdraw: require('./kakaowithdraw'),
 };
