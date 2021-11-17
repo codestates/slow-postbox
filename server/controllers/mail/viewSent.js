@@ -2,14 +2,14 @@ const db = require("../../db");
 
 module.exports = async (req, res) => {
   try {
-
-    console.log(req.params.mailsid)
     const id = req.params.mailsid;
-    const sql1 = `select * from mails inner join users ON mails.writerEmail = users.email where mails.id = ?`
+    const sql3 = `update mails set isRead = 1 where mails.id =?`
+    const sql1 = `select mails.id, mails.writerEmail, mails.receiverEmail, mails.title, mails.content, mails.reserved_at, mails.created_at, users.name, users.email from mails left join users ON mails.receiverEmail = users.email where mails.id = ?`
 
     const params1 = [id];
 
 
+    const [rows2, fields2, err2] = await db.query(sql3, params1);
     const [rows1, fields1, err1] = await db.query(sql1, params1);
 
     if (err1) {
@@ -17,19 +17,11 @@ module.exports = async (req, res) => {
     }
 
     if (rows1) {
-      const removeEmail = rows1[0].receiverEmail
-      const patchEmail = removeEmail.slice(removeEmail.length - 2)
-      if (patchEmail === "삭제") {
-        rows1[0].receiverEmail = rows1[0].receiverEmail.slice(0, -2)
-        return res.status(200).json({
-          data: rows1[0]
-        })
-      } else {
-        return res.status(200).json({
-          data: rows1[0]
-        })
-      }
+      return res.status(200).json({
+        data: rows1[0]
+      })
     }
+
 
 
 

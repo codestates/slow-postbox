@@ -10,10 +10,7 @@ export default function WholeSentMail() {
 	const dispatch = useDispatch();
 
 	const [view, setView] = useState('SentMail')
-	const [sent, setSent] = useState([])
 	const [reservedsent, setReservedsent] = useState([])
-	const [page, setPage] = useState(1)
-	const [mailNum, setMailNum] = useState(0)
 
 	const userInfo = useSelector(state => state.loginReducer)
 	const { email, name } = userInfo
@@ -30,60 +27,24 @@ export default function WholeSentMail() {
 		dispatch(modalmailview(false))
 	}
 
-	function mailChange(el) {
-		setMailNum(el)
-	}
-
-	const sentmailListUp = async () => {
-		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/sent`, {
-			params: { email, page }
-		})
-			.then((res) => {
-				console.log(res)
-				setSent(res.data.data)
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-
-	}
-
-	const sentmailListUp2 = async () => {
-		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/reservedsent`, {
-			params: { email, page }
-		})
-			.then((res) => {
-				console.log(res.data)
-				setReservedsent(res.data.data)
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-
-	}
 
 
 	function tabMenu1() {
-		sentmailListUp()
 		viewChange()
 		modaloff()
 	}
 
 	function tabMenu2() {
-		sentmailListUp2()
 		viewChange2()
 		modaloff()
 	}
 
-	useEffect(() => {
-		sentmailListUp()
-	}, [])
 
 	return (
 		<>
 			<div className="wholeMailBox-container">
 				<div className="wholeMailBox-grid">
-					<div className="sort-receiver"> {name} 님, </div>
+					<div className="sort-receiver"> {name} 님</div>
 					<div className="tabmenu-container" >
 						<div className="bar-tabmenu">
 							<div className={view === 'SentMail' ? "tab-selected " : ""} onClick={tabMenu1}>
@@ -97,7 +58,7 @@ export default function WholeSentMail() {
 					<div>
 						{
 							view === 'SentMail'
-								? <SentMail sent={sent} mailChange={mailChange} />
+								? <SentMail />
 								: <ReservedSentMail reservedsent={reservedsent} />
 						}
 					</div>

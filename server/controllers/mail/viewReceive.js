@@ -2,11 +2,9 @@ const db = require("../../db");
 
 module.exports = async (req, res) => {
   try {
-
-    console.log(req.params.mailsid)
     const id = req.params.mailsid;
     const sql3 = `update mails set isRead = 1 where mails.id =?`
-    const sql1 = `select * from mails inner join users ON mails.writerEmail = users.email where mails.id = ?`
+    const sql1 = `select mails.id, mails.writerEmail, mails.receiverEmail, mails.title, mails.content, mails.reserved_at, mails.created_at, users.name, users.email from mails left join users ON mails.writerEmail = users.email where mails.id = ?`
 
     const params1 = [id];
 

@@ -9,16 +9,15 @@ import { modalmailview } from '../../actions'
 import Loding from '../Loding/Loding';
 
 
-export default function WholeReceivedMail() {
+export default function WholeReceivedMail({hadleisChecked}) {
 	const dispatch = useDispatch();
 
 	const [view, setView] = useState('ReceiveMail')
 	const [mailListReceive, setMailListReceive] = useState([])
 	const [mailListReserved, setMailListReserved] = useState([])
 	const [mailNum, setMailNum] = useState(0)
-	const [page, setPage] = useState(1);
-	const [count, setCount] = useState(0)
 	const [isLoding, setIsLoding] = useState(true);
+	const [isChecked, setIsChecked] = useState(false)
 
 	const userInfo = useSelector(state => state.loginReducer)
 	const { email, name } = userInfo
@@ -41,71 +40,40 @@ export default function WholeReceivedMail() {
 		setMailNum(el)
 	}
 
-	const toggleOnOff = async () => {
+	const handleCheckReserved = async () => {
 		await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/reserved`,
-			{ data: { email } })
+			{ email })
 			.then((res) => {
-				console.log(res)
+				getReservedChecked();
 			})
+			.then(()=> {hadleisChecked();})
 			.catch((err) => {
 				console.log(err)
 			})
 	}
 
-	const mailListUp = async () => { // 받은편지함 list 받아오기 
-		// await setIsLoding(true);
-		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/receive`, {
-			params: { email, page }
+	const getReservedChecked = async() => {
+		axios.get(`${process.env.REACT_APP_SERVER_API}/mail/check`, {params: { email}})
+		.then((res) => {
+		  setIsChecked(res.data.count)
 		})
-			.then((res) => {
-				setCount(res.data.count)
-				setMailListReceive(res.data.data)
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-		// await setIsLoding(false);
-	}
+	  }
 
-
-	const mailListUp2 = async () => { // 도착 예정함 list 받아오기
-		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/reserved`, {
-			params: { email, page }
-		})
-			.then((res) => {
-				setCount(res.data.count)
-				setMailListReserved(res.data.data)
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-	}
-
+	  useEffect(()=> {
+		getReservedChecked();
+	  },[])
 
 
 	function tabMenu1() {
-		mailListUp()
 		viewChange2()
 		modaloff()
 	}
 
 	function tabMenu2() {
-		toggleOnOff()
-		mailListUp2()
 		viewChange()
 		modaloff()
+		handleCheckReserved();
 	}
-
-
-	useEffect(async () => { // 화면 랜더링 될 때 
-		await mailListUp()
-		await mailListUp2()
-	}, [])
-
-	useEffect(() => {
-		mailListUp()
-	}, [mailNum])
-
 
 	const togglerFilter = (e) => {
 		const filterNum = e.filter(el => el.isChecked === 0)
@@ -118,7 +86,7 @@ export default function WholeReceivedMail() {
 			<div className="wholeMailBox-container">
 				<div className="wholeMailBox-grid" >
 					<div className="sort-receiver" >
-						{name} 님,
+						{name} 님
 					</div>
 					<div className="tabmenu-container" >
 						<div className="bar-tabmenu">
@@ -127,7 +95,7 @@ export default function WholeReceivedMail() {
 								받은 편지함
 							</div>
 							<div className={view === 'ReservedMail' ? "tab-selected" : "toggle-onoff"} onClick={tabMenu2}>
-								<div className={togglerFilter(mailListReserved) ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "#E84B35" }}> ● </div>
+								<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "#E84B35" }}> ● </div>
 								도착 예정함
 							</div>
 						</div>
@@ -142,8 +110,8 @@ export default function WholeReceivedMail() {
 							// 	</tr>
 							// ) : (
 							view === 'ReceiveMail'
-								? <ReceiveMail mailListReceive={mailListReceive} mailChange={mailChange} page={page} count={count} setPage={setPage} />
-								: <ReservedMail mailListReserved={mailListReserved} mailChange={mailChange} page={page} count={count} setPage={setPage} />
+								? <ReceiveMail mailListReceive={mailListReceive} mailChange={mailChange}/>
+								: <ReservedMail mailListReserved={mailListReserved} mailChange={mailChange}/>
 							// )
 						}
 					</div>

@@ -44,6 +44,33 @@
   
 }
 
+.mailview-container .mail-text{
+  overflow: auto;
+  height: 35vh;
+  overflow-x: hidden;
+}
+
+/* 스크롤바 설정*/
+.mailview-container .mail-text::-webkit-scrollbar{
+  width: 6px;
+}
+
+/* 스크롤바 막대 설정*/
+.mailview-container .mail-text::-webkit-scrollbar-thumb{
+  height: 17%;
+  background-color: gray;
+  border-radius: 10px;  
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.mailview-container .mail-text::-webkit-scrollbar-track{
+  background-color: rgb(214, 214, 214);
+}
+
+.mailview-container .mail-text img{
+  max-width: 100%;
+}
+
 .mailview-container .modal-sort:nth-child(1){
   text-align: right;
   font-size: 1.1em;

@@ -30,14 +30,14 @@ function App() {
 
   return (
     <div>
-      <NavigationBar isChecked={isChecked} />
+      <NavigationBar isChecked={isChecked} setIsChecked={setIsChecked}/>
       <div className='area-nav'></div>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route path='/find-userinfo' component={FindUserInfo} />
-        <Route path='/mailbox' component={WholeReceivedMail} />
+        <Route path='/mailbox' render={(props)=> <WholeReceivedMail hadleisChecked={hadleisChecked} {...props}/>} />
         <Route path='/sent-mailbox' component={WholeSentMail} />
         <Route path='/mailform' component={MailForm} />
         <Route path='/mypage' component={MyPage} />

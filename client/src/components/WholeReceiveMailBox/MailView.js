@@ -4,18 +4,12 @@ import { FaTimes } from "react-icons/fa"
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { modalmailview } from '../../actions'
+import parse from 'html-react-parser';
 import axios from 'axios';
 
-export default function MailView({ maildata, mailChange }) {
-  const dispatch = useDispatch();
+export default function MailView({ maildata, setModalmail, getReceivedDataPage }) {
   const [isLoding, setIsLoding] = useState(true);
 
-  console.log(maildata)
-
-  const modaloff = () => {
-    dispatch(modalmailview({ modalmail: false }))
-    mailChange(0)
-  }
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -23,29 +17,29 @@ export default function MailView({ maildata, mailChange }) {
     setIsOpen(!isOpen)
   }
 
-  // useEffect(() => {
-  //   maildata
-  // },[])
+  useEffect(() => {
+    getReceivedDataPage();
+  },[])
 
   return (
     <>
       <div className="mailview-container">
         <div className="mailview-grid">
           <div className="mailview-title"> {maildata.title} </div>
-          <div className="mailview-receive-name"> 보낸사람 : {maildata.name} </div>
-          <div> 보낸날짜 : {maildata.created_at.slice(0, 10)} / 도착날짜 : {maildata.reserved_at.slice(0, 10)} </div>
+          <div className="mailview-receive-name"> 보낸 사람 : {maildata.name?`${maildata.name} (${maildata.writerEmail.split("삭제").join('')})`: maildata.writerEmail} </div>
+          <div> 보낸 날짜 : {maildata.created_at.slice(0, 10)} / 도착 날짜 : {maildata.reserved_at.slice(0, 10)} </div>
           <div className="modal-flex" style={{ border: "none" }}>
             <div className="modal-sort" >
               <GoKebabVertical onClick={SubModalOnOff} />
 
             </div>
             {isOpen === true
-              ? <MailViewModal maildata={maildata} SubModalOnOff={SubModalOnOff} />
+              ? <MailViewModal getReceivedDataPage={getReceivedDataPage} setModalmail={setModalmail} maildata={maildata} SubModalOnOff={SubModalOnOff} />
               : ""
             }
-            <div className="mail-text" > {maildata.content} </div>
+            <div className="mail-text" > {parse(maildata.content)} </div>
           </div>
-          <button className="btn_close_m" onClick={() => (modaloff())}> 닫기 </button>
+          <button className="btn_close_m" onClick={() => {setModalmail(false)}}> 닫기 </button>
         </div>
       </div>
     </>
@@ -54,17 +48,18 @@ export default function MailView({ maildata, mailChange }) {
 
 
 
-function MailViewModal({ SubModalOnOff, maildata }) {
+function MailViewModal({ SubModalOnOff, maildata, setModalmail, getReceivedDataPage }) {
   const { id, receiverEmail } = maildata
 
   const mailremove = async () => {
     await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/receive`, {
-      data: { id, receiverEmail }
+      id, receiverEmail
     })
       .then((res) => {
-        console.log(res)
+        getReceivedDataPage();
       })
-      .then(window.location.replace("/mailbox"))
+      .then(()=>{SubModalOnOff()})
+      .then(()=> {setModalmail(false)})
 
   }
 

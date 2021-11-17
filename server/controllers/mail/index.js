@@ -12,4 +12,6 @@ module.exports = {
     receivedlogs: require('./receivedlogs'),
     sentlogs: require('./sentlogs'),
     getPaginatedMails: require('./getPaginatedMails'),
+    check: require('./check'),
+    checkedReceived: require('./checkedReceived')
 }
