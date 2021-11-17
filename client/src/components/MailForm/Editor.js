@@ -20,27 +20,6 @@ function Editor({ formInfo, setFormInfo }) {
         data='<p>Hello from slow postbox!</p>'
         onChange={handleCkeditorState}
         config={{
-          image: {
-            resizeUnit: '%',
-            resizeOptions: [
-              {
-                name: 'resizeImage:original',
-                value: null,
-                label: 'Original size',
-              },
-              {
-                name: 'resizeImage:50',
-                value: '50',
-                label: 'Medium size',
-              },
-              {
-                name: 'resizeImage:75',
-                value: '75',
-                label: 'Large size',
-              },
-            ],
-            toolbar: ['resizeImage'],
-          },
           ckfinder: {
             uploadUrl: 'http://localhost:4000/uploads',
           },

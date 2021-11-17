@@ -8,11 +8,21 @@
   top: 0;
   left: 0;
 }
+
+.previewModal-container table,
+tbody,
+thead,
+tr,
+th,
+td {
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
 .previewModal-container .modal-box {
   min-width: 550px;
   max-width: 900px;
   min-height: min-content;
-  max-height: max-content;
+  max-height: 80vh;
   padding: 2em;
   background-color: white;
   position: absolute;
@@ -23,14 +33,21 @@
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
+  border: 1px solid green;
 }
 .previewModal-container ul.preview-group {
   width: 100%;
-  max-height: 90%;
+  max-height: 600px;
+  border: 3px solid red;
   border-radius: 20px;
   box-shadow: 5px 10px 20px rgb(187, 187, 187);
   list-style: none;
   padding: 0.3em 0.2em;
+}
+
+.previewModal-container ul.preview-group img {
+  max-width: 100%;
+  max-height: 300px;
 }
 .previewModal-container ul.preview-group li {
   padding: 0.25em 0.75em;
@@ -50,6 +67,8 @@
 }
 .previewModal-container ul.preview-group .li-content {
   max-width: 100%;
+  max-height: 500px;
+  overflow: scroll;
 }
 
 .previewModal-container .btn-close {
