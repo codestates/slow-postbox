@@ -22,7 +22,7 @@ export default function SignUp() {
     const [isPossiblePassword, setIsPossiblePassword] = useState(0);
     const [isConfirmPassword, setIsConfirmPassword] = useState(0);
     const [isConfirmEmail, setIsConFirmEmail] = useState(0);
-    const [completeSignUp, setCompleteSignUp] = useState(1)
+    const [completeSignUp, setCompleteSignUp] = useState(0)
 
 
 
