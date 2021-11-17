@@ -1,13 +1,8 @@
-const db = require("../../db");
+const db = require('../../db');
 
 module.exports = async (req, res) => {
   try {
-    const {
-      name,
-      email,
-      salt,
-      hashPassword,
-    } = req.body;
+    const { name, email, salt, hashPassword } = req.body;
     const sql =
       "INSERT INTO users (name, email, salt, password,oauth,admin) VALUES(?,?,?,?,0,0)";
     const params = [
@@ -25,6 +20,6 @@ module.exports = async (req, res) => {
     }
 
   } catch (err) {
-    return res.status(404).json({ data: null, message: "서버 에러" });
+    return res.status(404).json({ data: null, message: '서버 에러' });
   }
 };

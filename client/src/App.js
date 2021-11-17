@@ -25,7 +25,6 @@ function App() {
       { withCredentials: true })
       .then((res) => {
         if (res.data.data) {
-          console.log(res.data.data)
           dispatch(login({
             isLogin: res.data.data.isLogin,
             isAdmin: res.data.data.isAdmin,
@@ -51,10 +50,9 @@ function App() {
 
   useEffect(() => {
     isAuthenticated();
-  }, []);
-  useEffect(() => {
     hadleisChecked();
-  }, [])
+  }, []);
+
 
   return (
     <div>
