@@ -28,7 +28,7 @@ function App() {
           console.log(res.data.data)
           dispatch(login({
             isLogin: res.data.data.isLogin,
-            isAdmin: res.data.data.isAdmin,
+            isAdmin: res.data.data.admin,
             id: res.data.data.id,
             name: res.data.data.name,
             email: res.data.data.email,
