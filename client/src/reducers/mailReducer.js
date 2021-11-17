@@ -1,18 +1,38 @@
-import { MAILSHOW } from "../actions/index"
+import { MAILVIEW, MODALMAILVIEW } from "../actions/index"
 
-const mailReducer = (state = { id: null, isChecked: null, isRead: null, received_at: null, title: null, writerName: null }, action) => {
+const mailReducer = (state = {
+  modalmail: false,
+  content: "",
+  created_at: "",
+  name: "",
+  reserved_at: "",
+  receiverEmail: "",
+  title: "",
+  writerEmail: "",
+  id: "",
+  email: ""
+}, action) => {
   switch (action.type) {
 
-    case MAILSHOW:
+    case MODALMAILVIEW:
       return {
         ...state,
-        id: action.payload.id,
-        isChecked: action.payload.isChecked,
-        isRead: action.payload.isRead,
-        received_at: action.payload.received_at,
-        title: action.payload.title,
-        writerName: action.payload.writerName,
+        modalmail: action.payload.modalmail,
+      };
 
+
+    case MAILVIEW:
+      return {
+        ...state,
+        content: action.payload.content,
+        created_at: action.payload.created_at,
+        name: action.payload.name,
+        reserved_at: action.payload.reserved_at,
+        receiverEmail: action.payload.receiverEmail,
+        title: action.payload.title,
+        writerEmail: action.payload.writerEmail,
+        id: action.payload.id,
+        email: action.payload.email
       };
 
     default:

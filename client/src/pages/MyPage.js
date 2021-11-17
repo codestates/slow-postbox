@@ -12,7 +12,7 @@ import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
 
 function MyPage() {
-  const { email } = useSelector((state) => state.loginReducer);
+  const { email, oauth } = useSelector((state) => state.loginReducer);
 
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
@@ -34,23 +34,33 @@ function MyPage() {
     setPasswords({ ...passwords, [e.target.name]: e.target.value });
   };
 
-  const changePassword = () => {
-    axios
-      .patch(`${process.env.REACT_APP_SERVER_API}/user/modifypw`, {
-        data: {
+  const changePassword = (e) => {
+    if (
+      isAvailable === '사용가능한 비밀번호입니다' &&
+      isMatching === '비밀번호가 일치합니다'
+    ) {
+      axios
+        .patch(`${process.env.REACT_APP_SERVER_API}/user/modifypw`, {
           email,
           password: passwords.newPassword,
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          window.location.replace('/mypage');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        })
+        .then((res) => {
+          if (res.data.message === 'success') {
+            window.location.replace('/');
+          } else {
+            alert('항목을 다시 확인해주세요');
+            e.preventDefault();
+            return;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('항목을 다시 확인해주세요');
+      e.preventDefault();
+      return;
+    }
   };
 
   const [received, setReceived] = useState([]);
@@ -68,19 +78,18 @@ function MyPage() {
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/mail/receivedlogs?receiverEmail=${email}`
       );
-      console.log(res.data.data);
       setReceived(res.data.data);
       setLoading(false);
     };
     fetchReceived();
   }, []);
+
   useEffect(() => {
     const fetchSent = async () => {
       setLoading(true);
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/mail/sentlogs?writerEmail=${email}`
       );
-      //console.log(res.data.data);
       setSent(res.data.data);
       setLoading(false);
     };
@@ -294,58 +303,63 @@ function MyPage() {
                 toggleState === 2 ? 'active-content' : 'inactive-content'
               }
             >
-              <form className='form-renewPw'>
-                <p className='p-renew-pw'>새로운 비밀번호</p>
-                <input
-                  type='password'
-                  className='input-renew-pw'
-                  name='newPassword'
-                  value={passwords.newPassword}
-                  onChange={handleChange}
-                  required
-                />
-                <span
-                  className={
-                    isAvailable === '사용가능한 비밀번호입니다'
-                      ? 'span-alert available'
-                      : 'span-alert unavailable'
-                  }
-                >
-                  {isAvailable}
-                </span>
-                <p className='p-renew-pw'>비밀번호 확인</p>
-                <input
-                  type='password'
-                  className='input-renew-pw'
-                  name='matchingPassword'
-                  value={passwords.matchingPassword}
-                  onChange={handleChange}
-                  required
-                />
-                <span
-                  className={
-                    isMatching === '비밀번호가 일치합니다'
-                      ? 'span-alert available'
-                      : 'span-alert unavailable'
-                  }
-                >
-                  {isMatching}
-                </span>
-                <button
-                  type='button'
-                  className='btn-submit'
-                  onClick={changePassword}
-                >
-                  변경하기
-                </button>
-                <button
-                  type='button'
-                  className='btn-withdrawal'
-                  onClick={() => toggleTab(3)}
-                >
-                  탈퇴하기
-                </button>
-              </form>
+              {' '}
+              {!oauth && toggleState === 2 ? (
+                <div className='form-renewPw'>
+                  <p className='p-renew-pw'>새로운 비밀번호</p>
+                  <input
+                    type='password'
+                    className='input-renew-pw'
+                    name='newPassword'
+                    value={passwords.newPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span
+                    className={
+                      isAvailable === '사용가능한 비밀번호입니다'
+                        ? 'span-alert available'
+                        : 'span-alert unavailable'
+                    }
+                  >
+                    {isAvailable}
+                  </span>
+                  <p className='p-renew-pw'>비밀번호 확인</p>
+                  <input
+                    type='password'
+                    className='input-renew-pw'
+                    name='matchingPassword'
+                    value={passwords.matchingPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span
+                    className={
+                      isMatching === '비밀번호가 일치합니다'
+                        ? 'span-alert available'
+                        : 'span-alert unavailable'
+                    }
+                  >
+                    {isMatching}
+                  </span>
+                  <button
+                    type='button'
+                    className='btn-submit'
+                    onClick={changePassword}
+                  >
+                    변경하기
+                  </button>
+                  <button
+                    type='button'
+                    className='btn-withdrawal'
+                    onClick={() => toggleTab(3)}
+                  >
+                    탈퇴하기
+                  </button>
+                </div>
+              ) : (
+                <Withdrawal />
+              )}
             </div>
             <div
               className={

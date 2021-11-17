@@ -27,7 +27,7 @@ function App() {
         if (res.data.data) {
           dispatch(login({
             isLogin: res.data.data.isLogin,
-            isAdmin: res.data.data.isAdmin,
+            isAdmin: res.data.data.admin,
             id: res.data.data.id,
             name: res.data.data.name,
             email: res.data.data.email,
@@ -63,7 +63,7 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route path='/find-userinfo' component={FindUserInfo} />
-        <Route path='/mailbox' component={WholeReceivedMail} />
+        <Route path='/mailbox' render={(props)=> <WholeReceivedMail hadleisChecked={hadleisChecked} {...props}/>} />
         <Route path='/sent-mailbox' component={WholeSentMail} />
         <Route path='/mailform' component={MailForm} />
         <Route path='/mypage' component={MyPage} />

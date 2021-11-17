@@ -12,6 +12,8 @@ const {
   receivedlogs,
   sentlogs,
   getPaginatedMails,
+  check,
+  checkedReceived
 } = require('../controllers/mail');
 const express = require('express');
 const router = express.Router();
@@ -29,5 +31,7 @@ router.post('/create', create);
 router.get('/receivedlogs', receivedlogs);
 router.get('/sentlogs', sentlogs);
 router.get('/getpaginatedmail', getPaginatedMails);
+router.get('/check', check);
+router.patch('/checked-received', checkedReceived)
 
 module.exports = router;

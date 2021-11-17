@@ -24,13 +24,16 @@ export default function kakaoLoginClickHandler() {
                         const name = res.kakao_account.profile.nickname
                         const email = res.kakao_account.email
                         const oauth = 1
+                        const admin = 0
                         await axios({
                             url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
                             method: "post",
                             data: {
                                 name,
                                 email,
-                                oauth
+                                oauth,
+                                admin
+
                             },
                         })
                             .then((res) => {

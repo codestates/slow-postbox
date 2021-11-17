@@ -1,6 +1,7 @@
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
-export const MAILSHOW = "MAILSHOW";
+export const MODALMAILVIEW = "MODALMAILVIEW";
+export const MAILVIEW = "MAILVIEW";
 
 export const login = (state) => {
   return {
@@ -22,16 +23,28 @@ export const logout = () => {
   };
 };
 
-export const mailshow = (state) => {
+export const modalmailview = (state) => {
   return {
-    type: MAILSHOW,
+    type: MODALMAILVIEW,
     payload: {
-      id: state.id,
-      isChecked: state.isChecked,
-      isRead: state.isRead,
-      received_at: state.received_at,
+      modalmail: state.modalmail
+    },
+  };
+};
+
+export const mailview = (state) => {
+  return {
+    type: MAILVIEW,
+    payload: {
+      content: state.content,
+      created_at: state.created_at,
+      name: state.name,
+      reserved_at: state.reserved_at,
+      receiverEmail: state.receiverEmail,
       title: state.title,
-      writerName: state.writerName
+      writerEmail: state.writerEmail,
+      id: state.id,
+      email: state.email
     },
   };
 };
