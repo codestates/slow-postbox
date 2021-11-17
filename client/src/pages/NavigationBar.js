@@ -5,7 +5,6 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
-import axios from 'axios';
 
 
 export default function NavigationBar({ isChecked, setIsChecked }) {
