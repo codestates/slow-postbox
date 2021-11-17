@@ -11,6 +11,7 @@ const {
   alertmail,
   getsalt,
   modifypw,
+  kakaowithdraw,
 } = require('../controllers/user');
 const express = require('express');
 const router = express.Router();
@@ -27,4 +28,5 @@ router.post('/signup', signup);
 router.delete('/withdraw', withdraw);
 router.post('/alertmail', alertmail);
 router.patch('/modifypw', modifypw);
+router.delete('/kakaowithdraw', kakaowithdraw);
 module.exports = router;
