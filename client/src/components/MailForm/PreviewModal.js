@@ -1,5 +1,7 @@
 import './PreviewModal.css';
-function PreviewModal({ handlePreviewModal }) {
+import parse from 'html-react-parser';
+
+function PreviewModal({ handlePreviewModal, formInfo }) {
   const handleClose = (e) => {
     if (e.target === e.currentTarget) {
       handlePreviewModal();
@@ -9,10 +11,21 @@ function PreviewModal({ handlePreviewModal }) {
     <>
       <div className='previewModal-container' onClick={handleClose}>
         <div className='modal-box'>
-          <span>
-            보낸 메일함에서 개별 메일을 클릭했을때 나오는 컴포넌트를 보여줄
-            예정입니다
-          </span>
+          <ul className='preview-group'>
+            <li>
+              <span className='li-text'>받는 사람</span>
+              <span className='li-props'>{formInfo.receiver}</span>
+            </li>
+            <li>
+              <span className='li-text'>제목</span>
+              <span className='li-props'>{formInfo.title}</span>
+            </li>
+            <li>
+              <div className='li-props li-content'>
+                {parse(formInfo.content)}
+              </div>
+            </li>
+          </ul>
           <button className='btn-close' onClick={handlePreviewModal}>
             닫기
           </button>
