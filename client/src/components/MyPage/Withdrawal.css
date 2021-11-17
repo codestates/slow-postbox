@@ -28,3 +28,15 @@
   border-radius: 3px;
   border: 1px solid #a6a6a6;
 }
+
+.withdrawal-container .btn-close {
+  width: 100px;
+  margin: 20px auto 0 auto;
+  background-color: #e84b35;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 0.35em 1em;
+  border-radius: 10px;
+  font-weight: bold;
+}

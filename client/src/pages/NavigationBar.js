@@ -5,10 +5,11 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
+import axios from 'axios';
+
 
 export default function NavigationBar({ isChecked, setIsChecked }) {
   const { email, isLogin, isAdmin } = useSelector((state) => state.loginReducer);
-
   const handleCheckReceived = () => {
 		axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/checked-received`, { email })
 		.then((res) => {
@@ -16,6 +17,12 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
       .then((res) => { setIsChecked(res.data.isChecked) })
 		})
 	  }
+
+  const handleLogout = async () => {
+    axios.post(`${process.env.REACT_APP_SERVER_API}/user/logout`, "", { withCredentials: true })
+      .then(window.location.replace("/"))
+  }
+
 
   return (
     <>
@@ -46,9 +53,9 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
             onClick={handleCheckReceived}
           >
             <div className={
-                isChecked
-                  ? 'mailBox noti-on'
-                  : ''
+              isChecked
+                ? 'mailBox noti-on'
+                : ''
             }>받은 편지함</div>
           </Link>
           <Link
@@ -79,8 +86,8 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
                 style={{ color: 'inherit', textDecoration: 'inherit' }}
                 className='login'
               >
-                <div>
-                  <span>로그아웃</span>
+                <div >
+                  <span onClick={handleLogout}>로그아웃</span>
                 </div>
               </Link>
             </>

@@ -17,8 +17,8 @@ const { getDateStr } = require('../client/src/funcs/dateFuncs');
 const { arrivalAlert } = require('./funcs/index');
 
 const rule = new schedule.RecurrenceRule();
-rule.hour = 16;
-rule.minute = 15;
+rule.hour = 12;
+rule.minute = 6;
 
 schedule.scheduleJob(rule, async function sendAlertMail() {
   const realTime = getDateStr(new Date());

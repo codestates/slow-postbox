@@ -3,7 +3,7 @@ import axios from "axios"
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CompleteSignUp from '../components/SignUp/CompleteSignUp'
-const crypto = require('crypto')
+
 
 export default function SignUp() {
 
@@ -28,7 +28,6 @@ export default function SignUp() {
 
     const handleChange = (e) => {
         setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-        // console.log(userInfo)
     };
 
     let history = useHistory()
@@ -39,7 +38,6 @@ export default function SignUp() {
         } else {
             setEmailCode(-1);
         }
-        // console.log(emailCode);
     };
 
     const handleSubmit = async () => {
@@ -49,30 +47,30 @@ export default function SignUp() {
             emailId,
             emailDomain,
         } = userInfo;
-        const salt = crypto.randomBytes(128).toString('base64');
-        const realPassword = userInfo.password
+        const oauth = 0
+        const admin = 0
         const email = `${emailId}@${emailDomain}`;
-        const hashPassword = crypto.createHash('sha512').update(realPassword + salt).digest('hex');
 
         if (isConfirmEmail === -1 || isConfirmEmail === 0) {
             return alert("이메일 인증 절차를 진행하세요");
         }
 
-        if (name && password && emailId && emailDomain) {
+        if (name && password && emailId && emailDomain && isConfirmPassword === 1) {
             await axios({
                 url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
                 method: "post",
                 data: {
                     name,
-                    hashPassword,
-                    salt,
+                    password,
                     email,
+                    oauth,
+                    admin
                 },
             })
                 .then((res) => {
                     console.log(res);
                     setCompleteSignUp(1)
-                    // history.push('/signup')
+
                 })
                 .catch((err) => {
                     console.log(err);
@@ -82,7 +80,6 @@ export default function SignUp() {
         }
         console.log('회원가입완료')
     };
-
 
 
     const handleConfirmPassword = (e) => {

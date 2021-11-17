@@ -1,13 +1,19 @@
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
 import './MyPage.css';
 import emptyImg from '../img/empty.png';
 import receivedmail from '../img/receivedmail.svg';
+import sentmail from '../img/sentmail.svg';
+import reservedmail from '../img/reservedmail.svg';
 import Pagination from '../components/Pagination/Pagination';
 import { useState, useEffect } from 'react';
 import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
+
 function MyPage() {
+  const { email, oauth } = useSelector((state) => state.loginReducer);
+
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
@@ -28,32 +34,87 @@ function MyPage() {
     setPasswords({ ...passwords, [e.target.name]: e.target.value });
   };
 
-  const [posts, setPosts] = useState([]); //변경x
+  const changePassword = (e) => {
+    if (
+      isAvailable === '사용가능한 비밀번호입니다' &&
+      isMatching === '비밀번호가 일치합니다'
+    ) {
+      axios
+        .patch(`${process.env.REACT_APP_SERVER_API}/user/modifypw`, {
+          email,
+          password: passwords.newPassword,
+        })
+        .then((res) => {
+          if (res.data.message === 'success') {
+            window.location.replace('/');
+          } else {
+            alert('항목을 다시 확인해주세요');
+            e.preventDefault();
+            return;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('항목을 다시 확인해주세요');
+      e.preventDefault();
+      return;
+    }
+  };
+
+  const [received, setReceived] = useState([]);
+  const [sent, setSent] = useState([]);
   const [loading, setLoading] = useState(false); //변경x
   const [currentPage, setCurrentPage] = useState(1); //변경x
   const [postsPerPage, setPostsPerPage] = useState(10); //변경d
   const [total, setTotal] = useState(0); //변경x
   const [minPage, setMinPage] = useState(1); //변경x
   const [maxPage, setMaxPage] = useState(5); //변경x
+
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchReceived = async () => {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:4000/mail/getpaginatedmail?page=${currentPage}&limit=${postsPerPage}`
+        `${process.env.REACT_APP_SERVER_API}/mail/receivedlogs?receiverEmail=${email}`
       );
-      setPosts(res.data.data);
+      setReceived(res.data.data);
       setLoading(false);
-      setTotal(res.data.total);
-      // if (res.data.total) {
-      //   setMinPage(1);
-      // }
-      if (Math.ceil(res.data.total / postsPerPage) < 5) {
-        setMaxPage(Math.ceil(res.data.total / postsPerPage));
-      }
-      console.log('working');
     };
-    fetchPosts();
-  }, [currentPage, postsPerPage]);
+    fetchReceived();
+  }, []);
+
+  useEffect(() => {
+    const fetchSent = async () => {
+      setLoading(true);
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/mail/sentlogs?writerEmail=${email}`
+      );
+      setSent(res.data.data);
+      setLoading(false);
+    };
+    fetchSent();
+  }, []);
+
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     setLoading(true);
+  //     const res = await axios.get(
+  //       `http://localhost:4000/mail/getpaginatedmail?page=${currentPage}&limit=${postsPerPage}`
+  //     );
+  //     setPosts(res.data.data);
+  //     setLoading(false);
+  //     setTotal(res.data.total);
+  //     // if (res.data.total) {
+  //     //   setMinPage(1);
+  //     // }
+  //     if (Math.ceil(res.data.total / postsPerPage) < 5) {
+  //       setMaxPage(Math.ceil(res.data.total / postsPerPage));
+  //     }
+  //     console.log('working');
+  //   };
+  //   fetchPosts();
+  // }, [currentPage, postsPerPage]);
 
   useEffect(() => {
     let timer;
@@ -156,19 +217,36 @@ function MyPage() {
                     }
                   >
                     <ul className='ul-mailbox'>
-                      {posts.map((post) => {
-                        return (
-                          <li key={post.id} className='li-mail'>
-                            <img
-                              src={receivedmail}
-                              className='li-icon flex-item'
-                              alt='받은메일'
-                            />
-                            <span className='li-title'>{post.title}</span>
-                            <span className='li-date'>{post.date}</span>
-                          </li>
-                        );
-                      })}
+                      {sent.length > 0 ? (
+                        sent.map((post) => {
+                          return (
+                            <li key={post.id} className='li-mail'>
+                              <img
+                                src={
+                                  new Date() >= new Date(post.reserved_at)
+                                    ? sentmail
+                                    : reservedmail
+                                }
+                                className='li-icon flex-item'
+                                alt='보낸메일'
+                              />
+                              <span className='li-title'>{post.title}</span>
+                              <span className='li-date'>
+                                {post.reserved_at.slice(0, 10)}
+                              </span>
+                            </li>
+                          );
+                        })
+                      ) : (
+                        <>
+                          <img
+                            src={emptyImg}
+                            alt='empty'
+                            className='emptyImg'
+                          />
+                          <p className='no-logs'>내역이 없습니다</p>
+                        </>
+                      )}
                     </ul>
                   </div>
                   <div
@@ -178,11 +256,35 @@ function MyPage() {
                         : 'inactive-content'
                     }
                   >
-                    <img src={emptyImg} alt='empty' className='emptyImg' />
-                    <p className='no-logs'>내역이 없습니다</p>
+                    {received.length > 0 ? (
+                      received.map((post) => {
+                        return (
+                          <li key={post.id} className='li-mail'>
+                            <img
+                              src={
+                                new Date() >= new Date(post.reserved_at)
+                                  ? receivedmail
+                                  : reservedmail
+                              }
+                              className='li-icon flex-item'
+                              alt='받은메일'
+                            />
+                            <span className='li-title'>{post.title}</span>
+                            <span className='li-date'>
+                              {post.reserved_at.slice(0, 10)}
+                            </span>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <>
+                        <img src={emptyImg} alt='empty' className='emptyImg' />
+                        <p className='no-logs'>내역이 없습니다</p>
+                      </>
+                    )}
                   </div>
                   <Pagination
-                    setPosts={setPosts}
+                    setSent={setSent}
                     setLoading={setLoading}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
@@ -201,54 +303,63 @@ function MyPage() {
                 toggleState === 2 ? 'active-content' : 'inactive-content'
               }
             >
-              <form className='form-renewPw'>
-                <p className='p-renew-pw'>새로운 비밀번호</p>
-                <input
-                  type='password'
-                  className='input-renew-pw'
-                  name='newPassword'
-                  value={passwords.newPassword}
-                  onChange={handleChange}
-                  required
-                />
-                <span
-                  className={
-                    isAvailable === '사용가능한 비밀번호입니다'
-                      ? 'span-alert available'
-                      : 'span-alert unavailable'
-                  }
-                >
-                  {isAvailable}
-                </span>
-                <p className='p-renew-pw'>비밀번호 확인</p>
-                <input
-                  type='password'
-                  className='input-renew-pw'
-                  name='matchingPassword'
-                  value={passwords.matchingPassword}
-                  onChange={handleChange}
-                  required
-                />
-                <span
-                  className={
-                    isMatching === '비밀번호가 일치합니다'
-                      ? 'span-alert available'
-                      : 'span-alert unavailable'
-                  }
-                >
-                  {isMatching}
-                </span>
-                <button type='button' className='btn-submit'>
-                  변경하기
-                </button>
-                <button
-                  type='button'
-                  className='btn-withdrawal'
-                  onClick={() => toggleTab(3)}
-                >
-                  탈퇴하기
-                </button>
-              </form>
+              {' '}
+              {!oauth && toggleState === 2 ? (
+                <div className='form-renewPw'>
+                  <p className='p-renew-pw'>새로운 비밀번호</p>
+                  <input
+                    type='password'
+                    className='input-renew-pw'
+                    name='newPassword'
+                    value={passwords.newPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span
+                    className={
+                      isAvailable === '사용가능한 비밀번호입니다'
+                        ? 'span-alert available'
+                        : 'span-alert unavailable'
+                    }
+                  >
+                    {isAvailable}
+                  </span>
+                  <p className='p-renew-pw'>비밀번호 확인</p>
+                  <input
+                    type='password'
+                    className='input-renew-pw'
+                    name='matchingPassword'
+                    value={passwords.matchingPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span
+                    className={
+                      isMatching === '비밀번호가 일치합니다'
+                        ? 'span-alert available'
+                        : 'span-alert unavailable'
+                    }
+                  >
+                    {isMatching}
+                  </span>
+                  <button
+                    type='button'
+                    className='btn-submit'
+                    onClick={changePassword}
+                  >
+                    변경하기
+                  </button>
+                  <button
+                    type='button'
+                    className='btn-withdrawal'
+                    onClick={() => toggleTab(3)}
+                  >
+                    탈퇴하기
+                  </button>
+                </div>
+              ) : (
+                <Withdrawal />
+              )}
             </div>
             <div
               className={

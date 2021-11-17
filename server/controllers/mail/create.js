@@ -8,10 +8,10 @@ module.exports = async (req, res) => {
     const sql =
       'INSERT INTO mails (writerEmail, receiverEmail, title, content, reserved_at) VALUES (?,?,?,?,?)';
     const params = [writerEmail, receiverEmail, title, content, reserved_at];
-    const [row, fields, error] = await db.query(sql, params);
+    const [rows, fields, err] = await db.query(sql, params);
 
-    if (error) {
-      console.log(error);
+    if (err) {
+      console.log(err);
       return res.status(404).send('실패');
     } else {
       return res.status(201).send('성공!');
