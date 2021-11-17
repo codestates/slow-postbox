@@ -9,6 +9,7 @@ const {
   signup,
   withdraw,
   alertmail,
+  getsalt,
   modifypw,
 } = require('../controllers/user');
 const express = require('express');
@@ -18,6 +19,7 @@ router.get('/auth', auth);
 router.get('/duplication', duplication);
 router.post('/kakaologin', kakaologin);
 router.post('/login', login);
+router.post('/getsalt', getsalt);
 router.post('/logout', logout);
 router.post('/mailverify', mailverify);
 router.patch('/modify', modify);

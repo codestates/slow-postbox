@@ -6,67 +6,105 @@ import CompleteSignUp from '../components/SignUp/CompleteSignUp';
 const crypto = require('crypto');
 
 export default function SignUp() {
-  const [userInfo, setUserInfo] = useState({
-    name: '',
-    password: '',
-    passwordconfirm: '',
-    emailId: '',
-    emailDomain: '',
-    verificationCode: '',
-  });
 
-  const [name, setName] = useState('');
-  const [emailCode, setEmailCode] = useState('');
-  const [isPossiblePassword, setIsPossiblePassword] = useState(0);
-  const [isConfirmPassword, setIsConfirmPassword] = useState(0);
-  const [isConfirmEmail, setIsConFirmEmail] = useState(0);
-  const [completeSignUp, setCompleteSignUp] = useState(0);
+    const [userInfo, setUserInfo] = useState({
+        name: "",
+        password: "",
+        passwordconfirm: "",
+        emailId: "",
+        emailDomain: "",
+        verificationCode: "",
+    })
 
-  const handleChange = (e) => {
-    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-    // console.log(userInfo)
-  };
 
-  let history = useHistory();
+    const [name, setName] = useState("");
+    const [emailCode, setEmailCode] = useState("");
+    const [isPossiblePassword, setIsPossiblePassword] = useState(0);
+    const [isConfirmPassword, setIsConfirmPassword] = useState(0);
+    const [isConfirmEmail, setIsConFirmEmail] = useState(0);
+    const [completeSignUp, setCompleteSignUp] = useState(0)
 
-  const handleConfirmEmail = () => {
-    if (userInfo.verificationCode === emailCode) {
-      setEmailCode(1);
-    } else {
-      setEmailCode(-1);
-    }
-    // console.log(emailCode);
-  };
 
-  const handleSubmit = async () => {
-    const { name, password, emailId, emailDomain } = userInfo;
-    const salt = crypto.randomBytes(128).toString('base64');
-    const realPassword = userInfo.password;
-    const email = `${emailId}@${emailDomain}`;
-    const hashPassword = crypto
-      .createHash('sha512')
-      .update(realPassword + salt)
-      .digest('hex');
 
-    if (isConfirmEmail === -1 || isConfirmEmail === 0) {
-      return alert('이메일 인증 절차를 진행하세요');
-    }
+    const handleChange = (e) => {
+        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    };
 
-    if (name && password && emailId && emailDomain) {
-      await axios({
-        url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
-        method: 'post',
-        data: {
-          name,
-          hashPassword,
-          salt,
-          email,
-        },
-      })
-        .then((res) => {
-          console.log(res);
-          setCompleteSignUp(1);
-          // history.push('/signup')
+    let history = useHistory()
+
+    const handleConfirmEmail = () => {
+        if (userInfo.verificationCode === emailCode) {
+            setEmailCode(1);
+        } else {
+            setEmailCode(-1);
+        }
+    };
+
+    const handleSubmit = async () => {
+        const {
+            name,
+            password,
+            emailId,
+            emailDomain,
+        } = userInfo;
+        const salt = crypto.randomBytes(128).toString('base64');
+        const realPassword = userInfo.password
+        const email = `${emailId}@${emailDomain}`;
+        const hashPassword = crypto.createHash('sha512').update(realPassword + salt).digest('hex');
+
+        if (isConfirmEmail === -1 || isConfirmEmail === 0) {
+            return alert("이메일 인증 절차를 진행하세요");
+        }
+
+        if (name && password && emailId && emailDomain) {
+            await axios({
+                url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
+                method: "post",
+                data: {
+                    name,
+                    hashPassword,
+                    salt,
+                    email,
+                },
+            })
+                .then((res) => {
+                    console.log(res);
+                    setCompleteSignUp(1)
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else {
+            return alert("입력하지 않은 항목이 존재합니다.");
+        }
+        console.log('회원가입완료')
+    };
+
+
+
+    const handleConfirmPassword = (e) => {
+        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+        if (e.target.value !== userInfo.password) {
+            setIsConfirmPassword(-1);
+        }
+        if (e.target.value === userInfo.password) {
+            setIsConfirmPassword(1);
+        }
+    };
+
+    const verifyPassword = (password) => {
+        let reg = /^[a-zA-Z0-9]{10,15}$/; //숫자와 영문자 조합으로 10~15자리를 사용
+        return reg.test(password);
+    };
+
+
+    const handleEmailVerification = () => {
+        axios({
+            url: `${process.env.REACT_APP_SERVER_API}/user/mailverify`,
+            method: "post",
+            data: { receiver: `${userInfo.emailId}@${userInfo.emailDomain}` },
+
         })
         .catch((err) => {
           console.log(err);
