@@ -1,22 +1,33 @@
 import React, { useEffect } from 'react'
-import Paging from './Paging'
 import './WholeReceivedMail.css'
 import ReceiveMail from './ReceiveMail'
 import ReservedMail from './ReservedMail'
 import { useState } from 'react'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
+import { modalmailview } from '../../actions'
+import Loding from '../Loding/Loding';
 
 
 export default function WholeReceivedMail() {
+	const dispatch = useDispatch();
+
 	const [view, setView] = useState('ReceiveMail')
 	const [mailListReceive, setMailListReceive] = useState([])
 	const [mailListReserved, setMailListReserved] = useState([])
-	// const userInfo = useSelector(state => state.loginReducer)
-	// const { email, name } = userInfo
+	const [mailNum, setMailNum] = useState(0)
+	const [page, setPage] = useState(1);
+	const [count, setCount] = useState(0)
+	const [isLoding, setIsLoding] = useState(true);
 
-	const testemail = "sunyeong2222@gmail.com" // 로그인 리듀서에 있는 값
+	const userInfo = useSelector(state => state.loginReducer)
+	const { email, name } = userInfo
 
+
+
+	const modaloff = () => {
+		dispatch(modalmailview(false))
+	}
 
 	function viewChange() { // 컴포넌트 view change 시키기
 		setView("ReservedMail")
@@ -26,20 +37,13 @@ export default function WholeReceivedMail() {
 		setView("ReceiveMail")
 	}
 
-	const toggleOnOff = async () => {
-		await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/receive`,
-			{ data: { testemail } })
-			.then((res) => {
-				console.log(res)
-			})
-			.catch((err) => {
-				console.log(err)
-			})
+	function mailChange(el) {
+		setMailNum(el)
 	}
 
-	const toggleOnOff2 = async () => {
+	const toggleOnOff = async () => {
 		await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/reserved`,
-			{ data: { testemail } })
+			{ data: { email } })
 			.then((res) => {
 				console.log(res)
 			})
@@ -49,25 +53,27 @@ export default function WholeReceivedMail() {
 	}
 
 	const mailListUp = async () => { // 받은편지함 list 받아오기 
+		// await setIsLoding(true);
 		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/receive`, {
-			params: { testemail }
+			params: { email, page }
 		})
 			.then((res) => {
-				console.log(res)
+				setCount(res.data.count)
 				setMailListReceive(res.data.data)
 			})
 			.catch((err) => {
 				console.log(err)
 			})
-
+		// await setIsLoding(false);
 	}
 
 
 	const mailListUp2 = async () => { // 도착 예정함 list 받아오기
 		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/reserved`, {
-			params: { testemail }
+			params: { email, page }
 		})
 			.then((res) => {
+				setCount(res.data.count)
 				setMailListReserved(res.data.data)
 			})
 			.catch((err) => {
@@ -78,26 +84,28 @@ export default function WholeReceivedMail() {
 
 
 	function tabMenu1() {
-		toggleOnOff()
 		mailListUp()
 		viewChange2()
+		modaloff()
 	}
 
 	function tabMenu2() {
-		toggleOnOff2()
+		toggleOnOff()
 		mailListUp2()
 		viewChange()
+		modaloff()
 	}
-	// 페이지가 랜더링되면 받은편지함의 업데이트 구문을 실행한다
-	// 받은편지함 리스트를 받아온다
-	// 도착예정함 도착예정함 리스트를 받아와서 toggle 여부를 확인한다
-	// 도착예정함을 누르면 업데이트 구문을 실행한다
-	// 도착예정함 리스트를 받아온다
+
 
 	useEffect(async () => { // 화면 랜더링 될 때 
 		await mailListUp()
-		await mailListUp2()  // 도착예정함 편지 받아오기
+		await mailListUp2()
 	}, [])
+
+	useEffect(() => {
+		mailListUp()
+	}, [mailNum])
+
 
 	const togglerFilter = (e) => {
 		const filterNum = e.filter(el => el.isChecked === 0)
@@ -110,7 +118,7 @@ export default function WholeReceivedMail() {
 			<div className="wholeMailBox-container">
 				<div className="wholeMailBox-grid" >
 					<div className="sort-receiver" >
-						name 님,
+						{name} 님,
 					</div>
 					<div className="tabmenu-container" >
 						<div className="bar-tabmenu">
@@ -124,14 +132,21 @@ export default function WholeReceivedMail() {
 							</div>
 						</div>
 					</div>
-					<div >
+					<div>
 						{
+							// isLoding ? (
+							// 	<tr className='box-loding'>
+							// 		<td colSpan='7'>
+							// 			<Loding />
+							// 		</td>
+							// 	</tr>
+							// ) : (
 							view === 'ReceiveMail'
-								? <ReceiveMail mailListReceive={mailListReceive} />
-								: <ReservedMail mailListReserved={mailListReserved} />
+								? <ReceiveMail mailListReceive={mailListReceive} mailChange={mailChange} page={page} count={count} setPage={setPage} />
+								: <ReservedMail mailListReserved={mailListReserved} mailChange={mailChange} page={page} count={count} setPage={setPage} />
+							// )
 						}
 					</div>
-					<Paging />
 				</div>
 			</div>
 		</>

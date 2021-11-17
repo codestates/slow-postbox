@@ -16,21 +16,21 @@ import axios from 'axios';
 
 function App() {
 
-  const [isChecked, setIsChecked ] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const { email } = useSelector(state => state.loginReducer);
 
-  const hadleisChecked = () =>{
+  const hadleisChecked = () => {
     axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email } })
-    .then((res) => {setIsChecked(res.data.isChecked)})
+      .then((res) => { setIsChecked(res.data.isChecked) })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     hadleisChecked();
-  },[])
+  }, [])
 
   return (
     <div>
-      <NavigationBar isChecked={isChecked}/>
+      <NavigationBar isChecked={isChecked} />
       <div className='area-nav'></div>
       <Switch>
         <Route exact path='/' component={Home} />
@@ -42,6 +42,7 @@ function App() {
         <Route path='/mailform' component={MailForm} />
         <Route path='/mypage' component={MyPage} />
         <Route path='/admin' component={AdminPage} />
+
       </Switch>
     </div>
   );

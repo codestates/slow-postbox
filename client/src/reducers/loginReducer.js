@@ -2,11 +2,11 @@ import { LOGIN, LOGOUT } from '../actions/index';
 
 const loginReducer = (
   state = {
-    isLogin: false,
+    isLogin: true,
     isAdmin: false,
     id: null,
-    name: null,
-    email: null,
+    name: "문선영",
+    email: "sunyeong2222@gmail.com",
     oauth: false,
   },
   action

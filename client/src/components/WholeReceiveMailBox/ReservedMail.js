@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GoMailRead, GoMail } from "react-icons/go";
+import Pagination from "react-js-pagination";
 
 
-export default function ReservedMail({ mailListReserved }) {
+export default function ReservedMail({ mailListReserved, mailChange, page, count }) {
 	console.log(mailListReserved)
+	const [pagee, setPage] = useState(1);
 
 	function getDay(e) {
 		const today = new Date() // Tue Nov 16 2021 14:09:45 GMT+0900 (한국 표준시)
@@ -35,7 +37,15 @@ export default function ReservedMail({ mailListReserved }) {
 						</>
 					)
 				})}
-
+			<Pagination
+				activePage={page} // 현재페이지
+				itemsCountPerPage={5} // 한 페이지당 보여줄 리스트 아이템 개수
+				totalItemsCount={count} // 총 아이템 개수
+				pageRangeDisplayed={5} // Paginator 내에서 보여줄 페이지의 범위
+				prevPageText={"‹"} //"이전"을 나타낼 텍스트 (prev, <, ...)
+				nextPageText={"›"} //"다음"을 나타낼 텍스트 
+				onChange={setPage} // 페이지가 바뀔 때 핸들링해줄 함수
+			/>
 		</>
 	)
 }
