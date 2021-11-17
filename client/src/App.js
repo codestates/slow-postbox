@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div>
-      <NavigationBar isChecked={isChecked} />
+      <NavigationBar isChecked={isChecked} setIsChecked={setIsChecked}/>
       <div className='area-nav'></div>
       <Switch>
         <Route exact path='/' component={Home} />
