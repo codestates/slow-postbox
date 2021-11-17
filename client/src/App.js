@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import NavigationBar from './pages/NavigationBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -15,22 +15,26 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
+  const [isChecked, setIsChecked] = useState(false);
+  const { email } = useSelector((state) => state.loginReducer);
 
-  const [isChecked, setIsChecked ] = useState(false);
-  const { email } = useSelector(state => state.loginReducer);
+  const hadleisChecked = () => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, {
+        params: { email },
+      })
+      .then((res) => {
+        setIsChecked(res.data.isChecked);
+      });
+  };
 
-  const hadleisChecked = () =>{
-    axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email } })
-    .then((res) => {setIsChecked(res.data.isChecked)})
-  }
-
-  useEffect(()=>{
+  useEffect(() => {
     hadleisChecked();
-  },[])
+  }, []);
 
   return (
     <div>
-      <NavigationBar isChecked={isChecked}/>
+      <NavigationBar isChecked={isChecked} />
       <div className='area-nav'></div>
       <Switch>
         <Route exact path='/' component={Home} />

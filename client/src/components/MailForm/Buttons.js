@@ -38,7 +38,6 @@ function Buttons({ tempSave, handleConfirmModal, formInfo }) {
 const StyledDiv = styled.div`
   width: 190px;
   height: 30px;
-  /* border: 1px solid red; */
   margin: 0 auto;
   padding: 17px 0;
 `;

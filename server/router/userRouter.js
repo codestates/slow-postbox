@@ -9,7 +9,7 @@ const {
   signup,
   withdraw,
   alertmail,
-  alertdday,
+  modifypw,
 } = require('../controllers/user');
 const express = require('express');
 const router = express.Router();
@@ -24,4 +24,5 @@ router.patch('/modify', modify);
 router.post('/signup', signup);
 router.delete('/withdraw', withdraw);
 router.post('/alertmail', alertmail);
+router.patch('/modifypw', modifypw);
 module.exports = router;
