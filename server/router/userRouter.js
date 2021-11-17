@@ -11,6 +11,7 @@ const {
   withdraw,
   alertmail,
   finduserinfo,
+  kakaowithdraw,
 
 } = require('../controllers/user');
 const express = require('express');
@@ -28,4 +29,5 @@ router.patch('/modifypw', modifypw);
 router.post('/signup', signup);
 router.delete('/withdraw', withdraw);
 router.post('/alertmail', alertmail);
+router.delete('/kakaowithdraw', kakaowithdraw);
 module.exports = router;
