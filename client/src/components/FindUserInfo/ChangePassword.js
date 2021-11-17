@@ -37,12 +37,9 @@ export default function ChangePassword({ userEmail }) {
         if (isConfirmPassword === 1) {
             await axios
                 .patch(`${process.env.REACT_APP_SERVER_API}/user/modifypw`, {
-                    data: {
                         email: userEmail,
                         password: userInfo.password
-                    },
-                    withCredentials: true,
-                })
+            })
                 .then((res) => {
                     if (res.status === 200) {
                         alert('비밀번호변경이 완료되었습니다')
