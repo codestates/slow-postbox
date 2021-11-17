@@ -47,6 +47,7 @@ export default function SignUp() {
             emailId,
             emailDomain,
         } = userInfo;
+        const oauth = 0
         const salt = crypto.randomBytes(128).toString('base64');
         const realPassword = userInfo.password
         const email = `${emailId}@${emailDomain}`;
@@ -65,6 +66,7 @@ export default function SignUp() {
                     hashPassword,
                     salt,
                     email,
+                    oauth
                 },
             })
                 .then((res) => {

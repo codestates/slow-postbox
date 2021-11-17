@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import { useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import kakaoLoginClickHandler from '../components/SignUp/kakao'
 // import { LOGIN } from '../actions';
 
 const crypto = require('crypto')
@@ -95,7 +96,7 @@ export default function Login() {
                 <div className='login-buttons'>
                     <button className='login-button' onClick={handleLogin}>로그인</button>
                     <button className='signup-button'><Link to="/signup" style={{ color: "inherit", textDecoration: "inherit" }}>회원가입</Link></button>
-                    <button className='oauth-button' >카카오로그인</button>
+                    <button className='oauth-button' onClick={kakaoLoginClickHandler} >카카오로그인</button>
                 </div>
             </div>
         </>
