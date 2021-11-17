@@ -2,6 +2,7 @@ const db = require('../../db');
 const crypto = require('crypto');
 
 module.exports = async (req, res) => {
+
   try {
     const { email, password } = req.body;
     const newSalt = crypto.randomBytes(128).toString('base64');

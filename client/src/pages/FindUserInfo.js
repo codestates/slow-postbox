@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChangePassword from '../components/FindUserInfo/ChangePassword';
 import ConfirmEmail from '../components/FindUserInfo/ConfirmEmail';
+import isConfirmEmail from '../components/FindUserInfo/ConfirmEmail'
 import './FindUserInfo.css';
 
+
 export default function FindUserInfo() {
+
+  const [isConfirmEmail, setIsConFirmEmail] = useState(0);
+  const [userEmail, setUserEmail] = useState('')
+
   return (
     <>
       <head>
@@ -15,17 +21,22 @@ export default function FindUserInfo() {
         />
       </head>
       <div className='findUserInfo-container'>
-      <div className='title'>
-                <img alt='findUserInfo-title' className='findUserInfo-title' src='img/logo.svg'></img>
-                <span className='findUserInfo-logo'>느린 우체통</span>
-            </div>
+        <div className='title'>
+          <img alt='findUserInfo-title' className='findUserInfo-title' src='img/logo.svg'></img>
+          <span className='findUserInfo-logo'>느린 우체통</span>
+        </div>
         <div className='findPassword-section'>
           <div className='findPassword-title'>
-            비밀번호를 찾으시려면 메일인증을 해주세요!
+            비밀번호 변경하기
           </div>
           <div className='main-section'>
-            {/* <ConfirmEmail /> */}
-            <ChangePassword />
+            {isConfirmEmail === 1 ? <ChangePassword userEmail={userEmail} /> :
+              <ConfirmEmail
+                userEmail={userEmail}
+                setUserEmail={setUserEmail}
+                isConfirmEmail={isConfirmEmail}
+                setIsConFirmEmail={setIsConFirmEmail} />}
+            {/* <ChangePassword /> */}
           </div>
         </div>
         <div className='bottom-section'></div>
