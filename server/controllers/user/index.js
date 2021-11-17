@@ -10,4 +10,5 @@ module.exports = {
   signup: require('./signup'),
   withdraw: require('./withdraw'),
   alertmail: require('./alertmail'),
+  modifypw: require('./modifypw'),
 };
