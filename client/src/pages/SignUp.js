@@ -84,39 +84,6 @@ export default function SignUp() {
     };
 
 
-
-    const handleConfirmPassword = (e) => {
-        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-        if (e.target.value !== userInfo.password) {
-            setIsConfirmPassword(-1);
-        }
-        if (e.target.value === userInfo.password) {
-            setIsConfirmPassword(1);
-        }
-    };
-
-    const verifyPassword = (password) => {
-        let reg = /^[a-zA-Z0-9]{10,15}$/; //숫자와 영문자 조합으로 10~15자리를 사용
-        return reg.test(password);
-    };
-
-
-    const handleEmailVerification = () => {
-        axios({
-            url: `${process.env.REACT_APP_SERVER_API}/user/mailverify`,
-            method: "post",
-            data: { receiver: `${userInfo.emailId}@${userInfo.emailDomain}` },
-
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      return alert('입력하지 않은 항목이 존재합니다.');
-    }
-    console.log('회원가입완료');
-  };
-
   const handleConfirmPassword = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     if (e.target.value !== userInfo.password) {
