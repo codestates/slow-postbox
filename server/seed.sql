@@ -1,4 +1,4 @@
-INSERT INTO slow_postbox.mails
+INSERT INTO mails
 (id, writerEmail, receiverEmail, reserved_at, title, content, isChecked, isRead, created_at, updated_at)
 VALUES(1, 'sunyeong2222@gmail.com', 'sohhyeonkim@gmail.com', '2021-12-31', '메일 제목', '<p>메일 내용</p>', 0, 0, '2021-11-09 10:25:02', '2021-11-09 10:25:02');
 INSERT INTO slow_postbox.mails
