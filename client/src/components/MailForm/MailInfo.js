@@ -20,6 +20,7 @@ function MailInfo({ formInfo, setFormInfo }) {
   const [toMyself, setToMyself] = useState(false);
   const [optionSelected, setOptionSelected] = useState('');
   const [dday, setDday] = useState(0);
+  const [selected, setSelected] = useState('');
 
   const handleChange = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
@@ -34,6 +35,7 @@ function MailInfo({ formInfo, setFormInfo }) {
   };
 
   const handleDateSelect = (e) => {
+    setSelected(e.target.value);
     const calcDate = calcDateOption(e.target.value);
     const calcDday = getLeftDays(calcDate); //디데이 계산
     setDday(calcDday); //디데이 업데이트
@@ -79,7 +81,7 @@ function MailInfo({ formInfo, setFormInfo }) {
             <input
               type='text'
               name='title'
-              maxlength='30'
+              maxLength='30'
               placeholder='제목을 작성해주세요'
               className='mailinfo-input mailinfo-input-title'
               value={formInfo.title}
@@ -92,13 +94,10 @@ function MailInfo({ formInfo, setFormInfo }) {
               name='rsvDate'
               className='select-date'
               onChange={handleDateSelect}
+              defaultValue='-날짜를 선택해주세요-'
+              value={!optionSelected ? '-날짜를 선택해주세요-' : selected}
             >
-              <option
-                value='날짜미정'
-                selected={!optionSelected ? 'selected' : ''}
-              >
-                -날짜를 선택해주세요-
-              </option>
+              <option value='날짜미정'>-날짜를 선택해주세요-</option>
               <option value='1주일 후'>1주일 후</option>
               <option value='1개월 후'>1개월 후</option>
               <option value='3개월 후'>3개월 후</option>

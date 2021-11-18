@@ -75,8 +75,14 @@ function MyPage() {
   useEffect(() => {
     const fetchReceived = async () => {
       setLoading(true);
+      const authCheck = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/user/auth`,
+        {
+          withCredentials: true,
+        }
+      );
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/mail/receivedlogs?receiverEmail=${email}`
+        `${process.env.REACT_APP_SERVER_API}/mail/receivedlogs?receiverEmail=${authCheck.data.data.email}`
       );
       setReceived(res.data.data);
       setLoading(false);
@@ -87,34 +93,21 @@ function MyPage() {
   useEffect(() => {
     const fetchSent = async () => {
       setLoading(true);
+      const authCheck = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/user/auth`,
+        {
+          withCredentials: true,
+        }
+      );
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/mail/sentlogs?writerEmail=${email}`
+        `${process.env.REACT_APP_SERVER_API}/mail/sentlogs?writerEmail=${authCheck.data.data.email}`
       );
       setSent(res.data.data);
       setLoading(false);
     };
+
     fetchSent();
   }, []);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     setLoading(true);
-  //     const res = await axios.get(
-  //       `http://localhost:4000/mail/getpaginatedmail?page=${currentPage}&limit=${postsPerPage}`
-  //     );
-  //     setPosts(res.data.data);
-  //     setLoading(false);
-  //     setTotal(res.data.total);
-  //     // if (res.data.total) {
-  //     //   setMinPage(1);
-  //     // }
-  //     if (Math.ceil(res.data.total / postsPerPage) < 5) {
-  //       setMaxPage(Math.ceil(res.data.total / postsPerPage));
-  //     }
-  //     console.log('working');
-  //   };
-  //   fetchPosts();
-  // }, [currentPage, postsPerPage]);
 
   useEffect(() => {
     let timer;
@@ -283,18 +276,6 @@ function MyPage() {
                       </>
                     )}
                   </div>
-                  <Pagination
-                    setSent={setSent}
-                    setLoading={setLoading}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    postsPerPage={postsPerPage}
-                    total={total}
-                    minPage={minPage}
-                    setMinPage={setMaxPage}
-                    maxPage={maxPage}
-                    setMaxPage={setMaxPage}
-                  />
                 </StyledLogs>
               </StyledTabContent>
             </div>
@@ -379,7 +360,6 @@ const StyledTabContent = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  /* border: 4px solid palevioletred; */
 `;
 
 const StyledTabs = styled.div`
@@ -387,12 +367,23 @@ const StyledTabs = styled.div`
   font-size: ${(props) => (props.innerTab ? '1em' : '1.2em')};
   padding: ${(props) => (props.innerTab ? '1.2em' : '0.55em 1em')};
   color: #a6a6a6;
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: ${(props) => (props.innerTab ? '1.3em' : '1.5em')};
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: ${(props) => (props.innerTab ? '1.8em' : '2em')};
+  }
 `;
 
 const StyledLogs = styled.div`
   width: 100%;
-  /* border: 3px solid green; */
   display: block;
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: 1.3em;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: 1.8em;
+  }
 `;
 
 export default MyPage;
