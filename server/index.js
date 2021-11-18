@@ -15,7 +15,6 @@ const userRouter = require('./router/userRouter');
 const app = express();
 const { getDateStr } = require('../client/src/funcs/dateFuncs');
 const { arrivalAlert } = require('./funcs/index');
-const multer = require("multer");
 
 const rule = new schedule.RecurrenceRule();
 rule.hour = 12;
@@ -57,52 +56,29 @@ app.use(
   })
 );
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    let ext = file.originalname.split(".");
-    ext = ext[ext.length - 1];
-    cb(null, `${Date.now()}.${ext}`);
-  },
-});
 
-const upload = multer({ storage: storage });
 
 app.use(cookieParser());
 
-app.use([express.static("uploads"), upload.array("files")]);
+app.use(express.static('uploads'));
+app.post('/uploads', MultipartyMiddleware, (req, res) => {
+  const tempFile = req.files.upload;
+  const tempPathfile = tempFile.path;
 
-app.post("/upload_files", async(req, res)=> {
-  try {
-    if (req.files.length > 0) {
-      res.json(req.files[0]);
-    }
+  const targetPathUrl = path.join(__dirname, './uploads/' + tempFile.name);
+  if (
+    path.extname(tempFile.originalFilename).toLowerCase() === '.png' ||
+    '.jpg'
+  ) {
+    fs.rename(tempPathfile, targetPathUrl, (err) => {
+      res.status(200).json({
+        uploaded: true,
+        url: `https://server.slow-postbox.com/${tempFile.originalFilename}`,
+      });
+      if (err) return console.log(err);
+    });
   }
-  catch (err) {
-    return res.status(404).json({ data: null, message: "서버 에러" });
-  }
-})
-// app.use(express.static('uploads'));
-// app.post('/uploads', MultipartyMiddleware, (req, res) => {
-//   const tempFile = req.files.upload;
-//   const tempPathfile = tempFile.path;
-
-//   const targetPathUrl = path.join(__dirname, './uploads/' + tempFile.name);
-//   if (
-//     path.extname(tempFile.originalFilename).toLowerCase() === '.png' ||
-//     '.jpg'
-//   ) {
-//     fs.rename(tempPathfile, targetPathUrl, (err) => {
-//       res.status(200).json({
-//         uploaded: true,
-//         url: `https://server.slow-postbox.com/${tempFile.originalFilename}`,
-//       });
-//       if (err) return console.log(err);
-//     });
-//   }
-// });
+});
 
 app.use('/home', homeRouter);
 app.use('/admin', adminRouter);
