@@ -3,8 +3,8 @@ dotenv.config();
 
 const config = {
   development: {
-    host: 'slow-postbox.c0drf5eriebm.ap-northeast-2.rds.amazonaws.com',
-    user: 'admin',
+    host: '127.0.0.1',
+    user: 'root',
     password: 'password',
     database: 'slow_postbox',
     waitForConnections: true,
