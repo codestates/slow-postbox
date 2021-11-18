@@ -71,7 +71,7 @@ app.post('/uploads', MultipartyMiddleware, (req, res) => {
     fs.rename(tempPathfile, targetPathUrl, (err) => {
       res.status(200).json({
         uploaded: true,
-        url: `http://localhost:80/${tempFile.originalFilename}`,
+        url: `https://server.slow-postbox.com/${tempFile.originalFilename}`,
       });
       if (err) return console.log(err);
     });
