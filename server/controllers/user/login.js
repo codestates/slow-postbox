@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
         });
         res
           .cookie("accessToken", accessToken, {
-            maxAge: 24 * 6 * 60 * 10000,
+            maxAge: 24 * 6 * 60 * 10000
           })
           .status(200)
           .json({
