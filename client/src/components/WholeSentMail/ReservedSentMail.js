@@ -3,7 +3,7 @@ import axios from 'axios';
 import Loding from '../Loding/Loding';
 import { GoMailRead, GoMail } from "react-icons/go";
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Pagination from "react-js-pagination";
 
 export default function ReservedSentMail() {

@@ -26,13 +26,6 @@ export default function ReservedMail() {
 
 	const getReservedData = async () => {
 		await setIsLoading(true)
-		// const authCheck = await axios.get(
-		// 	`${process.env.REACT_APP_SERVER_API}/user/auth`,
-		// 	{
-		// 		withCredentials: true,
-		// 	}
-		// )
-		// console.log(authCheck)
 		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/reserved`, { params: { email, page } })
 			.then((res) => {
 				setData(res.data.data);
