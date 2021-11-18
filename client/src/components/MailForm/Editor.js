@@ -21,7 +21,7 @@ function Editor({ formInfo, setFormInfo }) {
         onChange={handleCkeditorState}
         config={{
           ckfinder: {
-            uploadUrl: `http://ec2-13-124-140-192.ap-northeast-2.compute.amazonaws.com/uploads`,
+            uploadUrl: `https://slow-postbox.com/uploads`,
           },
         }}
         className='ck-editor__ediable'
