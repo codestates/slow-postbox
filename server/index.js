@@ -50,7 +50,7 @@ app.use(express.json({ strict: false }));
 // app.use(cors());
 app.use(
   cors({
-    origin: ['https://slow-postbox.com', 'http://localhost:3000'],
+    origin: ['https://slow-postbox.com'],
     credentials: true,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   })
@@ -85,9 +85,9 @@ app.use('/admin', adminRouter);
 app.use('/mail', mailRouter);
 app.use('/user', userRouter);
 
-const PORT = 4000;
+// const PORT = 4000;
 
-// const PORT = 80;
+const PORT = 80;
 
 let server = app.listen(PORT, () =>
   console.log(`🚀 Server is starting on ${PORT}`)
