@@ -75,8 +75,14 @@ function MyPage() {
   useEffect(() => {
     const fetchReceived = async () => {
       setLoading(true);
+      const authCheck = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/user/auth`,
+        {
+          withCredentials: true,
+        }
+      );
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/mail/receivedlogs?receiverEmail=${email}`
+        `${process.env.REACT_APP_SERVER_API}/mail/receivedlogs?receiverEmail=${authCheck.data.data.email}`
       );
       setReceived(res.data.data);
       setLoading(false);
@@ -87,34 +93,21 @@ function MyPage() {
   useEffect(() => {
     const fetchSent = async () => {
       setLoading(true);
+      const authCheck = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/user/auth`,
+        {
+          withCredentials: true,
+        }
+      );
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/mail/sentlogs?writerEmail=${email}`
+        `${process.env.REACT_APP_SERVER_API}/mail/sentlogs?writerEmail=${authCheck.data.data.email}`
       );
       setSent(res.data.data);
       setLoading(false);
     };
+
     fetchSent();
   }, []);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     setLoading(true);
-  //     const res = await axios.get(
-  //       `http://localhost:4000/mail/getpaginatedmail?page=${currentPage}&limit=${postsPerPage}`
-  //     );
-  //     setPosts(res.data.data);
-  //     setLoading(false);
-  //     setTotal(res.data.total);
-  //     // if (res.data.total) {
-  //     //   setMinPage(1);
-  //     // }
-  //     if (Math.ceil(res.data.total / postsPerPage) < 5) {
-  //       setMaxPage(Math.ceil(res.data.total / postsPerPage));
-  //     }
-  //     console.log('working');
-  //   };
-  //   fetchPosts();
-  // }, [currentPage, postsPerPage]);
 
   useEffect(() => {
     let timer;
@@ -283,18 +276,6 @@ function MyPage() {
                       </>
                     )}
                   </div>
-                  <Pagination
-                    setSent={setSent}
-                    setLoading={setLoading}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    postsPerPage={postsPerPage}
-                    total={total}
-                    minPage={minPage}
-                    setMinPage={setMaxPage}
-                    maxPage={maxPage}
-                    setMaxPage={setMaxPage}
-                  />
                 </StyledLogs>
               </StyledTabContent>
             </div>

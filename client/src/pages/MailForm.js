@@ -18,7 +18,7 @@ function MailForm() {
     reservedDate: '',
     content: '',
   });
-  console.log(formInfo);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Buttons에서 <전송하기> 버튼 눌렀을때 상태변경해서 모달창 띄우기
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
@@ -57,7 +57,6 @@ function MailForm() {
             reserved_at: formInfo.reservedDate,
           })
           .then((res) => {
-            console.log(res);
             handleCompleteModal();
           })
           .catch((err) => {
@@ -90,6 +89,8 @@ function MailForm() {
             handleConfirmModal={handleConfirmModal}
             handleCompleteModal={handleCompleteModal}
             sendMail={sendMail}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
           />
         )}
         {isCompleteModalOpen && (
