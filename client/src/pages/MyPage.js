@@ -360,7 +360,6 @@ const StyledTabContent = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  /* border: 4px solid palevioletred; */
 `;
 
 const StyledTabs = styled.div`
@@ -368,12 +367,23 @@ const StyledTabs = styled.div`
   font-size: ${(props) => (props.innerTab ? '1em' : '1.2em')};
   padding: ${(props) => (props.innerTab ? '1.2em' : '0.55em 1em')};
   color: #a6a6a6;
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: ${(props) => (props.innerTab ? '1.3em' : '1.5em')};
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: ${(props) => (props.innerTab ? '1.8em' : '2em')};
+  }
 `;
 
 const StyledLogs = styled.div`
   width: 100%;
-  /* border: 3px solid green; */
   display: block;
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: 1.3em;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: 1.8em;
+  }
 `;
 
 export default MyPage;

@@ -36,14 +36,20 @@ function Buttons({ tempSave, handleConfirmModal, formInfo }) {
   );
 }
 const StyledDiv = styled.div`
-  width: 190px;
+  width: 240px;
   height: 30px;
-  margin: 0 auto;
-  padding: 17px 0;
+  margin: 25px auto;
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 250px;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 250px;
+  }
 `;
 const StyledButton = styled.button`
   background: ${(props) => (props.send ? '#E84B35' : '#8D93AB')};
   color: white;
+  font-size: 1em;
   font-weight: bold;
   float: ${(props) => (props.send ? 'right' : 'left')};
   &:hover {
@@ -52,6 +58,12 @@ const StyledButton = styled.button`
   border: none;
   padding: 0.35em 1em;
   border-radius: 10px;
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: 0.95em;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: 1em;
+  }
 `;
 
 export default Buttons;

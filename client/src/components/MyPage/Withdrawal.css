@@ -1,7 +1,6 @@
 .withdrawal-container {
   flex: 1 1 auto;
   margin: 0 auto;
-  /* border: 1px solid black; */
 }
 .withdrawal-container .form-withdrawal {
   width: 50%;
@@ -11,8 +10,6 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  box-shadow: 5px 10px 30px rgb(187, 187, 187);
-  border-radius: 20px;
 }
 
 .withdrawal-container .withdrawal-title {
@@ -24,19 +21,32 @@
 .withdrawal-container input.input-withdrawal-pw {
   max-width: 240px;
   margin: 0 auto;
-  padding: 0.15em 1em;
+  padding: 0.55em 1em;
   border-radius: 3px;
   border: 1px solid #a6a6a6;
 }
 
 .withdrawal-container .btn-close {
-  width: 100px;
-  margin: 20px auto 0 auto;
+  width: 210px;
+  margin: 2em auto 0 auto;
+  border: none;
+  padding: 0.55em 1em;
+  border-radius: 3px;
   background-color: #e84b35;
   color: white;
-  cursor: pointer;
-  border: none;
-  padding: 0.35em 1em;
-  border-radius: 10px;
   font-weight: bold;
+  cursor: pointer;
+}
+/*태블릿*/
+@media (min-width: 481px) and (max-width: 768px) {
+  .withdrawal-container {
+    font-size: 1.3em;
+  }
+}
+
+/*모바일*/
+@media (min-width: 320px) and (max-width: 480px) {
+  .withdrawal-container {
+    font-size: 1.8em;
+  }
 }
