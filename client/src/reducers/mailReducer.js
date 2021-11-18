@@ -1,4 +1,4 @@
-import { MAILVIEW, MODALMAILVIEW } from "../actions/index"
+import { MAILVIEW } from "../actions/index"
 
 const mailReducer = (state = {
   modalmail: false,
@@ -14,11 +14,6 @@ const mailReducer = (state = {
 }, action) => {
   switch (action.type) {
 
-    case MODALMAILVIEW:
-      return {
-        ...state,
-        modalmail: action.payload.modalmail,
-      };
 
 
     case MAILVIEW:

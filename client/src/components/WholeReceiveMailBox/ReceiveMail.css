@@ -21,8 +21,13 @@
   background-color: rgb(245, 245, 245);
 }
 
+.wholeMailBox-container .mailradius{
+  border-radius: 25px;
+}
+
 .box-received-mail{
-  height: 60vh;
+  min-height: 60vh;
+  border-radius:  20px;
 }
 
 
@@ -45,4 +50,7 @@
   align-self: center;
 }
 
+.mailbox-container .icon-size{
+  size: 60;
 
+}
