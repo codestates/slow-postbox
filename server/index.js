@@ -50,7 +50,7 @@ app.use(express.json({ strict: false }));
 // app.use(cors())
 app.use(
   cors({
-    origin: 'https://slow-postbox.com',
+    origin: ['https://slow-postbox.com'],
     credentials: true,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   })
