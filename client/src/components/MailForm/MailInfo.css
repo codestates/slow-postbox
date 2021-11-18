@@ -4,7 +4,7 @@
   flex-direction: column;
 }
 .mailinfo-container label {
-  padding: 0.3em 1.5em;
+  padding: 0.5em 1.5em;
   border-bottom: 1px solid rgb(235, 235, 235);
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
 
 .mailinfo-container .mailinfo-input {
   flex: 1 1 auto;
-  padding: 0.2em 0.2em;
+  padding: 0.55em 1em;
   border: 1px solid rgb(235, 235, 235);
   border-radius: 5px;
 }
@@ -38,6 +38,21 @@
   display: block;
 }
 
-.mailinfo-container .d-day{
+.mailinfo-container .d-day {
   margin-left: 0.8rem;
+}
+
+/*태블릿*/
+@media (min-width: 481px) and (max-width: 768px) {
+  .mailinfo-container label {
+    font-size: 0.95em;
+  }
+}
+
+/*모바일*/
+@media (min-width: 320px) and (max-width: 480px) {
+  .mailinfo-container {
+    padding-bottom: 0;
+    margin: 0 auto;
+  }
 }

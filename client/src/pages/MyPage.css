@@ -68,18 +68,15 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  box-shadow: 5px 10px 30px rgb(187, 187, 187);
-  border-radius: 20px;
 }
 .mypage-container .p-renew-pw {
-  /* border: 1px solid green; */
   flex: 1 1 auto;
   padding: 0.05em 1em;
 }
 .mypage-container .input-renew-pw {
   max-width: 240px;
   margin: 0 auto;
-  padding: 0.15em 1em;
+  padding: 0.55em 1em;
   border-radius: 3px;
   border: 1px solid #a6a6a6;
 }
@@ -94,28 +91,26 @@
   color: green;
 }
 .mypage-container button.btn-submit {
-  width: 100px;
-  margin: 1.3em auto 0 auto;
+  width: 210px;
+  margin: 2em auto 0 auto;
   border: none;
-  margin-top: 1rem;
   padding: 0.55em 1em;
   border-radius: 3px;
   background-color: #e84b35;
   color: white;
   font-weight: bold;
-}
-.mypage-container button.btn-submit:hover,
-button.btn-withdrawal {
   cursor: pointer;
 }
+
 .mypage-container button.btn-withdrawal {
-  width: 100px;
+  width: 210px;
   margin: 0 auto 1.3em auto;
   border: none;
   padding: 0.55em 1em;
   border-radius: 3px;
   background-color: whitesmoke;
   color: gray;
+  cursor: pointer;
 }
 .mypage-container button.btn-withdrawal:active {
   background-color: lightgray;
@@ -128,7 +123,6 @@ button.btn-withdrawal {
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  /* border: 3px solid red; */
   border: 1px solid rgb(235, 235, 235);
   border-radius: 20px;
 }
@@ -140,22 +134,65 @@ button.btn-withdrawal {
   border-bottom: 1px solid rgb(235, 235, 235);
 }
 .mypage-container .li-icon {
-  flex: 0.1;
-  height: 30px;
+  flex: 0.2;
+  height: 40px;
   padding-top: 4px;
   /* border: 1px solid green; */
 }
 .mypage-container .li-title {
   display: inline-block;
   flex: 1;
-  padding-top: 4px;
+  padding-top: 12px;
   /* border: 1px solid red; */
   text-align: center;
 }
 .mypage-container .li-date {
-  flex: 0.2;
-  padding-top: 4px;
-  /* border: 1px solid green; */
+  flex: 0.3;
+  padding-top: 14px;
+  padding-right: 10px;
   text-align: center;
   font-size: 0.8em;
+}
+
+/*태블릿*/
+@media (min-width: 481px) and (max-width: 768px) {
+  .mypage-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .mypage-container .li-icon {
+    flex: 0.2;
+    height: 50px;
+    padding-top: 4px;
+    border: 1px solid green;
+  }
+  .mypage-container .form-renewPw {
+    font-size: 1.3em;
+  }
+  .mypage-container span.span-alert {
+    margin-left: 1em;
+    font-size: 0.8em;
+  }
+  .mypage-container button {
+    font-size: 0.8em;
+  }
+}
+
+/*모바일*/
+@media (min-width: 320px) and (max-width: 480px) {
+  .mypage-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .mypage-container .li-icon {
+    flex: 0.3;
+    height: 65px;
+    padding-top: 4px;
+  }
+  .mypage-container .form-renewPw {
+    font-size: 1.7em;
+  }
+  .mypage-container button {
+    font-size: 0.8em;
+  }
 }
