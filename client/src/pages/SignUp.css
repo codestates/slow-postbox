@@ -1,22 +1,13 @@
 .signUp-container {
-  min-width: 70%;
+  min-width: 550px;
   max-width: 70%;
   height: 100%;
   margin: 150px auto 150px auto;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 10px 20px rgb(187, 187, 187);
+  border: 1px solid #f06e5c;
   border-radius: 10px;
 }
-
-/* .signUp-container .title {
-  font-size: 30px;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: white;
-  border-radius: 10px 10px 0 0;
-} */
 
 .signUp-container .title {
   color: black;
@@ -198,7 +189,7 @@
 }
 .signUp-container .title-password {
   width: 110px;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .signUp-container .input-password {

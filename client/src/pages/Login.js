@@ -1,21 +1,21 @@
 
 import './Login.css'
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router';
+
 import { useState, React } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import axios from 'axios';
 import kakaoLoginClickHandler from '../components/SignUp/kakao'
 
 
-const crypto = require('crypto')
+
 
 
 export default function Login() {
 
     // let history = useHistory();
 
-    const [haveToken, setHaveToken] = useState(false)
+
     const [isCorrect, setIsCorrect] = useState(true)
     const [userInfo, setUserInfo] = useState({
         email: null,
@@ -48,7 +48,7 @@ export default function Login() {
                     }
                     else if (res.data.data) {
                         console.log('로그인성공')
-                        setHaveToken(true)
+
                         window.location.replace('/')
                     }
 
@@ -88,7 +88,7 @@ export default function Login() {
                 <div className='login-buttons'>
                     <button className='login-button' onClick={handleLogin}>로그인</button>
                     <button className='signup-button'><Link to="/signup" style={{ color: "inherit", textDecoration: "inherit" }}>회원가입</Link></button>
-                    <button className='oauth-button' onClick={kakaoLoginClickHandler} >카카오로그인</button>
+                    <button className='oauth-button' onClick={kakaoLoginClickHandler} ><img src='/img/kakao_login_medium_narrow.png' alt='카카오로그인' /></button>
                 </div>
             </div>
         </>
