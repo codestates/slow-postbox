@@ -13,15 +13,28 @@ export default function ReservedSentMail() {
 	const [isLoading, setIsLoading] = useState(true)
 
 	const { email } = useSelector(state => state.loginReducer)
-
 	function getDay(e) {
-		const today = new Date()
-		const setDate = new Date(e.slice(0, 10))
+		let date = (e.slice(0, 10) + "T00:00+0900")
+		let setDate = new Date(date)
+
+		let temp = `${new Date()}"`.slice(0, 16) + "00:00:00 GMT+0900"
+		let today = new Date(temp)
+
 		const distance = setDate.getTime() - today.getTime();
 
 		const day = Math.floor(distance / (1000 * 60 * 60 * 24));
-		return day
+		const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		if (day > 0) {
+			return day + "일"
+		} else if (hours > 0) {
+			return hours + "시간"
+		} else {
+			return minutes + "분"
+		}
 	}
+
+
 
 	const getReservedSent = async () => {
 		await setIsLoading(true)
@@ -78,7 +91,7 @@ export default function ReservedSentMail() {
 											: <GoMailRead size="60" />}
 									</div>
 									<div className="text-mail" >
-										<div className="text-mail">  {getDay(el.reserved_at)}일 후 편지 전달예정 </div>
+										<div className="text-mail">  {getDay(el.reserved_at)} 후 편지 전달예정 </div>
 									</div>
 								</div>
 							</div>
