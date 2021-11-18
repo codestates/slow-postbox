@@ -3,7 +3,7 @@ import { GoMailRead, GoMail } from "react-icons/go";
 import './SentMail.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Pagination from "react-js-pagination";
 import Loding from '../Loding/Loding';
 import SentMailView from './SentMailView';
@@ -22,23 +22,23 @@ export default function SentMail() {
 
 	const getSentData = async () => {
 		await setIsLoding(true)
-		// const authCheck = await axios.get(
-		// 	`${process.env.REACT_APP_SERVER_API}/user/auth`,
-		// 	{
-		// 		withCredentials: true,
-		// 	}
-		// );
-		//console.log(authCheck);
+		const authCheck = await axios.get(
+			`${process.env.REACT_APP_SERVER_API}/user/auth`,
+			{
+				withCredentials: true,
+			}
+		);
+
 		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/sent`, {
-			params: { email, page }
+			params: { email: authCheck.data.data.email, page }
 		})
 			.then((res) => {
-				console.log(res.data)
 				setData(res.data.data)
 				setCount(res.data.count)
 			})
 			.catch((err) => {
 				console.log(err)
+
 			})
 		await setIsLoding(false)
 
