@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './ConfirmEmail.css'
 import axios from 'axios';
 
-export default function ConfirmEmail({ isConfirmEmail, setIsConFirmEmail, setUserEmail }) {
+export default function ConfirmEmail({ setIsConFirmEmail, setUserEmail }) {
     const [userInfo, setUserInfo] = useState({
         emailId: "",
         emailDomain: "",
