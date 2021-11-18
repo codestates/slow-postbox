@@ -3,7 +3,7 @@ import { GoMailRead, GoMail } from "react-icons/go";
 import './ReceiveMail.css'
 import "./Paging.css";
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import MailView from './MailView';
 import Pagination from "react-js-pagination";
 import Loding from '../Loding/Loding';
