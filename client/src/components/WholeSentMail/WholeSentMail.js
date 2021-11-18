@@ -1,42 +1,29 @@
 import '../WholeReceiveMailBox/WholeReceivedMail.css'
 import SentMail from './SentMail'
 import ReservedSentMail from './ReservedSentMail'
-import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { modalmailview } from '../../actions'
 
 export default function WholeSentMail() {
-	const dispatch = useDispatch();
-
 	const [view, setView] = useState('SentMail')
-	const [reservedsent, setReservedsent] = useState([])
 
 	const userInfo = useSelector(state => state.loginReducer)
 	const { email, name } = userInfo
 
-	function viewChange() { // 컴포넌트 view change 시키기
+	function viewChange() {
 		setView("SentMail")
 	}
 
-	function viewChange2() { // 컴포넌트 view change 시키기
+	function viewChange2() {
 		setView("ReservedSentMail")
 	}
 
-	const modaloff = () => {
-		dispatch(modalmailview(false))
-	}
-
-
-
 	function tabMenu1() {
 		viewChange()
-		modaloff()
 	}
 
 	function tabMenu2() {
 		viewChange2()
-		modaloff()
 	}
 
 
@@ -59,7 +46,7 @@ export default function WholeSentMail() {
 						{
 							view === 'SentMail'
 								? <SentMail />
-								: <ReservedSentMail reservedsent={reservedsent} />
+								: <ReservedSentMail />
 						}
 					</div>
 				</div>

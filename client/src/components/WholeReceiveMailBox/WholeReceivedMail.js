@@ -5,40 +5,23 @@ import ReservedMail from './ReservedMail'
 import { useState } from 'react'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
-import { modalmailview } from '../../actions'
-import Loding from '../Loding/Loding';
 
 
-export default function WholeReceivedMail({hadleisChecked}) {
-	const dispatch = useDispatch();
+export default function WholeReceivedMail({ hadleisChecked }) {
 
 	const [view, setView] = useState('ReceiveMail')
-	const [mailListReceive, setMailListReceive] = useState([])
-	const [mailListReserved, setMailListReserved] = useState([])
-	const [mailNum, setMailNum] = useState(0)
-	const [isLoding, setIsLoding] = useState(true);
 	const [isChecked, setIsChecked] = useState(false)
-
 	const userInfo = useSelector(state => state.loginReducer)
 	const { email, name } = userInfo
 
-
-
-	const modaloff = () => {
-		dispatch(modalmailview(false))
-	}
-
-	function viewChange() { // 컴포넌트 view change 시키기
+	function viewChange() {
 		setView("ReservedMail")
 	}
 
-	function viewChange2() { // 컴포넌트 view change 시키기
+	function viewChange2() {
 		setView("ReceiveMail")
 	}
 
-	function mailChange(el) {
-		setMailNum(el)
-	}
 
 	const handleCheckReserved = async () => {
 		await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/reserved`,
@@ -46,39 +29,31 @@ export default function WholeReceivedMail({hadleisChecked}) {
 			.then((res) => {
 				getReservedChecked();
 			})
-			.then(()=> {hadleisChecked();})
+			.then(() => { hadleisChecked(); })
 			.catch((err) => {
 				console.log(err)
 			})
 	}
 
-	const getReservedChecked = async() => {
-		axios.get(`${process.env.REACT_APP_SERVER_API}/mail/check`, {params: { email}})
-		.then((res) => {
-		  setIsChecked(res.data.count)
-		})
-	  }
+	const getReservedChecked = async () => {
+		axios.get(`${process.env.REACT_APP_SERVER_API}/mail/check`, { params: { email } })
+			.then((res) => {
+				setIsChecked(res.data.count)
+			})
+	}
 
-	  useEffect(()=> {
+	useEffect(() => {
 		getReservedChecked();
-	  },[])
+	}, [])
 
 
 	function tabMenu1() {
 		viewChange2()
-		modaloff()
 	}
 
 	function tabMenu2() {
 		viewChange()
-		modaloff()
 		handleCheckReserved();
-	}
-
-	const togglerFilter = (e) => {
-		const filterNum = e.filter(el => el.isChecked === 0)
-		if (filterNum.length > 0) return true
-		return false
 	}
 
 	return (
@@ -100,19 +75,10 @@ export default function WholeReceivedMail({hadleisChecked}) {
 							</div>
 						</div>
 					</div>
-					<div>
-						{
-							// isLoding ? (
-							// 	<tr className='box-loding'>
-							// 		<td colSpan='7'>
-							// 			<Loding />
-							// 		</td>
-							// 	</tr>
-							// ) : (
-							view === 'ReceiveMail'
-								? <ReceiveMail mailListReceive={mailListReceive} mailChange={mailChange}/>
-								: <ReservedMail mailListReserved={mailListReserved} mailChange={mailChange}/>
-							// )
+					<div className="mailradius">
+						{view === 'ReceiveMail'
+							? <ReceiveMail />
+							: <ReservedMail />
 						}
 					</div>
 				</div>
