@@ -1,7 +1,7 @@
 import "./SignUp.css"
 import axios from "axios"
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+
 import CompleteSignUp from '../components/SignUp/CompleteSignUp'
 
 
@@ -23,6 +23,7 @@ export default function SignUp() {
     const [isConfirmPassword, setIsConfirmPassword] = useState(0);
     const [isConfirmEmail, setIsConFirmEmail] = useState(0);
     const [completeSignUp, setCompleteSignUp] = useState(0)
+    const [isSendCode, setIsSendCode] = useState(0);
 
 
 
@@ -30,13 +31,16 @@ export default function SignUp() {
         setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     };
 
-    let history = useHistory()
+
 
     const handleConfirmEmail = () => {
-        if (userInfo.verificationCode === emailCode) {
-            setEmailCode(1);
+        if (emailCode === "") {
+            setIsConFirmEmail(2)
+        }
+        else if (userInfo.verificationCode === emailCode) {
+            setIsConFirmEmail(1)
         } else {
-            setEmailCode(-1);
+            setIsConFirmEmail(-1)
         }
     };
 
@@ -99,6 +103,9 @@ export default function SignUp() {
 
 
     const handleEmailVerification = () => {
+        if (userInfo.emailId === "" || userInfo.emailDomain === "") {
+            alert("이메일을 입력해주세요.");
+        }
         axios({
             url: `${process.env.REACT_APP_SERVER_API}/user/mailverify`,
             method: "post",
@@ -108,9 +115,9 @@ export default function SignUp() {
                 if (res.data.data) {
                     //res.data.data 가 문자열일때 (이메일 계정으로 회원가입 가능)
                     setEmailCode(res.data.data);
-                    setIsConFirmEmail(1);
+                    setIsSendCode(1)
                 } else {
-                    setIsConFirmEmail(-1);
+                    setIsSendCode(-1)
                 }
 
             })
@@ -171,7 +178,7 @@ export default function SignUp() {
                                         <button className='send-authcode-button' onClick={handleEmailVerification}>인증코드발송</button>
 
                                     </div>
-                                    <div className='section-confirm-email'>{isConfirmEmail === 1 ? '이메일로 코드를 전송했습니다' : ''}{isConfirmEmail === -1 ? '해당이메일로 가입된 계정이 있습니다.' : ''}</div >
+                                    <div className='section-confirm-email'>{isSendCode === 1 ? '이메일로 코드를 전송했습니다' : ''}{isSendCode === -1 ? '해당이메일로 가입된 계정이 있습니다.' : ''}</div >
 
 
                                     <div className='section-auth'>
@@ -179,7 +186,11 @@ export default function SignUp() {
                                         <input className='input-authcode' name='verificationCode' onChange={handleChange}></input>
                                         <button className='check-auth' onClick={handleConfirmEmail}>인증코드 확인</button>
                                     </div>
-                                    <div className='scetion-check-authcode'>{emailCode === 1 ? '인증에 성공하였습니다' : ''}{emailCode === -1 ? '인증번호가 다릅니다' : ''}</div>
+                                    <div className='scetion-check-authcode'>
+                                        {isConfirmEmail === 1 ? '인증에 성공하였습니다' : ''}
+                                        {isConfirmEmail === -1 ? '인증번호가 다릅니다' : ''}
+                                        {isConfirmEmail === 2 ? '인증절차를 진행해주세요' : ''}
+                                    </div>
 
 
                                     <div className='section-name'>

@@ -73,10 +73,10 @@
 
 .login-container .login-buttons > button {
   width: 300px;
-  height: 45px;
+  height: 46px;
   margin-top: 5px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   font-size: 1em;
   font-weight: 500;
@@ -89,6 +89,10 @@
 .login-container .signup-button {
   background-color: #f06e5c;
   color: white;
+}
+
+.login-container .oauth-button {
+  background-color: #fee500;
 }
 
 .login-container button:hover {

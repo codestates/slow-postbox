@@ -4,9 +4,9 @@
   width: 100%;
 }
 .confirmEmail-container .section-email {
-  margin-top: auto;
+  /* margin-top:  */
   font-size: 1em;
-  margin-bottom: auto;
+  /* margin-bottom: auto; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -29,10 +29,11 @@
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 120px;
+  width: 125px;
 }
 
 .confirmEmail-container .section-auth {
+  width: 500px;
   font-size: 1em;
   margin-top: auto;
   margin-bottom: auto;

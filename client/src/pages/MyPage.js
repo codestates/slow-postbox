@@ -217,7 +217,7 @@ function MyPage() {
                               <img
                                 src={
                                   new Date() >= new Date(post.reserved_at)
-                                    ? sentmail
+                                    ? receivedmail
                                     : reservedmail
                                 }
                                 className='li-icon flex-item'
@@ -256,7 +256,7 @@ function MyPage() {
                             <img
                               src={
                                 new Date() >= new Date(post.reserved_at)
-                                  ? receivedmail
+                                  ? sentmail
                                   : reservedmail
                               }
                               className='li-icon flex-item'
@@ -287,6 +287,7 @@ function MyPage() {
               {' '}
               {!oauth && toggleState === 2 ? (
                 <div className='form-renewPw'>
+                  <p className='p-renew-title'>비밀번호 변경하기</p>
                   <p className='p-renew-pw'>새로운 비밀번호</p>
                   <input
                     type='password'
@@ -360,6 +361,7 @@ const StyledTabContent = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  height: 500px;
 `;
 
 const StyledTabs = styled.div`
@@ -377,7 +379,9 @@ const StyledTabs = styled.div`
 
 const StyledLogs = styled.div`
   width: 100%;
+
   display: block;
+  overflow: scroll;
   @media (min-width: 481px) and (max-width: 768px) {
     font-size: 1.3em;
   }
