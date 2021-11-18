@@ -1,7 +1,6 @@
 .previewModal-container {
   width: 100%;
   height: 100vh;
-  border: 1px solid black;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   position: fixed;
@@ -34,12 +33,10 @@
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  border: 1px solid green;
 }
 .previewModal-container ul.preview-group {
   width: 100%;
   max-height: 600px;
-  border: 3px solid red;
   border-radius: 20px;
   box-shadow: 5px 10px 20px rgb(187, 187, 187);
   list-style: none;

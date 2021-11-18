@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     let info = await transporter.sendMail({
       from: process.env.ACCOUNT_USER,
       to: `${receiverEmail}`,
-      subject: '느린우체통에서 편지가 도착했습니다', // Subject line
+      subject: '💌느린우체통에서 편지가 도착했습니다💌', // Subject line
       html: `<table class="wrapper" style="border-collapse: collapse;table-layout: fixed;min-width: 320px;width: 100%;background-color: #fff;" cellpadding="0" cellspacing="0" role="presentation"><tbody><tr><td>
       <div role="banner">
         <div class="preheader" style="Margin: 0 auto;max-width: 560px;min-width: 280px; width: 280px;width: calc(28000% - 167440px);">
@@ -86,7 +86,7 @@ module.exports = async (req, res) => {
       
             <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 20px;">
       <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-        <p class="size-20;"><span class="size-28">${name}</span>님께서 예약전송한 편지가 <span class="size-28">${reserved_at}</span>일에 도착할 예정입니다💌</p>
+        <p class="size-20;" style="text-align: center;"><span class="size-28">${name}</span>님께서 예약전송한 편지가 <span class="size-28">${reserved_at}</span>일에 도착할 예정입니다💌</p>
         <p class="size-14" style="Margin-top: 0;Margin-bottom: 20px;font-size: 14px;line-height: 21px;text-align: center;" lang="x-size-14">&#45712;&#47536; &#50864;&#52404;&#53685;&#51008; &#50696;&#50557;&#54620; &#45216;&#51676;&#50640; &#47582;&#52628;&#50612; &#51060;&#47700;&#51068;&#51012; &#48372;&#45236;&#46300;&#47532;&#45716; &#49436;&#48708;&#49828;&#47484; &#51228;&#44277;&#54633;&#45768;&#45796;. &#54200;&#51648;&#45716; &#45712;&#47536; &#50864;&#52404;&#53685; &#49324;&#51060;&#53944;&#50640;&#49436;&#47564; &#54869;&#51064;&#44032;&#45733;&#54633;&#45768;&#45796;. &#54200;&#51648; &#45236;&#50857;&#51060;&nbsp;&#44417;&#44552;&#54616;&#49884;&#45796;&#47732;&nbsp;&#54616;&#45800;&#51032; &#47553;&#53356;&#47484; &#53685;&#54644; &#54924;&#50896;&#44032;&#51077;&#51012;&nbsp; &#51652;&#54665;&#54644;&#51452;&#49464;&#50836;! &#54200;&#51648; 
 &#51204;&#49569;&#45817;&#51068; &#46041;&#51068;&#54620;&nbsp;&#50508;&#47548; &#51060;&#47700;&#51068;&#51012; &#51228;&#44277;&#46300;&#47540; &#50696;&#51221;&#51077;&#45768;&#45796;.&nbsp;</p>
       </div>
