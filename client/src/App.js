@@ -45,14 +45,14 @@ function App() {
   };
 
   const hadleisChecked = () => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, {
-        params: { email },
-      })
+    axios.get(`${process.env.REACT_APP_SERVER_API}/user/auth`,
+      { withCredentials: true })
       .then((res) => {
-        setIsChecked(res.data.isChecked);
-      });
-  };
+        axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email : res.data.data.email } })
+        .then((res) => { setIsChecked(res.data.isChecked) })
+      })
+  }
+
 
   useEffect(() => {
     isAuthenticated();
