@@ -47,14 +47,14 @@ schedule.scheduleJob(rule, async function sendAlertMail() {
 });
 
 app.use(express.json({ strict: false }));
-// app.use(cors())
-app.use(
-  cors({
-    origin: ['https://slow-postbox.com'],
-    credentials: true,
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
-  })
-);
+app.use(cors())
+// app.use(
+//   cors({
+//     origin: ['https://slow-postbox.com'],
+//     credentials: true,
+//     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+//   })
+// );
 
 app.use(cookieParser());
 
