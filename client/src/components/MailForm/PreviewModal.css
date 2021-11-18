@@ -10,14 +10,15 @@
 }
 
 .previewModal-container table,
-tbody,
-thead,
-tr,
-th,
-td {
+.previewModal-container tbody,
+.previewModal-container thead,
+.previewModal-container tr,
+.previewModal-container th,
+.previewModal-container td {
   border: 1px solid gray;
   border-collapse: collapse;
 }
+
 .previewModal-container .modal-box {
   min-width: 550px;
   max-width: 900px;
