@@ -2,15 +2,10 @@ import './MailView.css'
 import { GoKebabVertical } from "react-icons/go";
 import { FaTimes } from "react-icons/fa"
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { modalmailview } from '../../actions'
 import parse from 'html-react-parser';
 import axios from 'axios';
 
 export default function MailView({ maildata, setModalmail, getReceivedDataPage }) {
-  const [isLoding, setIsLoding] = useState(true);
-
-
   const [isOpen, setIsOpen] = useState(false)
 
   function SubModalOnOff() {
@@ -19,14 +14,14 @@ export default function MailView({ maildata, setModalmail, getReceivedDataPage }
 
   useEffect(() => {
     getReceivedDataPage();
-  },[])
+  }, [])
 
   return (
     <>
       <div className="mailview-container">
         <div className="mailview-grid">
           <div className="mailview-title"> {maildata.title} </div>
-          <div className="mailview-receive-name"> 보낸 사람 : {maildata.name?`${maildata.name} (${maildata.writerEmail.split("삭제").join('')})`: maildata.writerEmail} </div>
+          <div className="mailview-receive-name"> 보낸 사람 : {maildata.name ? `${maildata.name} (${maildata.writerEmail.split("삭제").join('')})` : maildata.writerEmail} </div>
           <div> 보낸 날짜 : {maildata.created_at.slice(0, 10)} / 도착 날짜 : {maildata.reserved_at.slice(0, 10)} </div>
           <div className="modal-flex" style={{ border: "none" }}>
             <div className="modal-sort" >
@@ -39,7 +34,7 @@ export default function MailView({ maildata, setModalmail, getReceivedDataPage }
             }
             <div className="mail-text" > {parse(maildata.content)} </div>
           </div>
-          <button className="btn_close_m" onClick={() => {setModalmail(false)}}> 닫기 </button>
+          <button className="btn_close_m" onClick={() => { setModalmail(false) }}> 닫기 </button>
         </div>
       </div>
     </>
@@ -58,8 +53,8 @@ function MailViewModal({ SubModalOnOff, maildata, setModalmail, getReceivedDataP
       .then((res) => {
         getReceivedDataPage();
       })
-      .then(()=>{SubModalOnOff()})
-      .then(()=> {setModalmail(false)})
+      .then(() => { SubModalOnOff() })
+      .then(() => { setModalmail(false) })
 
   }
 

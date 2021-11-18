@@ -94,94 +94,13 @@
 
 
 
-/* .wholeMailBox-container .btn-MailboxLoad{
-  text-align: center;
-  background-color:#E84B35;
-  color: white;
-  width: 90px;
-  height: 35px;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  margin: 10px 0 0 20px;
-  border: none;
-  outline: none;
-  position:relative;
-}
-
-
-.wholeMailBox-container .btn-MailboxLoad:hover{
-  background-color:rgb(74 184 161);
-} */
-
-/* 
-display: block;
-text-align: center;
-background-color:#E84B35;
-color: white;
-width: 90px;
-height: 35px;
-border-radius: 10px;
-font-weight: 700;
-cursor: pointer;
-margin: 10px 0;
-border: none;
-outline: none;
-
-button
-L: 200px 50px 10px(border-radius)
-M: 90px 35px 10px(border-radius)
-font-weight: 400;
-background-color:#
-:hover{
-    background-color:rgb(74 184 161);
-} */
 
 
 
-/* 
-button{
-  background:#116e4f94;
-  color:#fff;
-  border:none;
-  position:relative;
-  height: 30px;
-  font-size: 1.1em;
-  margin: 1rem;
-  padding: 0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-}
-
-button:hover{
-  background:#fff;
-  color:#1AAB8A;
-}
 
 
-button:before,button:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #1AAB8A;
-  transition:400ms ease all;
-}
 
 
-button:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
 
-button:hover:before,button:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
 
- */
+
