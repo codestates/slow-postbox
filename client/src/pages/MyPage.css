@@ -3,13 +3,12 @@
   min-width: 768px;
   width: 60%;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 70px;
   border: 1px solid rgb(235, 235, 235);
   border-radius: 20px;
   box-shadow: 5px 10px 20px rgb(187, 187, 187);
 }
 .mypage-container .tab-wrapper {
-  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
 }
@@ -17,7 +16,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  /* border: 5px solid purple; */
 }
 
 .mypage-container span.tab-divider {
@@ -36,7 +34,6 @@
 .mypage-container img.emptyImg {
   width: 100%;
   opacity: 0.4;
-  /* border: 1px solid red; */
 }
 .mypage-container p.no-logs {
   width: 300px;
@@ -63,15 +60,21 @@
 /*비밀번호 변경*/
 .mypage-container .form-renewPw {
   width: 50%;
+  height: 450px;
   margin: 0 auto;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
+.mypage-container .p-renew-title {
+  margin-bottom: 7px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
 .mypage-container .p-renew-pw {
-  flex: 1 1 auto;
-  padding: 0.05em 1em;
+  flex: 0.05 1 auto;
+  font-size: 1.1em;
 }
 .mypage-container .input-renew-pw {
   max-width: 240px;
@@ -101,10 +104,9 @@
   font-weight: bold;
   cursor: pointer;
 }
-
 .mypage-container button.btn-withdrawal {
   width: 210px;
-  margin: 0 auto 1.3em auto;
+  margin: 0 auto;
   border: none;
   padding: 0.55em 1em;
   border-radius: 3px;
