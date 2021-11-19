@@ -5,8 +5,9 @@
   margin: 150px auto 150px auto;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 10px 20px rgb(187, 187, 187);
+  /* box-shadow: 5px rgb(187, 187, 187); */
   border-radius: 10px;
+  border: 1px solid #f06e5c;
 }
 
 .completeSignUp-container .title {
@@ -43,17 +44,24 @@
 }
 .completeSignUp-container .explain-section {
   text-align: center;
-  height: 300px;
-  line-height: 300px;
+  height: 300%;
+  line-height: 300%;
   width: 80%;
   vertical-align: middle;
-  font-size: 1.25em;
+  /* padding-top:  */
+  font-size: 1.5em;
   border-top: solid #f06e5c 2px;
   border-bottom: solid #f06e5c 2px;
   vertical-align: middle;
   text-align: center;
   margin-right: auto;
   margin-left: auto;
+  font-weight: 550;
+
+  color: black;
+  font-family: 'Gaegu', cursive;
+}
+.completeSignUp-container br {
 }
 
 .completeSignUp-container .login-button {

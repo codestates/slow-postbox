@@ -20,11 +20,19 @@ export default function CompleteSignUp() {
           <span className='login-logo'>느린 우체통</span>
         </div>
         <div className='completeSignUp-message'>
-          느린우체통 가입을 축하합니다.
+
         </div>
-        <div className='explain-section'>설명</div>
+        <div className='explain-section'>
+
+          느린우체통 가입을 환영합니다.<br />
+          미래의 나에게,또는 소중한 누군가에게,<br />
+          지금은 아니더라도<br />
+          먼 훗날 전하고 싶은 얘기가 있다면<br />
+          느린우체통에서 마음을 전달해요!<br />
+
+        </div>
         <div className='button-section'>
-          <button className='login-button'><Link to='/login' style={{ color: "inherit", textDecoration: "inherit" }}>로그인</Link></button>
+          <button className='login-button'><Link to='/login' style={{ color: "inherit", textDecoration: "inherit" }}>전달하러가기</Link></button>
         </div>
         <div className='bottom-section'></div>
       </div>

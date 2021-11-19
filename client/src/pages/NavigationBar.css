@@ -1,342 +1,342 @@
-.navBar-container{
+.navBar-container {
+  position: fixed;
+  width: 100vw;
+  height: 60px;
+  background-color: white;
+  z-index: 99;
+}
+
+.navBar-container .bar {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  min-width: 768px;
+  margin: 0 auto;
+}
+
+.navBar-container .bar div {
+  font-size: 1em;
+  text-align: left;
+  cursor: pointer;
+  color: rgb(90, 90, 90);
+}
+
+.navBar-container .bar div:hover {
+  font-weight: 500;
+}
+
+.navBar-container .bar .home {
+  flex: 2.2;
+  color: #e84b35;
+  font-weight: 800;
+  font-size: 1.4rem;
+  font-family: 'Gaegu', cursive;
+}
+
+.navBar-container .bar .mailBox {
+  flex: 1;
+}
+
+.navBar-container .noti-on::after {
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: rgb(250, 127, 127);
+  border-radius: 50%;
+}
+
+.navBar-container .bar .sent {
+  flex: 1;
+}
+
+.navBar-container .bar .write {
+  flex: 1.3;
+}
+
+.navBar-container .bar .login {
+  flex: 0.5;
+}
+
+.navBar-container .bar .login span {
+  display: block;
+  text-align: center;
+  /* vertical-align: middle; */
+  background-color: #e84b35;
+  padding-top: 8px;
+  color: white;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.navBar-container .bar .signup {
+  flex: 0.4;
+  text-align: right;
+  margin-left: 10px;
+}
+
+.navBar-container .bar .mypage {
+  flex: 0.5;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.navBar-container .bar .admin {
+  flex: 0.2;
+  text-align: right;
+}
+
+.navBar-container .bar .hidden {
+  visibility: hidden;
+}
+
+/*태블릿*/
+@media (min-width: 481px) and (max-width: 768px) {
+  .navBar-container {
     position: fixed;
     width: 100vw;
     height: 60px;
     background-color: white;
     z-index: 99;
-}
+  }
 
-.navBar-container .bar{
+  .navBar-container .bar {
     display: flex;
     height: 60px;
     align-items: center;
     width: 100%;
-    max-width: 1024px;
-    min-width: 768px;
+    max-width: 730px;
+    min-width: 480px;
     margin: 0 auto;
-}
+  }
 
-.navBar-container .bar div{
+  .navBar-container .bar div {
     font-size: 1em;
     text-align: left;
     cursor: pointer;
     color: rgb(90, 90, 90);
-}
+  }
 
-.navBar-container .bar div:hover{
+  .navBar-container .bar div:hover {
     font-weight: 500;
-}
+  }
 
-.navBar-container .bar .home{
-    flex: 2.2;
-    color: #E84B35;
+  .navBar-container .bar .home {
+    flex: 1.6;
+    color: #e84b35;
     font-weight: 800;
     font-size: 1.4rem;
     font-family: 'Gaegu', cursive;
-}
+  }
 
-.navBar-container .bar .mailBox{
+  .navBar-container .bar .mailBox {
     flex: 1;
-}
+  }
 
-.navBar-container .noti-on::after{
-    position:absolute;
+  .navBar-container .noti-on::after {
+    position: absolute;
     content: '';
     width: 10px;
     height: 10px;
     background-color: rgb(250, 127, 127);
     border-radius: 50%;
-}
+  }
 
-.navBar-container .bar .sent{
+  .navBar-container .bar .sent {
     flex: 1;
-}
+  }
 
-.navBar-container .bar .write{
+  .navBar-container .bar .write {
     flex: 1.3;
-}
+  }
 
-.navBar-container .bar .login{
+  .navBar-container .bar .login {
     flex: 0.5;
-}
+  }
 
-.navBar-container .bar .login span{
+  .navBar-container .bar .login span {
     display: block;
     text-align: center;
     vertical-align: middle;
-    background-color:#E84B35;
+    background-color: #e84b35;
     padding-top: 3px;
     color: white;
     width: 90px;
     height: 30px;
     border-radius: 10px;
     font-weight: 700;
-}
+  }
 
-.navBar-container .bar .signup{
-    flex: 0.4;
+  .navBar-container .bar .signup {
+    flex: 0.6;
     text-align: right;
     margin-left: 10px;
-}
+  }
 
-.navBar-container .bar .mypage{
-    flex: 0.5;
+  .navBar-container .bar .mypage {
+    flex: 0.9;
     text-align: left;
     margin-right: 10px;
-}
+  }
 
-.navBar-container .bar .admin{
+  .navBar-container .bar .admin {
     flex: 0.2;
     text-align: right;
-}
+  }
 
-.navBar-container .bar .hidden{
+  .navBar-container .bar .hidden {
     visibility: hidden;
-}
-
-/*태블릿*/
-@media (min-width: 481px) and (max-width: 768px) {
-    .navBar-container{
-        position: fixed;
-        width: 100vw;
-        height: 60px;
-        background-color: white;
-        z-index: 99;
-    }
-    
-    .navBar-container .bar{
-        display: flex;
-        height: 60px;
-        align-items: center;
-        width: 100%;
-        max-width: 730px;
-        min-width: 480px;
-        margin: 0 auto;
-    }
-    
-    .navBar-container .bar div{
-        font-size: 1em;
-        text-align: left;
-        cursor: pointer;
-        color: rgb(90, 90, 90);
-    }
-    
-    .navBar-container .bar div:hover{
-        font-weight: 500;
-    }
-    
-    .navBar-container .bar .home{
-        flex: 1.6;
-        color: #E84B35;
-        font-weight: 800;
-        font-size: 1.4rem;
-        font-family: 'Gaegu', cursive;
-    }
-    
-    .navBar-container .bar .mailBox{
-        flex: 1;
-    }
-    
-    .navBar-container .noti-on::after{
-        position:absolute;
-        content: '';
-        width: 10px;
-        height: 10px;
-        background-color: rgb(250, 127, 127);
-        border-radius: 50%;
-    }
-    
-    .navBar-container .bar .sent{
-        flex: 1;
-    }
-    
-    .navBar-container .bar .write{
-        flex: 1.3;
-    }
-    
-    .navBar-container .bar .login{
-        flex: 0.5;
-    }
-    
-    .navBar-container .bar .login span{
-        display: block;
-        text-align: center;
-        vertical-align: middle;
-        background-color:#E84B35;
-        padding-top: 3px;
-        color: white;
-        width: 90px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 700;
-    }
-    
-    .navBar-container .bar .signup{
-        flex: 0.6;
-        text-align: right;
-        margin-left: 10px;
-    }
-    
-    .navBar-container .bar .mypage{
-        flex: 0.9;
-        text-align: left;
-        margin-right: 10px;
-    }
-    
-    .navBar-container .bar .admin{
-        flex: 0.2;
-        text-align: right;
-    }
-    
-    .navBar-container .bar .hidden{
-        visibility: hidden;
-    }
+  }
 }
 
 /*모바일*/
 @media (min-width: 320px) and (max-width: 480px) {
-    .navBar-container{
-        position: fixed;
-        width: 100vw;
-        height: 60px;
-        background-color: white;
-        z-index: 99;
-    }
-    
-    .navBar-container .bar{
-        display: flex;
-        height: 60px;
-        align-items: center;
-        width: 100%;
-        max-width: 450px;
-        min-width: 320px;
-        margin: 0 auto;
-    }
-    
-    .navBar-container .bar div{
-        font-size: 1em;
-        text-align: left;
-        cursor: pointer;
-        color: rgb(90, 90, 90);
-    }
-    
-    .navBar-container .bar div:hover{
-        font-weight: 500;
-    }
-    
-    .navBar-container .bar .home{
-        flex: 1.4;
-        color: #E84B35;
-        font-weight: 800;
-        font-size: 0rem;
-        font-family: 'Gaegu', cursive;
-    }
+  .navBar-container {
+    position: fixed;
+    width: 100vw;
+    height: 60px;
+    background-color: white;
+    z-index: 99;
+  }
 
-    .navBar-container .bar .home::after{
-        content: '';
-        background-image: url('../img/logo.svg');
-        background-size: 40px 40px;
-        width:40px;
-        height:40px;
-        display:block;
-    }
-    
-    .navBar-container .bar .mailBox{
-        flex: 1;
-        font-size: 0rem;
-    }
+  .navBar-container .bar {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    min-width: 320px;
+    margin: 0 auto;
+  }
 
-    .navBar-container .bar .mailBox::after{
-        content: '';
-        background-image: url('../img/recmailbox.svg');
-        background-size: 30px 30px;
-        width:30px;
-        height:30px;
-        display:block;
-    }
-    
-    .navBar-container .noti-on::after{
-        position:absolute;
-        content: '';
-        width: 1em;
-        height: 1em;
-        background-color: rgb(255, 255, 255);
-        border-radius: 0%;
-    }
-    
-    .navBar-container .bar .sent{
-        flex: 1;
-        font-size: 0rem;
-    }
+  .navBar-container .bar div {
+    font-size: 1em;
+    text-align: left;
+    cursor: pointer;
+    color: rgb(90, 90, 90);
+  }
 
-    .navBar-container .bar .sent::after{
-        content: '';
-        background-image: url('../img/sentmailbox.svg');
-        background-size: 30px 30px;
-        width:30px;
-        height:30px;
-        display:block;
-    }
-    
-    .navBar-container .bar .write{
-        flex: 1;
-        font-size: 0rem;
-    }
+  .navBar-container .bar div:hover {
+    font-weight: 500;
+  }
 
-    .navBar-container .bar .write::after{
-        content: '';
-        background-image: url('../img/paper_plane_icon.svg');
-        background-size: 30px 30px;
-        width:30px;
-        height:30px;
-        display:block;
-    }
-    
-    .navBar-container .bar .login{
-        flex: 0.5;
-    }
-    
-    .navBar-container .bar .login span{
-        display: block;
-        text-align: center;
-        vertical-align: middle;
-        background-color:#E84B35;
-        padding-top: 3px;
-        color: white;
-        width: 80px;
-        height: 30px;
-        border-radius: 10px;
-        font-weight: 700;
-    }
-    
-    .navBar-container .bar .signup{
-        flex: 1;
-        text-align: right;
-        margin-left: 10px;
-    }
-    
-    .navBar-container .bar .mypage{
-        flex: 0.9;
-        text-align: left;
-        margin-right: 10px;
-        font-size: 0rem;
-    }
+  .navBar-container .bar .home {
+    flex: 1.4;
+    color: #e84b35;
+    font-weight: 800;
+    font-size: 0rem;
+    font-family: 'Gaegu', cursive;
+  }
 
-    .navBar-container .bar .mypage::after{
-        content: '';
-        background-image: url('../img/mypage.svg');
-        background-size: 30px 30px;
-        width:30px;
-        height:30px;
-        display:block;
-    }
-    
-    .navBar-container .bar .admin{
-        flex: 0.2;
-        text-align: right;
-    }
-    
-    .navBar-container .bar .hidden{
-        visibility: hidden;
-    }
+  .navBar-container .bar .home::after {
+    content: '';
+    background-image: url('../img/logo.svg');
+    background-size: 40px 40px;
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
+
+  .navBar-container .bar .mailBox {
+    flex: 1;
+    font-size: 0rem;
+  }
+
+  .navBar-container .bar .mailBox::after {
+    content: '';
+    background-image: url('../img/recmailbox.svg');
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    display: block;
+  }
+
+  .navBar-container .noti-on::after {
+    position: absolute;
+    content: '';
+    width: 1em;
+    height: 1em;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0%;
+  }
+
+  .navBar-container .bar .sent {
+    flex: 1;
+    font-size: 0rem;
+  }
+
+  .navBar-container .bar .sent::after {
+    content: '';
+    background-image: url('../img/sentmailbox.svg');
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    display: block;
+  }
+
+  .navBar-container .bar .write {
+    flex: 1;
+    font-size: 0rem;
+  }
+
+  .navBar-container .bar .write::after {
+    content: '';
+    background-image: url('../img/paper_plane_icon.svg');
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    display: block;
+  }
+
+  .navBar-container .bar .login {
+    flex: 0.5;
+  }
+
+  .navBar-container .bar .login span {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #e84b35;
+    padding-top: 3px;
+    color: white;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+
+  .navBar-container .bar .signup {
+    flex: 1;
+    text-align: right;
+    margin-left: 10px;
+  }
+
+  .navBar-container .bar .mypage {
+    flex: 0.9;
+    text-align: left;
+    margin-right: 10px;
+    font-size: 0rem;
+  }
+
+  .navBar-container .bar .mypage::after {
+    content: '';
+    background-image: url('../img/mypage.svg');
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    display: block;
+  }
+
+  .navBar-container .bar .admin {
+    flex: 0.2;
+    text-align: right;
+  }
+
+  .navBar-container .bar .hidden {
+    visibility: hidden;
+  }
 }
