@@ -47,14 +47,16 @@ schedule.scheduleJob(rule, async function sendAlertMail() {
 });
 
 app.use(express.json({ strict: false }));
-// app.use(cors())
+// app.use(cors());
 app.use(
   cors({
-    origin: true,
+    origin: ['https://slow-postbox.com'],
     credentials: true,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   })
 );
+
+
 
 app.use(cookieParser());
 
@@ -71,7 +73,7 @@ app.post('/uploads', MultipartyMiddleware, (req, res) => {
     fs.rename(tempPathfile, targetPathUrl, (err) => {
       res.status(200).json({
         uploaded: true,
-        url: `http://localhost:80/${tempFile.originalFilename}`,
+        url: `https://server.slow-postbox.com/${tempFile.originalFilename}`,
       });
       if (err) return console.log(err);
     });
@@ -84,7 +86,6 @@ app.use('/mail', mailRouter);
 app.use('/user', userRouter);
 
 // const PORT = 4000;
- 
 const PORT = 80;
 
 let server = app.listen(PORT, () =>

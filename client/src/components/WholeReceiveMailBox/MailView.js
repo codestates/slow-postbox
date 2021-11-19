@@ -58,17 +58,6 @@ function MailViewModal({ SubModalOnOff, maildata, setModalmail, getReceivedDataP
 
   }
 
-  const mailanswer = async () => {
-    await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/receive`, {
-      data: { id, receiverEmail }
-    })
-      .then((res) => {
-        console.log(res)
-      })
-      .then(window.location = ("/mailform"))
-  }
-
-
   return (
     <>
       <div className="mailViewModal-contanier">
@@ -76,7 +65,6 @@ function MailViewModal({ SubModalOnOff, maildata, setModalmail, getReceivedDataP
           <div className="btn-Modalclose" >
             <FaTimes onClick={SubModalOnOff} />
           </div>
-          <div><button className="btn_close_s" onClick={mailanswer}>답장</button></div>
           <div><button className="btn_close_s" onClick={mailremove}>삭제</button></div>
         </div>
       </div>
