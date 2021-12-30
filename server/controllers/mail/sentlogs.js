@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   try {
     const writerEmail = req.query.writerEmail;
     const sql =
-      'SELECT id, title, reserved_at from mails WHERE writerEmail = ? ORDER BY reserved_at';
+      'SELECT id, title, reserved_at from mails WHERE writerEmail = ? ORDER BY reserved_at DESC';
     const params = [writerEmail];
     const [rows, fields, err] = await db.query(sql, params);
 

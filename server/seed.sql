@@ -151,7 +151,4 @@ INSERT INTO slow_postbox.users
 VALUES(2, '문선영', 'sunyeong2222@gmail.com', NULL, NULL, 0, 0, '2021-11-09 10:22:53', '2021-11-09 10:22:53');
 INSERT INTO slow_postbox.users
 (id, name, email, salt, password, oauth, admin, created_at, updated_at)
-VALUES(3, '김소현', 'sohhyeonkim@gmail.com', NULL, NULL, 0, 0, '2021-11-09 10:22:53', '2021-11-09 10:23:01');
-INSERT INTO slow_postbox.users
-(id, name, email, salt, password, oauth, admin, created_at, updated_at)
 VALUES(4, '임유빈', 'yubineric@gmail.com', NULL, NULL, 0, 0, '2021-11-09 10:22:53', '2021-11-09 10:22:53');
