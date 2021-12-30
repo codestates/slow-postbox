@@ -76,7 +76,7 @@ export default function ChangePassword({ userEmail }) {
             <div className='section-possible'> {isPossiblePassword === 1 ? '사용가능한 비밀번호입니다.' : ''}
                 {isPossiblePassword === -1 ? '비밀번호는 숫자와 영문자 조합으로 10~15자리를 사용해야합니다.' : ''}</div>
 
-            <div className='section-password-check'>비밀번호확인
+            <div className='section-password-check'>비밀번호 확인
                 <input className='title-newpassword-check' type='password' name='passwordconfirm' onChange={handleConfirmPassword}></input>
             </div>
             <div className='section-confirm'>{isConfirmPassword === 1 ? '비밀번호가 일치합니다.' : ''}{isConfirmPassword === -1 ? '비밀번호가 일치하지 않습니다.' : ''}</div >

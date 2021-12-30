@@ -47,7 +47,6 @@ schedule.scheduleJob(rule, async function sendAlertMail() {
 });
 
 app.use(express.json({ strict: false }));
-// app.use(cors());
 app.use(
   cors({
     origin: ['http://localhost:3000', 'https://slow-postbox.com', 'https://www.slow-postbox.com'],
@@ -60,6 +59,10 @@ app.use(cookieParser());
 
 app.use(express.static('uploads'));
 app.post('/uploads', MultipartyMiddleware, (req, res) => {
+  if (req.files.upload.size > 15 * 1024 * 1024) {
+    alert('error');
+    return;
+  }
   const tempFile = req.files.upload;
   const tempPathfile = tempFile.path;
 
@@ -83,10 +86,9 @@ app.use('/admin', adminRouter);
 app.use('/mail', mailRouter);
 app.use('/user', userRouter);
 
-
 const PORT = 4000;
 
-// const PORT = 80;
+//const PORT = 80;
 
 let server = app.listen(PORT, () =>
   console.log(`🚀 Server is starting on ${PORT}`)
