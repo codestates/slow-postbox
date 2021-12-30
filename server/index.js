@@ -59,7 +59,7 @@ app.use(cookieParser());
 
 app.use(express.static('uploads'));
 app.post('/uploads', MultipartyMiddleware, (req, res) => {
-  if (req.files.upload.size > 5 * 1024 * 1024) {
+  if (req.files.upload.size > 15 * 1024 * 1024) {
     alert('error');
     return;
   }
