@@ -17,7 +17,7 @@ const { getDateStr } = require('../client/src/funcs/dateFuncs');
 const { arrivalAlert } = require('./funcs/index');
 
 const rule = new schedule.RecurrenceRule();
-rule.hour = 12;
+rule.hour = 22;
 rule.minute = 6;
 
 schedule.scheduleJob(rule, async function sendAlertMail() {
@@ -49,7 +49,7 @@ schedule.scheduleJob(rule, async function sendAlertMail() {
 app.use(express.json({ strict: false }));
 app.use(
   cors({
-    origin: ['https://slow-postbox.com', 'http://localhost:3000'],
+    origin: ['http://localhost:3000', 'https://slow-postbox.com', 'https://www.slow-postbox.com'],
     credentials: true,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   })
@@ -74,7 +74,7 @@ app.post('/uploads', MultipartyMiddleware, (req, res) => {
     fs.rename(tempPathfile, targetPathUrl, (err) => {
       res.status(200).json({
         uploaded: true,
-        url: `${process.env.REACT_APP_SERVER_API}/${tempFile.originalFilename}`,
+        url: `${process.env.SERVER_API}/${tempFile.originalFilename}`,
       });
       if (err) return console.log(err);
     });

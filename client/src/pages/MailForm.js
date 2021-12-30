@@ -4,12 +4,15 @@ import Buttons from '../components/MailForm/Buttons';
 import ConfirmModal from '../components/MailForm/ConfirmModal';
 import CompleteModal from '../components/MailForm/CompleteModal';
 import PreviewModal from '../components/MailForm/PreviewModal';
+import ModalLogin from './ModalLogin';
 import './MailForm.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 function MailForm() {
+
+  const [ modalLogin, setModalLogin ] = useState(false);
   const { email, name } = useSelector((state) => state.loginReducer);
   //Editor에서 수정한 내용 업데이트
   const [formInfo, setFormInfo] = useState({
@@ -35,6 +38,20 @@ function MailForm() {
   const handlePreviewModal = () => {
     setIsPreviewModalOpen(!isPreviewModalOpen);
   };
+
+  const isAuthenticated = () => {
+		axios
+		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+			withCredentials: true,
+		  })
+		  .catch((err) => {
+			setModalLogin(true)
+		  });
+	  };
+
+    useEffect(()=>{
+      isAuthenticated();
+    },[])
 
   //미리보기, 전송버튼 이벤트 핸들러
   const tempSave = () => {
@@ -100,6 +117,7 @@ function MailForm() {
             formInfo={formInfo}
           />
         )}
+        {modalLogin && <ModalLogin/>}
       </div>
     </>
   );

@@ -106,10 +106,11 @@ export default function AdminMail() {
             placeholder='검색어를 입력하세요'
             value={searchWord}
             onChange={handleSearchWord}
+            onKeyPress={(e)=>{if(e.key==='Enter') getFilterdData();}}
           ></input>
           <span>
-            <button id='searchButton'>
-              <FontAwesomeIcon icon={faSearch} onClick={getFilterdData} />
+            <button id='searchButton' onClick={getFilterdData}>
+              <FontAwesomeIcon icon={faSearch} />
             </button>
           </span>
         </div>

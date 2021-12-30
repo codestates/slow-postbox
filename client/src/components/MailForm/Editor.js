@@ -4,7 +4,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 //import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 import './Editor.css';
 function Editor({ formInfo, setFormInfo }) {
-  const handleCkeditorState = (evnet, editor) => {
+  const handleCkeditorState = (event, editor) => {
     const data = editor.getData();
     setFormInfo({
       ...formInfo,
@@ -21,7 +21,7 @@ function Editor({ formInfo, setFormInfo }) {
         onChange={handleCkeditorState}
         config={{
           ckfinder: {
-            uploadUrl: `https://server.slow-postbox.com/uploads`,
+            uploadUrl: `http://localhost:4000/uploads`,
           },
         }}
         className='ck-editor__ediable'
