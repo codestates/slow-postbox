@@ -58,7 +58,7 @@ const StyledButton = styled.button`
   border: none;
   padding: 0.35em 1em;
   border-radius: 10px;
-  @media (: 481px) and (max-width: 768px) {
+  @media (min-width: 481px) and (max-width: 768px) {
     font-size: 0.95em;
   }
   @media (min-width: 320px) and (max-width: 480px) {
