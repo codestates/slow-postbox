@@ -69,16 +69,6 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 		handleCheckReserved();
 	}
 
-	function authCheck() {
-		if (!id) {
-			window.location.replace('/');
-		}
-	}
-
-	useEffect(() => {
-		authCheck()
-	}, [])
-
 
 	return (
 
