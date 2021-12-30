@@ -13,27 +13,36 @@
   align-items: center;
   margin-bottom: 0px;
 }
+.confirmEmail-container .title-email {
+  margin-right: 5px;
+}
+.confirmEmail-container .input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 55%;
+  align-items: center;
+}
 .confirmEmail-container .input-email {
   height: 30px;
-  padding: 5px;
+
   height: 30px;
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 120px;
+  width: 45%;
 }
 .confirmEmail-container .input-domain {
   height: 30px;
-  padding: 5px;
   height: 30px;
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 125px;
+  width: 45%;
 }
 
 .confirmEmail-container .section-auth {
-  width: 500px;
+  width: 100%;
   font-size: 1em;
   margin-top: auto;
   margin-bottom: auto;
@@ -49,7 +58,7 @@
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 270px;
+  width: 55%;
 }
 
 .confirmEmail-container .send-authcode-button {
@@ -84,4 +93,14 @@
 
 .confirmEmail-container .title-email {
   margin-left: 10px;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .confirmEmail-container {
+    height: 100px;
+    text-align: center;
+    width: 350px;
+  }
+  /* .confirmEmail-container .section-auth {
+   ;
+  } */
 }
