@@ -80,15 +80,9 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
               >
                 <div>마이페이지</div>
               </Link>
-              <Link
-                to='/login'
-                style={{ color: 'inherit', textDecoration: 'inherit' }}
-                className='login'
-              >
                 <div >
                   <span onClick={handleLogout}>로그아웃</span>
                 </div>
-              </Link>
             </>
           ) : (
             <>

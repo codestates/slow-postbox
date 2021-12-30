@@ -17,7 +17,7 @@ export default function Footer() {
         </th>
         <tr>
           <td>
-            <ul>
+          <ul>
               <li>
                 <a href='https://velog.io/@kaitlin_k'>SOHYEON KIM</a>
               </li>

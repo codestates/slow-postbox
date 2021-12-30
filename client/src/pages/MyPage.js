@@ -6,12 +6,14 @@ import emptyImg from '../img/empty.png';
 import receivedmail from '../img/receivedmail.svg';
 import sentmail from '../img/sentmail.svg';
 import reservedmail from '../img/reservedmail.svg';
-import Pagination from '../components/Pagination/Pagination';
+import ModalLogin from './ModalLogin';
 import { useState, useEffect } from 'react';
 import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
 
 function MyPage() {
+
+  const [ modalLogin, setModalLogin ] = useState(false);
   const { email, oauth } = useSelector((state) => state.loginReducer);
 
   const [toggleState, setToggleState] = useState(1);
@@ -72,7 +74,18 @@ function MyPage() {
   const [minPage, setMinPage] = useState(1); //변경x
   const [maxPage, setMaxPage] = useState(5); //변경x
 
+  const isAuthenticated = () => {
+		axios
+		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+			withCredentials: true,
+		  })
+		  .catch((err) => {
+			setModalLogin(true)
+		  });
+	  };
+
   useEffect(() => {
+    isAuthenticated();
     const fetchReceived = async () => {
       setLoading(true);
       const authCheck = await axios.get(
@@ -345,6 +358,7 @@ function MyPage() {
             </div>
           </div>
         </div>
+        {modalLogin && <ModalLogin/>}
       </div>
     </>
   );
