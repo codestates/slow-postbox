@@ -13,6 +13,7 @@ module.exports = {
           user: process.env.ACCOUNT_USER,
           pass: process.env.ACCOUNT_PASS,
         },
+        from: process.env.ACCOUNT_USER,
       });
       // verify transporter
       transporter.verify(function (error, success) {

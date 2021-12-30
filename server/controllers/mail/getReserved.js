@@ -2,6 +2,8 @@ const db = require('../../db');
 
 module.exports = async (req, res) => {
   try {
+    //도착예정함
+    console.log('도착예정함')
     const { email, page } = req.query
 
     const sql1 = `select A.id, A.writerEmail, A.receiverEmail, A.reserved_at, A.isChecked, A.isRead, A.created_at, A.updated_at, users.name 
@@ -12,10 +14,10 @@ module.exports = async (req, res) => {
     GROUP BY A.id, users.name
     ORDER BY A.reserved_at
     LIMIT ?,5;`
-    const params = [ email, (Number(page) - 1) * 5];
+    const params = [email, (Number(page) - 1) * 5];
 
     const [rows1, fields1, err1] = await db.query(sql1, params);
-
+    console.log(rows1)
 
     if (err1) {
       return res.status(401).send();

@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 dotenv.config();
 
 const config = {
@@ -7,6 +7,12 @@ const config = {
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
+    timezone: 'Asia/Seoul',
+    dialectOptions: {
+      charset: "utf8mb4",
+      dateStrings: true,
+      typeCast: true,
+    },
     waitForConnections: true,
     connectionLimit: 1000,
     queueLimit: 0,

@@ -1,14 +1,37 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import AdminUser from '../components/AdminPage/AdminUser'
 import AdminMail from '../components/AdminPage/AdminMail'
+import axios from 'axios';
 import './AdminPage.css';
 import './AdminPage(480px).css'
+import { set } from 'date-fns';
 
 export default function AdminPage() {
 
     const [ selection, setSelection ] = useState(true)
+    const [ modal, setModal ] = useState(false)
+
+    const isAuthenticated = () => {
+      axios
+        .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          if (!res.data.data.admin) {
+            setModal(true)
+          }
+        })
+        .catch((err) => {
+          setModal(true)
+          console.log(err);
+        });
+    };
+
+    useEffect(()=>{
+      isAuthenticated();
+    },[])
 
 
   return (
@@ -25,6 +48,26 @@ export default function AdminPage() {
           : <AdminMail/>}
           </div>
         </div>
+        {modal && <ModalAdmin />}
+    </div>
+  );
+}
+
+function ModalAdmin() {
+  return (
+    <div className='modalAdmin-container'>
+      <div className='box-modal'>
+        <div className='modal-message'>관리자만 접근할 수 있습니다.</div>
+        <div>
+          <span
+            onClick={() => {
+              window.location.replace('/');
+            }}
+          >
+            확인
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

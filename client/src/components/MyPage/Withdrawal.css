@@ -12,6 +12,7 @@
   text-align: center;
   height: 300px;
   justify-content: center;
+  border: 1px solid red;
 }
 
 .withdrawal-container .withdrawal-title {
@@ -31,7 +32,7 @@
   width: 210px;
   margin: 2em auto 0 auto;
   border: none;
-  padding: 0.55em 1em;
+  padding: 0.6em 0em;
   border-radius: 3px;
   background-color: #e84b35;
   color: white;
@@ -48,6 +49,18 @@
 /*모바일*/
 @media (min-width: 320px) and (max-width: 480px) {
   .withdrawal-container {
-    font-size: 1.8em;
+    font-size: 1.2em;
+  }
+  .withdrawal-container .withdrawal-title {
+    font-size: 1em;
+  }
+  .withdrawal-container .withdrawal-text {
+    font-size: 0.75em;
+  }
+  .withdrawal-container input.input-withdrawal-pw {
+    width: 80%;
+  }
+  .withdrawal-container .btn-close {
+    width: 95%;
   }
 }

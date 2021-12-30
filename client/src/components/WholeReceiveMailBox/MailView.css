@@ -13,10 +13,7 @@
   min-height: 60vh;
   width: 100%;
   max-width: 1024px;
-  min-width: 768px;  
-  /* border: 1px solid rgb(235, 235, 235);
-  border-radius: 30px;
-  box-shadow: 5px 10px 20px rgb(187, 187, 187); */
+
 
 }
 
@@ -156,3 +153,22 @@
   font-size: 20px;
 
 }
+
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+  
+}
+
+/*모바일*/
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .view-text{
+    font-size: 14px;
+  }
+
+
+
+}
+

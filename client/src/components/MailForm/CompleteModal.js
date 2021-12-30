@@ -7,7 +7,7 @@ function CompleteModal({ handleCompleteModal, formInfo }) {
     if (e.target === e.currentTarget || e.target.className === 'btn-close') {
       handleCompleteModal();
       //todo 보낸 메일함으로 이동
-      history.push('/mailbox');
+      history.push('/sent-mailbox');
     }
   };
   return (

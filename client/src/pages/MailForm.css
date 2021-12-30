@@ -10,15 +10,19 @@
 /*태블릿*/
 @media (min-width: 481px) and (max-width: 768px) {
   .mailform-container {
+    min-width: 100%;
     padding-bottom: 20px;
     margin: 0 auto;
+    font-size: 0.8em;
   }
 }
 
 /*모바일*/
 @media (min-width: 320px) and (max-width: 480px) {
   .mailform-container {
+    min-width: 100%;
     padding-bottom: 20px;
     margin: 0 auto;
+    font-size: 0.75em;
   }
 }

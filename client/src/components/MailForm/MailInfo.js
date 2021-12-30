@@ -88,33 +88,35 @@ function MailInfo({ formInfo, setFormInfo }) {
               onChange={handleChange}
             />
           </label>
-          <label htmlFor='rsvDate'>
+          <label htmlFor='rsvDate' className='lastLabel'>
             전송날짜
-            <select
-              name='rsvDate'
-              className='select-date'
-              onChange={handleDateSelect}
-              defaultValue='-날짜를 선택해주세요-'
-              value={!optionSelected ? '-날짜를 선택해주세요-' : selected}
-            >
-              <option value='날짜미정'>-날짜를 선택해주세요-</option>
-              <option value='1주일 후'>1주일 후</option>
-              <option value='1개월 후'>1개월 후</option>
-              <option value='3개월 후'>3개월 후</option>
-              <option value='6개월 후'>6개월 후</option>
-              <option value='1년 후'>1년 후</option>
-            </select>
-            <div>
-              <DatePicker
-                selected={reservedDate}
-                onChange={(date) => handleDatePicker(date)}
-                locale='ko'
-                dateFormat='yyyy-MM-dd'
-                minDate={subDays(new Date(), -1)}
-                maxDate={addDays(new Date(), 365)}
-              />
+            <div className='lastLabelDiv'>
+              <select
+                name='rsvDate'
+                className='select-date'
+                onChange={handleDateSelect}
+                defaultValue='-날짜를 선택해주세요-'
+                value={!optionSelected ? '-날짜를 선택해주세요-' : selected}
+              >
+                <option value='날짜미정'>-날짜를 선택해주세요-</option>
+                <option value='1주일 후'>1주일 후</option>
+                <option value='1개월 후'>1개월 후</option>
+                <option value='3개월 후'>3개월 후</option>
+                <option value='6개월 후'>6개월 후</option>
+                <option value='1년 후'>1년 후</option>
+              </select>
+              <div>
+                <DatePicker
+                  selected={reservedDate}
+                  onChange={(date) => handleDatePicker(date)}
+                  locale='ko'
+                  dateFormat='yyyy-MM-dd'
+                  minDate={subDays(new Date(), -1)}
+                  maxDate={addDays(new Date(), 365)}
+                />
+              </div>
+              <span className='d-day'>D-{dday}</span>
             </div>
-            <span className='d-day'>D-{dday}</span>
           </label>
         </form>
       </div>
