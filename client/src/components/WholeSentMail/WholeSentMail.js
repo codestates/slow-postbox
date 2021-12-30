@@ -1,14 +1,14 @@
 import '../WholeReceiveMailBox/WholeReceivedMail.css'
 import SentMail from './SentMail'
 import ReservedSentMail from './ReservedSentMail'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 export default function WholeSentMail() {
 	const [view, setView] = useState('SentMail')
 
 	const userInfo = useSelector(state => state.loginReducer)
-	const { name } = userInfo
+	const { name, id } = userInfo
 
 	function viewChange() {
 		setView("SentMail")
@@ -25,6 +25,17 @@ export default function WholeSentMail() {
 	function tabMenu2() {
 		viewChange2()
 	}
+
+	function authCheck() {
+		if (!id) {
+			window.location.replace('/');
+		}
+	}
+
+	useEffect(() => {
+		authCheck()
+	}, [])
+
 
 
 	return (
