@@ -1,14 +1,32 @@
 import '../WholeReceiveMailBox/WholeReceivedMail.css'
 import SentMail from './SentMail'
+import axios from 'axios'
 import ReservedSentMail from './ReservedSentMail'
-import { useEffect, useState } from 'react'
+import ModalLogin from '../../pages/ModalLogin'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 export default function WholeSentMail() {
+
+	const [ modalLogin, setModalLogin ] = useState(false);
 	const [view, setView] = useState('SentMail')
 
 	const userInfo = useSelector(state => state.loginReducer)
 	const { name, id } = userInfo
+
+	const isAuthenticated = () => {
+		axios
+		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+			withCredentials: true,
+		  })
+		  .catch((err) => {
+			setModalLogin(true)
+		  });
+	  };
+
+	  useEffect(() => {
+		isAuthenticated();
+	}, [])
 
 	function viewChange() {
 		setView("SentMail")
@@ -25,17 +43,6 @@ export default function WholeSentMail() {
 	function tabMenu2() {
 		viewChange2()
 	}
-
-	function authCheck() {
-		if (!id) {
-			window.location.replace('/');
-		}
-	}
-
-	useEffect(() => {
-		authCheck()
-	}, [])
-
 
 
 	return (
@@ -61,6 +68,7 @@ export default function WholeSentMail() {
 						}
 					</div>
 				</div>
+				{modalLogin && <ModalLogin/>}
 			</div>
 		</>
 	)

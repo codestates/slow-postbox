@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import './WholeReceivedMail.css'
 import ReceiveMail from './ReceiveMail'
 import ReservedMail from './ReservedMail'
+import ModalLogin from '../../pages/ModalLogin'
 import { useState } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux'
@@ -9,6 +10,7 @@ import { useSelector } from 'react-redux'
 
 export default function WholeReceivedMail({ hadleisChecked }) {
 
+	const [ modalLogin, setModalLogin ] = useState(false);
 	const [view, setView] = useState('ReceiveMail')
 	const [isChecked, setIsChecked] = useState(false)
 	const userInfo = useSelector(state => state.loginReducer)
@@ -42,7 +44,18 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 			})
 	}
 
+	const isAuthenticated = () => {
+		axios
+		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+			withCredentials: true,
+		  })
+		  .catch((err) => {
+			setModalLogin(true)
+		  });
+	  };
+
 	useEffect(() => {
+		isAuthenticated();
 		getReservedChecked();
 	}, [])
 
@@ -92,6 +105,7 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 						: <ReservedMail />
 					}
 				</div>
+				{modalLogin && <ModalLogin/>}
 			</div>
 		</div>
 	)
