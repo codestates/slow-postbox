@@ -50,7 +50,7 @@ app.use(express.json({ strict: false }));
 // app.use(cors());
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'https://slow-postbox.com', 'https://www.slow-postbox.com'],
     credentials: true,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   })
@@ -71,7 +71,7 @@ app.post('/uploads', MultipartyMiddleware, (req, res) => {
     fs.rename(tempPathfile, targetPathUrl, (err) => {
       res.status(200).json({
         uploaded: true,
-        url: `http://localhost:4000/${tempFile.originalFilename}`,
+        url: `${process.env.SERVER_API}/${tempFile.originalFilename}`,
       });
       if (err) return console.log(err);
     });
@@ -82,6 +82,7 @@ app.use('/home', homeRouter);
 app.use('/admin', adminRouter);
 app.use('/mail', mailRouter);
 app.use('/user', userRouter);
+
 
 const PORT = 4000;
 
