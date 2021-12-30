@@ -70,6 +70,57 @@
   height: 60vh;
 }
 
+.modalAdmin-container{
+  width: 100%;
+  height: 100%; /*실제 적용시 100% */
+  top: 0; /*실제 적용시 0 */
+  left: 0;
+  position: absolute; /*실제 적용시 fixed */
+  display: block;
+  background: rgb(184, 184, 184);
+  z-index: 99;
+  text-align: center;
+}
+
+.modalAdmin-container .box-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%; /*조절필요*/
+  height: 30%; /*조절필요*/
+  min-width: 300px;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;  
+  justify-content: space-between; 
+  align-items: center;
+}
+
+
+.modalAdmin-container .modal-message{
+  margin-top: 30%;
+  font-weight: 600;
+}
+
+.modalAdmin-container span{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#E84B35;
+  padding-top: 3px;
+  color: white;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 40%;
+}
+
 
 /* 유저관리 */
 
