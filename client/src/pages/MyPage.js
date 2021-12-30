@@ -232,11 +232,6 @@ function MyPage() {
                         })
                       ) : (
                         <>
-                          <img
-                            src={emptyImg}
-                            alt='empty'
-                            className='emptyImg'
-                          />
                           <p className='no-logs'>내역이 없습니다</p>
                         </>
                       )}
@@ -271,7 +266,6 @@ function MyPage() {
                       })
                     ) : (
                       <>
-                        <img src={emptyImg} alt='empty' className='emptyImg' />
                         <p className='no-logs'>내역이 없습니다</p>
                       </>
                     )}
@@ -284,7 +278,6 @@ function MyPage() {
                 toggleState === 2 ? 'active-content' : 'inactive-content'
               }
             >
-              {' '}
               {!oauth && toggleState === 2 ? (
                 <div className='form-renewPw'>
                   <p className='p-renew-title'>비밀번호 변경하기</p>
@@ -370,23 +363,25 @@ const StyledTabs = styled.div`
   padding: ${(props) => (props.innerTab ? '1.2em' : '0.55em 1em')};
   color: #a6a6a6;
   @media (min-width: 481px) and (max-width: 768px) {
-    font-size: ${(props) => (props.innerTab ? '1.3em' : '1.5em')};
+    font-size: ${(props) => (props.innerTab ? '1.3em' : '1.45em')};
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    font-size: ${(props) => (props.innerTab ? '1.8em' : '2em')};
+    font-size: ${(props) => (props.innerTab ? '1.2em' : '1.3em')};
   }
 `;
 
 const StyledLogs = styled.div`
-  width: 100%;
-
+  min-width: 100%;
   display: block;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   @media (min-width: 481px) and (max-width: 768px) {
-    font-size: 1.3em;
+    width: 100%;
+    font-size: 1.15em;
   }
   @media (min-width: 320px) and (max-width: 480px) {
-    font-size: 1.8em;
+    width: 100%;
+    font-size: 1.1em;
   }
 `;
 
