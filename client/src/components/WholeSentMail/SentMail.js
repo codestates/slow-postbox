@@ -95,8 +95,8 @@ export default function SentMail() {
 									<div className="sort-readCheck"> {el.isRead === 0 ? "안읽음" : "읽음"} </div>
 									<div className="icon-mail">
 										{el.isRead === 0
-											? <GoMail className="icon-size" size="60" />
-											: <GoMailRead className="icon-size" size="60" />}
+											? <GoMail className="icon-size" size="50" />
+											: <GoMailRead className="icon-size" size="50" />}
 									</div>
 									<div className="text-mail"> {el.title} </div>
 									<div className="text-mail" >{`받는사람 : 

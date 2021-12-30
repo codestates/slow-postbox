@@ -12,7 +12,7 @@ export default function WholeSentMail() {
 	const [view, setView] = useState('SentMail')
 
 	const userInfo = useSelector(state => state.loginReducer)
-	const { name } = userInfo
+	const { name, id } = userInfo
 
 	const isAuthenticated = () => {
 		axios

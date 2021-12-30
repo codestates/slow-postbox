@@ -1,3 +1,4 @@
+//받은편지함
 import React, { useEffect, useState } from 'react'
 import { GoMailRead, GoMail } from "react-icons/go";
 import './ReceiveMail.css'
@@ -6,7 +7,6 @@ import axios from 'axios';
 import { useSelector } from 'react-redux'
 import MailView from './MailView';
 import Pagination from "react-js-pagination";
-import Loding from '../Loding/Loding';
 
 export default function ReceiveMail() {
   const [page, setPage] = useState(1);
@@ -37,6 +37,7 @@ export default function ReceiveMail() {
   const getReceivedDataPage = async () => {
     axios.get(`${process.env.REACT_APP_SERVER_API}/mail/receive`, { params: { email, page } })
       .then((res) => {
+        console.log(res, '받은편지함')
         setData(res.data.data);
         setCount(res.data.count)
       })
@@ -69,7 +70,7 @@ export default function ReceiveMail() {
         {modalmail
           ? <MailView maildata={maildata} setModalmail={setModalmail} getReceivedDataPage={getReceivedDataPage} />
           : isLoading ? (
-            <Loding />
+            <img src='img/spinner.svg' />
           )
             : (data.length === 0
               ? <div className="mailbox-container-empty"> 받은 편지가 없습니다.</div>
@@ -80,8 +81,8 @@ export default function ReceiveMail() {
                     <div className="sort-readCheck"> {el.isRead === 0 ? "안읽음" : "읽음"} </div>
                     <div className="icon-mail">
                       {el.isRead === 0
-                        ? <GoMail className="icon-size" size="60" />
-                        : <GoMailRead className="icon-size" size="60" />}
+                        ? <GoMail size="50" />
+                        : <GoMailRead size="50" />}
                     </div>
                     <div className="text-mail"> {el.title} </div>
                     <div className="text-mail" >
@@ -113,3 +114,5 @@ export default function ReceiveMail() {
     </div>
   )
 }
+
+

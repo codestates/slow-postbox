@@ -4,8 +4,6 @@
   justify-content: center;
   height: 80vh;
   width: 100%;
-  min-width: 768px; 
-
   margin-top:50px;
 }
 
@@ -13,7 +11,7 @@
   display: grid;
   width: 100%;
   max-width: 1024px;
-  min-width: 768px; 
+  /* min-width: 768px;  */
   min-height: 90%;
   grid-template-rows: 0.5fr 0.5fr 9fr 0.5fr;
   border: 1px solid rgb(235, 235, 235);
@@ -61,7 +59,7 @@
 
 .tabmenu-container .bar-tabmenu div{
   flex: 0.1;
-  /* min-width: 80px; */
+  min-width: 80px;
   line-height: 40px;
   text-align: center;
   cursor: pointer;
@@ -96,11 +94,54 @@
 
 
 
+@media (min-width: 481px) and (max-width: 768px) {
+  
+.tabmenu-container .bar-tabmenu div.tab-selected{
+  font-size: 14px;
+}
+
+.tabmenu-container .bar-tabmenu div.toggle-onoff{
+  font-size: 14px;
+}
 
 
+}
 
+/*모바일*/
+@media (min-width: 320px) and (max-width: 480px) {
 
+.wholeMailBox-container{
+  height: 30%;
+  width: 100%;
+  margin: 0;
+}
 
+  .tabmenu-container .bar-tabmenu div.tab-selected{
+    font-size: 14px;
+    width: 100px;
+  }
+  
+  .tabmenu-container .bar-tabmenu div.toggle-onoff{
+    font-size: 14px;
+    width: 100px;
+  }
+  
+  
 
+.wholeMailBox-container .wholeMailBox-grid{
+  display: grid;
+  width: 100%;
+  max-width: 1024px;
+  /* min-width: 768px;  */
+  min-height: 90%;
+  grid-template-rows: 0.5fr 0.5fr 9fr 0.5fr;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 30px;
+  box-shadow: 5px 10px 20px rgb(187, 187, 187);
 
+}
+
+  
+
+}
 
