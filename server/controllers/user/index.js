@@ -13,4 +13,5 @@ module.exports = {
   alertmail: require('./alertmail'),
   modifypw: require('./modifypw'),
   kakaowithdraw: require('./kakaowithdraw'),
+  guest : require('./guest')
 };
