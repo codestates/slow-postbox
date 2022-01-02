@@ -7,9 +7,9 @@ module.exports = async (req, res) => {
 
     const sql1 = `select A.id, A.writerEmail, A.receiverEmail, A.reserved_at, A.title, A.isChecked, A.isRead, A.created_at, A.updated_at, users.name 
     from mails AS A
-    inner join users 
+    left join users 
     ON A.writerEmail = users.email 
-    Where receiverEmail = "${email}" and date(reserved_at) < date_format(now(), '%Y%m%d')  
+    Where receiverEmail = "${email}" and date(reserved_at) <= date_format(now(), '%Y%m%d')  
     GROUP BY A.id, users.name
     ORDER BY A.reserved_at DESC
     LIMIT ?,5;`
