@@ -88,15 +88,15 @@ export default function SentMail() {
 					: isLoading ? (
 						<Loding />
 					) : (data.length === 0
-						? <div className="mailbox-container-empty"> 받은 편지가 없습니다.</div>
+						? <div className="mailbox-container-empty"> 보낸 편지가 없습니다.</div>
 						: data.map((el, idx) => {
 							return (
 								<div className="mailbox-container select" key={idx} onClick={() => { getMailcontent(el.id) }}>
 									<div className="sort-readCheck"> {el.isRead === 0 ? "안읽음" : "읽음"} </div>
 									<div className="icon-mail">
 										{el.isRead === 0
-											? <GoMail className="icon-size" size="50" />
-											: <GoMailRead className="icon-size" size="50" />}
+											? <GoMail className='mailIcon' />
+											: <GoMailRead className='mailIcon' />}
 									</div>
 									<div className="text-mail"> {el.title} </div>
 									<div className="text-mail" >{`받는사람 : 
