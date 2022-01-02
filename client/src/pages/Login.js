@@ -75,7 +75,11 @@ export default function Login() {
         }
 
     }
-
+    const EnterLogin = (e) => {
+        if (e.key === "Enter") {
+            handleLogin()
+        }
+    }
 
     return (
         <>
@@ -94,7 +98,7 @@ export default function Login() {
                 </div>
                 <div className='login-input'>
                     <input className='input-email' name='email' onChange={handleChange} placeholder='이메일을 입력하세요'></input>
-                    <input className='input-password' type='password' name='password' onChange={handleChange} placeholder='비밀번호를 입력하세요'></input>
+                    <input className='input-password' type='password' name='password' onChange={handleChange} placeholder='비밀번호를 입력하세요' onKeyPress={EnterLogin}></input>
                     <div className='section-message'>
                         <div className='section-confirm'>{isCorrect === true ? '' : '회원정보를 확인해주세요'}</div >
                         <div id='find-password'><Link to="/find-userinfo" style={{ color: "inherit", textDecoration: "inherit" }}>비밀번호찾기</Link></div>
