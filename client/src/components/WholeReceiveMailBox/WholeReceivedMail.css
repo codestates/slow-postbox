@@ -70,7 +70,8 @@
   text-align: center;
   color:gray;
   margin-left: 2%;
- 
+  cursor: pointer;
+
 }
 
 .tabmenu-container .bar-tabmenu div.tab-selected{
