@@ -136,7 +136,7 @@
 
   
 }
-.wholeMailBox-container table, td {
+.wholeMailBox-container table, .wholeMailBox-container td {
   border: 1px solid black;
   padding: 5px;
 }

@@ -40,13 +40,14 @@ function MyPage() {
       isMatching === '비밀번호가 일치합니다'
     ) {
       axios
-        .patch(`${process.env.REACT_APP_SERVER_API}/user/modifypw`, {
+        .patch(`${process.env.REACT_APP_SERVER_API}/user/info`, {
           email,
           password: passwords.newPassword,
         })
         .then((res) => {
-          if (res.data.message === 'success') {
-            window.location.replace('/');
+          console.log(res)
+          if (res.status === 204) {
+            window.location.replace('/mypage');
           } else {
             alert('항목을 다시 확인해주세요');
             e.preventDefault();

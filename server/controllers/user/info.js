@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     const params = [newSalt, hashPassword, email];
     await db.query(sql, params);
 
-    return res.status(204);
+    return res.status(204).end();
   } catch (err) {
     throw err;
   }
