@@ -6,12 +6,10 @@ module.exports = {
   logout: require('./logout'),
   mailverify: require('./mailverify'),
   finduserinfo: require('./finduserinfo'),
-  modify: require('./modify'),
-  modifypw: require('./modifypw'),
+  info: require('./info'),
   signup: require('./signup'),
   withdraw: require('./withdraw'),
   alertmail: require('./alertmail'),
-  modifypw: require('./modifypw'),
   kakaowithdraw: require('./kakaowithdraw'),
   guest : require('./guest')
 };
