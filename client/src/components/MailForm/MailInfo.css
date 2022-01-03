@@ -22,6 +22,15 @@
   border: 1px solid rgb(235, 235, 235);
   border-radius: 5px;
 }
+
+.mailinfo-container .mailinfo-input-guest {
+  flex: 1 1 auto;
+  padding: 0.55em 1em;
+  margin-left: 1.35em;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 5px;
+}
+
 .mailinfo-container .mailinfo-input-title {
   margin-left: 3rem;
 }
@@ -82,6 +91,14 @@
     bottom: 10%;
     font-size: 1.2em;
   }
+
+  .mailinfo-container .mailinfo-input-guest {
+    flex: 1 1 auto;
+    padding: 0.55em 1em;
+    margin-left: 1.1em;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 5px;
+  }
 }
 
 /*모바일*/
@@ -115,5 +132,13 @@
     right: 3%;
     bottom: 10%;
     font-size: 1.15em;
+  }
+
+  .mailinfo-container .mailinfo-input-guest {
+    flex: 1 1 auto;
+    padding: 0.55em 1em;
+    margin-left: 1.3em;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 5px;
   }
 }
