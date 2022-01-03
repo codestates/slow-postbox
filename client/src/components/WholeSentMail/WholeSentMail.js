@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 export default function WholeSentMail() {
 
-	const [ modalLogin, setModalLogin ] = useState(false);
+	const [modalLogin, setModalLogin] = useState(false);
 	const [view, setView] = useState('SentMail')
 
 	const userInfo = useSelector(state => state.loginReducer)
@@ -16,17 +16,39 @@ export default function WholeSentMail() {
 
 	const isAuthenticated = () => {
 		axios
-		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
-			withCredentials: true,
-		  })
-		  .catch((err) => {
-			setModalLogin(true)
-		  });
-	  };
+			.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+				withCredentials: true,
+			})
+			.catch((err) => {
+				setModalLogin(true)
+			});
+	};
 
-	  useEffect(() => {
+	useEffect(() => {
 		isAuthenticated();
 	}, [])
+
+
+
+	const checkGuest = async () => {
+		const userData = await axios.get(
+			`${process.env.REACT_APP_SERVER_API}/user/auth`,
+			{
+				withCredentials: true,
+			})
+
+		if (userData.data.data.isGuest) {
+			setView('guest')
+		}
+	}
+
+	useEffect(() => {
+		checkGuest();
+	}, [])
+
+
+
+
 
 	function viewChange() {
 		setView("SentMail")
@@ -60,15 +82,18 @@ export default function WholeSentMail() {
 							</div>
 						</div>
 					</div>
-					<div>
+					<div className="mailradius">
 						{
 							view === 'SentMail'
 								? <SentMail />
-								: <ReservedSentMail />
+								: (view === 'ReservedSentMail'
+									? <ReservedSentMail />
+									: <div className='guest-text'>회원만 이용 할 수 있는 서비스 입니다</div>
+								)
 						}
 					</div>
 				</div>
-				{modalLogin && <ModalLogin/>}
+				{modalLogin && <ModalLogin />}
 			</div>
 		</>
 	)

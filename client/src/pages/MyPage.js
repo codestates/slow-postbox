@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
 import './MyPage.css';
-import emptyImg from '../img/empty.png';
 import receivedmail from '../img/receivedmail.svg';
 import sentmail from '../img/sentmail.svg';
 import reservedmail from '../img/reservedmail.svg';
@@ -67,11 +66,6 @@ function MyPage() {
   const [received, setReceived] = useState([]);
   const [sent, setSent] = useState([]);
   const [loading, setLoading] = useState(false); //변경x
-  // const [currentPage, setCurrentPage] = useState(1); //변경x
-  // const [postsPerPage, setPostsPerPage] = useState(10); //변경d
-  // const [total, setTotal] = useState(0); //변경x
-  // const [minPage, setMinPage] = useState(1); //변경x
-  // const [maxPage, setMaxPage] = useState(5); //변경x
   const [isGuest, setIsGuest] = useState(false);
 
   const isAuthenticated = () => {
@@ -407,6 +401,7 @@ const StyledTabs = styled.div`
 
 const StyledLogs = styled.div`
   min-width: 100%;
+  height: 100%;
   display: block;
   overflow-x: hidden;
   overflow-y: auto;

@@ -49,7 +49,12 @@ schedule.scheduleJob(rule, async function sendAlertMail() {
 app.use(express.json({ strict: false }));
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://slow-postbox.com', 'https://www.slow-postbox.com'],
+    origin: [
+      'http://localhost:3001',
+      'http://localhost:3000',
+      'https://slow-postbox.com',
+      'https://www.slow-postbox.com',
+    ],
     credentials: true,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   })

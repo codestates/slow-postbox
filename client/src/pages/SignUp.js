@@ -184,7 +184,7 @@ export default function SignUp() {
                                     <div className='section-auth'>
                                         <div className='title-auth'>인증코드</div>
                                         <input className='input-authcode' name='verificationCode' onChange={handleChange}></input>
-                                        <button className='check-auth' onClick={handleConfirmEmail}>인증코드 확인</button>
+                                        <button className='check-auth' onClick={handleConfirmEmail}>인증코드확인</button>
                                     </div>
                                     <div className='scetion-check-authcode'>
                                         {isConfirmEmail === 1 ? '인증에 성공하였습니다' : ''}

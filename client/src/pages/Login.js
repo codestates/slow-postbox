@@ -29,7 +29,23 @@ export default function Login() {
         });
     }
 
-
+    const guestLogin = () => {
+        axios
+            .post(
+                `${process.env.REACT_APP_SERVER_API}/user/guest`, '',
+                { withCredentials: true }
+            )
+            .then((res) => {
+                if (!res.data.data) {
+                    setIsCorrect(false);
+                } else if (res.data.data) {
+                    window.location.replace('/');
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const handleLogin = async () => {
         const {
             email,
@@ -59,7 +75,11 @@ export default function Login() {
         }
 
     }
-
+    const EnterLogin = (e) => {
+        if (e.key === "Enter") {
+            handleLogin()
+        }
+    }
 
     return (
         <>
@@ -78,7 +98,7 @@ export default function Login() {
                 </div>
                 <div className='login-input'>
                     <input className='input-email' name='email' onChange={handleChange} placeholder='이메일을 입력하세요'></input>
-                    <input className='input-password' type='password' name='password' onChange={handleChange} placeholder='비밀번호를 입력하세요'></input>
+                    <input className='input-password' type='password' name='password' onChange={handleChange} placeholder='비밀번호를 입력하세요' onKeyPress={EnterLogin}></input>
                     <div className='section-message'>
                         <div className='section-confirm'>{isCorrect === true ? '' : '회원정보를 확인해주세요'}</div >
                         <div id='find-password'><Link to="/find-userinfo" style={{ color: "inherit", textDecoration: "inherit" }}>비밀번호찾기</Link></div>
@@ -89,6 +109,7 @@ export default function Login() {
                     <button className='login-button' onClick={handleLogin}>로그인</button>
                     <button className='signup-button'><Link to="/signup" style={{ color: "inherit", textDecoration: "inherit" }}>회원가입</Link></button>
                     <button className='oauth-button' onClick={kakaoLoginClickHandler} ><img src='/img/kakao_login_medium_narrow.png' alt='카카오로그인' /></button>
+                    <button className='guest-button' onClick={guestLogin}>게스트로그인</button>
                 </div>
             </div>
         </>

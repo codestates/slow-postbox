@@ -44,11 +44,8 @@
   opacity: 0.4;
 }
 .mypage-container p.no-logs {
-  width: 300px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  width: auto;
+  margin-top: 150px;
   font-size: 1.2em;
   text-align: center;
   color: gray;
@@ -168,7 +165,6 @@
   .mypage-container {
     min-width: 100%;
     margin: 0 auto;
-    border: 1px solid red;
     font-size: 0.8em;
   }
   .mypage-container .li-icon {

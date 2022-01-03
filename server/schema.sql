@@ -6,6 +6,7 @@ CREATE TABLE `users` (
   `password` varchar(255),
   `oauth` boolean,
   `admin` boolean,
+  `isGuest` boolean DEFAULT 0,
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

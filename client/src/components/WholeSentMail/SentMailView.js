@@ -24,7 +24,7 @@ export default function SentMailView({ maildata, setModalmail, getSentDataPage }
 
           <div className="mailview-title"> {maildata.title} </div>
           <div className="mailview-receive-name"> 받는 사람 : {maildata.name ? `${maildata.name} (${maildata.receiverEmail.split("삭제").join('')})` : maildata.writerEmail} </div>
-          <div> 보낸 날짜 : {maildata.created_at.slice(0, 10)} / 도착 날짜 : {maildata.reserved_at.slice(0, 10)} </div>
+          <div className='view-text'> 보낸 날짜 : {maildata.created_at.slice(0, 10)} / 도착 날짜 : {maildata.reserved_at.slice(0, 10)} </div>
           <div className="modal-flex" style={{ border: "none" }}>
             <div className="modal-sort" >
               <GoKebabVertical onClick={SubModalOnOff} />
