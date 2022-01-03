@@ -29,27 +29,6 @@ export default function WholeSentMail() {
 	}, [])
 
 
-
-	const checkGuest = async () => {
-		const userData = await axios.get(
-			`${process.env.REACT_APP_SERVER_API}/user/auth`,
-			{
-				withCredentials: true,
-			})
-
-		if (userData.data.data.isGuest) {
-			setView('guest')
-		}
-	}
-
-	useEffect(() => {
-		checkGuest();
-	}, [])
-
-
-
-
-
 	function viewChange() {
 		setView("SentMail")
 	}
@@ -86,10 +65,7 @@ export default function WholeSentMail() {
 						{
 							view === 'SentMail'
 								? <SentMail />
-								: (view === 'ReservedSentMail'
-									? <ReservedSentMail />
-									: <div className='guest-text'>회원만 이용 할 수 있는 서비스 입니다</div>
-								)
+								: <ReservedSentMail />
 						}
 					</div>
 				</div>

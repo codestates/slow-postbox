@@ -12,6 +12,8 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 
 	const [modalLogin, setModalLogin] = useState(false);
 	const [view, setView] = useState('ReceiveMail')
+
+
 	const [isChecked, setIsChecked] = useState(false)
 	const userInfo = useSelector(state => state.loginReducer)
 	const { email, name, id } = userInfo
@@ -94,16 +96,33 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 					{name} 님
 				</div>
 				<div className="tabmenu-container" >
-					<div className="bar-tabmenu">
-						<div className={view === 'ReceiveMail' ? "tab-selected " : "toggle-onoff"} onClick={tabMenu1}>
-							<div className="toggle-boxcheck-hide" style={{ color: "#E84B35" }}> ● </div>
-							받은 편지함
-						</div>
-						<div className={view === 'ReservedMail' ? "tab-selected" : "toggle-onoff"} onClick={tabMenu2}>
-							<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "#E84B35" }}> ● </div>
-							도착 예정함
-						</div>
-					</div>
+					{view === 'guest'
+						? (
+							<div className="bar-tabmenu">
+								<div className='guest'>
+									<div className="toggle-boxcheck-hide" style={{ color: "#E84B35" }}> ● </div>
+									받은 편지함
+								</div>
+								<div className='guest' >
+									<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "#E84B35" }}> ● </div>
+									도착 예정함
+								</div>
+							</div>
+						)
+						: (
+							<div className="bar-tabmenu">
+								<div className={view === 'ReceiveMail' ? "tab-selected " : "toggle-onoff"} onClick={tabMenu1}>
+									<div className="toggle-boxcheck-hide" style={{ color: "#E84B35" }}> ● </div>
+									받은 편지함
+								</div>
+								<div className={view === 'ReservedMail' ? "tab-selected" : "toggle-onoff"} onClick={tabMenu2}>
+									<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "#E84B35" }}> ● </div>
+									도착 예정함
+								</div>
+							</div>
+						)
+					}
+
 				</div>
 				<div className="mailradius">
 					{view === 'ReceiveMail'

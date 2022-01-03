@@ -68,7 +68,6 @@
   min-width: 80px;
   line-height: 40px;
   text-align: center;
-  cursor: pointer;
   color:gray;
   margin-left: 2%;
  
@@ -79,10 +78,19 @@
   font-weight: 700;
   color:black;
   position:relative;
+  cursor: pointer;
+
 }
 
 .tabmenu-container .bar-tabmenu div.toggle-onoff{
   position:relative;
+  cursor: pointer;
+}
+
+.tabmenu-container .bar-tabmenu div.guest{
+  position:relative;
+  cursor:default;
+
 }
 
 
