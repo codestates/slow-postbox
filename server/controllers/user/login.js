@@ -41,14 +41,15 @@ module.exports = async (req, res) => {
       else {
         //결과가 있는경우 
         //accessToken
-        const { id, name, email, oauth, admin, } =
+        const { id, name, email, oauth, admin, isGuest } =
           result[0];
         const payload = {
           id,
           name,
           email,
           oauth,
-          admin
+          admin,
+          isGuest
         };
         const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET, {
           expiresIn: "1d",

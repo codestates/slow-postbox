@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     from mails AS A
     inner join users 
     ON A.writerEmail = users.email 
-    Where receiverEmail = "${email}" and date(reserved_at) < date_format(now(), '%Y%m%d')  
+    Where receiverEmail = "${email}" and date(reserved_at) <= date_format(now(), '%Y%m%d')  
     GROUP BY A.id, users.name
     ORDER BY A.reserved_at DESC
     LIMIT ?,5;`
