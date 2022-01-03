@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 
     if (err) {
       console.log(err);
-      return res.status(404).send('실패');
+      return res.status(400).send('실패');
     } else {
       return res.status(200).json({ data: rows });
     }

@@ -12,8 +12,7 @@ import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
 
 function MyPage() {
-
-  const [ modalLogin, setModalLogin ] = useState(false);
+  const [modalLogin, setModalLogin] = useState(false);
   const { email, oauth } = useSelector((state) => state.loginReducer);
 
   const [toggleState, setToggleState] = useState(1);
@@ -75,14 +74,14 @@ function MyPage() {
   const [maxPage, setMaxPage] = useState(5); //변경x
 
   const isAuthenticated = () => {
-		axios
-		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
-			withCredentials: true,
-		  })
-		  .catch((err) => {
-			setModalLogin(true)
-		  });
-	  };
+    axios
+      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+        withCredentials: true,
+      })
+      .catch((err) => {
+        setModalLogin(true);
+      });
+  };
 
   useEffect(() => {
     isAuthenticated();
@@ -358,7 +357,7 @@ function MyPage() {
             </div>
           </div>
         </div>
-        {modalLogin && <ModalLogin/>}
+        {modalLogin && <ModalLogin />}
       </div>
     </>
   );

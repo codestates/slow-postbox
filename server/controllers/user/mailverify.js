@@ -171,13 +171,13 @@ module.exports = async (req, res) => {
       let info = await transporter.sendMail(message);
       //console.log("Message sent: %s", info.messageId);
       return res
-        .status(200)
+        .status(201)
         .json({ data: `${str}`, message: '메시지가 전송되었습니다' });
     } else {
       //console.log("이미 가입된 이메일 존재");
       return res
         .status(200)
-        .json({ data: null, message: '이미 가입된 이메일입니다' });
+        .json({ data: null, message: 'data already exists' });
     }
   } catch (err) {
     console.log(err);

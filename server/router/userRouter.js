@@ -5,14 +5,12 @@ const {
   login,
   logout,
   mailverify,
-  modify,
-  modifypw,
+  info,
   signup,
   withdraw,
   alertmail,
   finduserinfo,
   kakaowithdraw,
-
 } = require('../controllers/user');
 const express = require('express');
 const router = express.Router();
@@ -24,8 +22,7 @@ router.post('/login', login);
 router.post('/logout', logout);
 router.post('/mailverify', mailverify);
 router.post('/finduserinfo', finduserinfo);
-router.patch('/modify', modify);
-router.patch('/modifypw', modifypw);
+router.patch('/info', info);
 router.post('/signup', signup);
 router.delete('/withdraw', withdraw);
 router.post('/alertmail', alertmail);
