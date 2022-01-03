@@ -1,5 +1,6 @@
 import './MailInfo.css';
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -21,6 +22,7 @@ function MailInfo({ formInfo, setFormInfo }) {
   const [optionSelected, setOptionSelected] = useState('');
   const [dday, setDday] = useState(0);
   const [selected, setSelected] = useState('');
+  const [ isGuest, setIsGuest ] = useState(true)
 
   const handleChange = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
@@ -56,25 +58,54 @@ function MailInfo({ formInfo, setFormInfo }) {
     }
   };
 
+  const checkGuest = async() => {
+    const userData = await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/user/auth`,
+      {
+        withCredentials: true,
+      })
+      if(!userData.data.data.isGuest) {
+        setIsGuest(false)
+      }
+  }
+
+  useEffect(()=> {
+    checkGuest();
+  },[])
+
   return (
     <>
       <div className='mailinfo-container'>
         <form>
           <label htmlFor='receiver'>
             받는사람
-            <label htmlFor='tome' className='checkbox-tome'>
-              <input name='tome' type='checkbox' onChange={handleCheck} />
-              내게쓰기
-            </label>
-            <input
+            {isGuest ? (
+              <input
               type='email'
               name='receiver'
               placeholder='수신이메일을 작성해주세요'
-              className='mailinfo-input'
+              className='mailinfo-input-guest'
               value={formInfo.receiver}
               onChange={handleChange}
               disabled={toMyself ? 'disable' : ''}
             />
+            ) : (
+              <>
+              <label htmlFor='tome' className='checkbox-tome'>
+              <input  name='tome' type='checkbox' onChange={handleCheck} />
+              내게쓰기
+            </label>
+            <input
+            type='email'
+            name='receiver'
+            placeholder='수신이메일을 작성해주세요'
+            className='mailinfo-input'
+            value={formInfo.receiver}
+            onChange={handleChange}
+            disabled={toMyself ? 'disable' : ''}
+          />
+          </>
+            ) }
           </label>
           <label htmlFor='title'>
             제목
