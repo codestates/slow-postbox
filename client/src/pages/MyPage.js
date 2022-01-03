@@ -12,8 +12,7 @@ import Withdrawal from '../components/MyPage/Withdrawal';
 const { availablePw, matchingPw } = require('../funcs/userFuncs');
 
 function MyPage() {
-
-  const [ modalLogin, setModalLogin ] = useState(false);
+  const [modalLogin, setModalLogin] = useState(false);
   const { email, oauth } = useSelector((state) => state.loginReducer);
 
   const [toggleState, setToggleState] = useState(1);
@@ -75,14 +74,14 @@ function MyPage() {
   const [maxPage, setMaxPage] = useState(5); //변경x
 
   const isAuthenticated = () => {
-		axios
-		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
-			withCredentials: true,
-		  })
-		  .catch((err) => {
-			setModalLogin(true)
-		  });
-	  };
+    axios
+      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+        withCredentials: true,
+      })
+      .catch((err) => {
+        setModalLogin(true);
+      });
+  };
 
   useEffect(() => {
     isAuthenticated();
@@ -223,8 +222,8 @@ function MyPage() {
                     }
                   >
                     <ul className='ul-mailbox'>
-                      {sent.length > 0 ? (
-                        sent.map((post) => {
+                      {received.length > 0 ? (
+                        received.map((post) => {
                           return (
                             <li key={post.id} className='li-mail'>
                               <img
@@ -257,8 +256,8 @@ function MyPage() {
                         : 'inactive-content'
                     }
                   >
-                    {received.length > 0 ? (
-                      received.map((post) => {
+                    {sent.length > 0 ? (
+                      sent.map((post) => {
                         return (
                           <li key={post.id} className='li-mail'>
                             <img
@@ -358,7 +357,7 @@ function MyPage() {
             </div>
           </div>
         </div>
-        {modalLogin && <ModalLogin/>}
+        {modalLogin && <ModalLogin />}
       </div>
     </>
   );
@@ -386,6 +385,7 @@ const StyledTabs = styled.div`
 
 const StyledLogs = styled.div`
   min-width: 100%;
+  height: 100%;
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
