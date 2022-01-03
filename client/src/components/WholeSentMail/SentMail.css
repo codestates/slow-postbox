@@ -1,6 +1,4 @@
-
-
-.mailbox-container{
+/* .mailbox-container{
   display: grid;
   grid-template-columns: 1fr 8fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -21,11 +19,6 @@
   
 }
 
-.mailbox-container .text-mail{
-  text-align : center;
-  align-self: center;
-}
-
 
 .mailbox-container-empty{
   display: flex;
@@ -35,4 +28,4 @@
   
 
 }
-
+ */

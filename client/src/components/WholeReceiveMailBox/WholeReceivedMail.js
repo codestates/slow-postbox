@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 
 export default function WholeReceivedMail({ hadleisChecked }) {
 
-	const [ modalLogin, setModalLogin ] = useState(false);
+	const [modalLogin, setModalLogin] = useState(false);
 	const [view, setView] = useState('ReceiveMail')
 	const [isChecked, setIsChecked] = useState(false)
 	const userInfo = useSelector(state => state.loginReducer)
@@ -46,17 +46,33 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 
 	const isAuthenticated = () => {
 		axios
-		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
-			withCredentials: true,
-		  })
-		  .catch((err) => {
-			setModalLogin(true)
-		  });
-	  };
+			.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+				withCredentials: true,
+			})
+			.catch((err) => {
+				setModalLogin(true)
+			});
+	};
 
 	useEffect(() => {
 		isAuthenticated();
 		getReservedChecked();
+	}, [])
+
+	const checkGuest = async () => {
+		const userData = await axios.get(
+			`${process.env.REACT_APP_SERVER_API}/user/auth`,
+			{
+				withCredentials: true,
+			})
+
+		if (userData.data.data.isGuest) {
+			setView('guest')
+		}
+	}
+
+	useEffect(() => {
+		checkGuest();
 	}, [])
 
 
@@ -92,10 +108,13 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 				<div className="mailradius">
 					{view === 'ReceiveMail'
 						? <ReceiveMail />
-						: <ReservedMail />
+						: (view === 'ReservedMail'
+							? <ReservedMail />
+							: <div className='guest-text'>회원만 이용 할 수 있는 서비스 입니다</div>
+						)
 					}
 				</div>
-				{modalLogin && <ModalLogin/>}
+				{modalLogin && <ModalLogin />}
 			</div>
 		</div>
 	)

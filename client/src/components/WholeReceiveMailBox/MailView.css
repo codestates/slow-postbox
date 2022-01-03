@@ -9,7 +9,7 @@
 
 .mailview-container .mailview-grid{
   display: grid;
-  grid-template-rows: 0.7fr 0.5fr  0.5fr  5fr 0.5fr;
+  /* grid-template-rows: 0.7fr 0.5fr  0.5fr  5fr 0.5fr; */
   min-height: 60vh;
   width: 100%;
   max-width: 1024px;
@@ -91,7 +91,7 @@
 
 }
 
-.btn_close_m{
+.mailview-container .btn_close_m{
   text-align: center;
   background-color:#E84B35;
   color: white;
@@ -100,16 +100,14 @@
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
-  margin: 10px 0 0 20px;
   border: none;
   outline: none;
   position:relative;
   justify-self: center;
   font-size: 1.3rem;
-  margin-bottom: 10px;
 }
 
-.btn_close_s{
+.mailview-container  .btn_close_s{
   text-align: center;
   background-color:#E84B35;
   color: white;
@@ -129,7 +127,6 @@
 .mailViewModal-contanier{
   width: 100%;
   height: 100vh;
-  border: 1px solid black;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 10;
   position: fixed;
@@ -157,18 +154,36 @@
 
 
 @media (min-width: 481px) and (max-width: 768px) {
+  .mailview-container .mailview-receive-name,
+  .mailview-container .view-text{
+    font-size: 14px;
+  }
+  .mailview-container .btn_close_m{
+    width: 20%;
+    height: 30px;
+    font-size: 16px;
 
-  
+  }
+
 }
+
+
+
 
 /*모바일*/
 @media (min-width: 320px) and (max-width: 480px) {
   
-  .view-text{
+  .mailview-container .mailview-receive-name,
+  .mailview-container .view-text{
     font-size: 14px;
   }
 
+  .mailview-container .btn_close_m{
+    width: 20%;
+    height: 30px;
+    font-size: 16px;
 
+  }
 
 }
 
