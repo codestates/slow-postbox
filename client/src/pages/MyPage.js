@@ -45,7 +45,7 @@ function MyPage() {
           password: passwords.newPassword,
         })
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.status === 204) {
             window.location.replace('/mypage');
           } else {
@@ -237,8 +237,8 @@ function MyPage() {
                         }
                       >
                         <ul className='ul-mailbox'>
-                          {sent.length > 0 ? (
-                            sent.map((post) => {
+                          {received.length > 0 ? (
+                            received.map((post) => {
                               return (
                                 <li key={post.id} className='li-mail'>
                                   <img
@@ -271,8 +271,8 @@ function MyPage() {
                             : 'inactive-content'
                         }
                       >
-                        {received.length > 0 ? (
-                          received.map((post) => {
+                        {sent.length > 0 ? (
+                          sent.map((post) => {
                             return (
                               <li key={post.id} className='li-mail'>
                                 <img
