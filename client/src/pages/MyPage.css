@@ -1,9 +1,10 @@
 .mypage-container {
   max-width: 1024px;
   min-width: 768px;
-  width: 60%;
+  height: 670px;
+  width: 95%;
   margin: 0 auto;
-  margin-top: 70px;
+  margin-top: 50px;
   border: 1px solid rgb(235, 235, 235);
   border-radius: 20px;
   box-shadow: 5px 10px 20px rgb(187, 187, 187);
@@ -20,7 +21,7 @@
 }
 .mypage-container .guestNotice {
   text-align: center;
-  margin-top: 220px;
+  margin-top: 250px;
   font-weight: bold;
   color: gray;
 }
@@ -66,7 +67,7 @@
 .mypage-container .form-renewPw {
   width: 50%;
   height: 450px;
-  margin: 0 auto;
+  margin: 40px auto 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
