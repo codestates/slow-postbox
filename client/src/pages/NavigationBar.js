@@ -10,17 +10,18 @@ import './NavigationBar.css';
 export default function NavigationBar({ isChecked, setIsChecked }) {
   const { email, isLogin, isAdmin } = useSelector((state) => state.loginReducer);
   const handleCheckReceived = () => {
-		axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/checked-received`, { email })
-		.then((res) => {
-		  axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email } })
-      .then((res) => { setIsChecked(res.data.isChecked) })
-		})
-	  }
+    axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/checked-received`, { email })
+      .then((res) => {
+        axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email } })
+          .then((res) => { setIsChecked(res.data.isChecked) })
+      })
+  }
 
   const handleLogout = async () => {
     axios.post(`${process.env.REACT_APP_SERVER_API}/user/logout`, "", { withCredentials: true })
       .then(window.location.replace("/"))
   }
+
 
 
   return (
@@ -80,9 +81,9 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
               >
                 <div>마이페이지</div>
               </Link>
-                <div >
-                  <span onClick={handleLogout}>로그아웃</span>
-                </div>
+              <div >
+                <span onClick={handleLogout}>로그아웃</span>
+              </div>
             </>
           ) : (
             <>

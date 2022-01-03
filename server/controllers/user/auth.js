@@ -43,10 +43,10 @@ module.exports = async (req, res) => {
     }
     //db에 일치하는 로그인 정보가 있을때
     else {
-      const { id, name, email, oauth, admin } = result[0];
+      const { id, name, email, oauth, admin, isGuest } = result[0];
 
       res.status(200).json({
-        data: { isLogin: true, id, name, email, admin, oauth },
+        data: { isLogin: true, id, name, email, admin, oauth, isGuest },
         message: '로그인되었습니다',
       });
     }

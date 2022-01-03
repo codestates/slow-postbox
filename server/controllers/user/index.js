@@ -11,4 +11,5 @@ module.exports = {
   withdraw: require('./withdraw'),
   alertmail: require('./alertmail'),
   kakaowithdraw: require('./kakaowithdraw'),
+  guest : require('./guest')
 };

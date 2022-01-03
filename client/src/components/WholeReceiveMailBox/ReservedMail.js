@@ -42,8 +42,6 @@ export default function ReservedMail() {
 		await setIsLoading(true)
 		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/reserved`, { params: { email, page } })
 			.then((res) => {
-				console.log(res)
-
 				setData(res.data.data);
 				setCount(res.data.count);
 			})
@@ -80,8 +78,8 @@ export default function ReservedMail() {
 								<div className="sort-readCheck">  </div>
 								<div className="icon-mail">
 									{el.isRead === 0
-										? <GoMail size="50" />
-										: <GoMailRead size="50" />}
+										? <GoMail className='mailIcon' />
+										: <GoMailRead className='mailIcon' />}
 								</div>
 								<div className="text-mail">  {getDay(el.reserved_at)} 후 편지 도착예정 </div>
 

@@ -37,7 +37,6 @@ export default function ReceiveMail() {
   const getReceivedDataPage = async () => {
     axios.get(`${process.env.REACT_APP_SERVER_API}/mail/receive`, { params: { email, page } })
       .then((res) => {
-        console.log(res, '받은편지함')
         setData(res.data.data);
         setCount(res.data.count)
       })
@@ -81,8 +80,8 @@ export default function ReceiveMail() {
                     <div className="sort-readCheck"> {el.isRead === 0 ? "안읽음" : "읽음"} </div>
                     <div className="icon-mail">
                       {el.isRead === 0
-                        ? <GoMail size="50" />
-                        : <GoMailRead size="50" />}
+                        ? <GoMail className='mailIcon' />
+                        : <GoMailRead className='mailIcon' />}
                     </div>
                     <div className="text-mail"> {el.title} </div>
                     <div className="text-mail" >

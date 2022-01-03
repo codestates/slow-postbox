@@ -83,18 +83,14 @@ export default function ReservedSentMail() {
 					? <div className="mailbox-container-empty"> 전달예정 편지가 없습니다.</div>
 					: data.map((el, id) => {
 						return (
-							<div key={id}>
-								<div className="mailbox-container"  >
-									<div className="sort-readCheck">  </div>
-									<div className="icon-mail">
-										{el.isRead === 0
-											? <GoMail size="50" />
-											: <GoMailRead size="50" />}
-									</div>
-									<div className="text-mail" >
-										<div className="text-mail">  {getDay(el.reserved_at)} 후 편지 전달예정 </div>
-									</div>
+							<div className="mailbox-container" key={id} >
+								<div className="sort-readCheck">  </div>
+								<div className="icon-mail">
+									{el.isRead === 0
+										? <GoMail className='mailIcon' />
+										: <GoMailRead className='mailIcon' />}
 								</div>
+								<div className="text-mail">  {getDay(el.reserved_at)} 후 편지 전달예정 </div>
 							</div>
 						)
 					})}
