@@ -46,6 +46,7 @@
   margin-left: auto;
   margin-bottom: auto;
   height: auto;
+  /* width: 100%; */
 }
 .findUserInfo-container .main-section {
   margin-top: 20%;
@@ -71,4 +72,24 @@
 .findUserInfo-container .confirm-email {
   width: 150px;
   height: 40px;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .findUserInfo-container {
+    min-width: 320px;
+    height: 600px;
+    margin: 10px auto 10px auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 10px 20px rgb(187, 187, 187);
+    border-radius: 10px;
+  }
+  .findUserInfo-container .bottom-section {
+    height: 70px;
+    border-top: solid rgb(192, 192, 192) 2px;
+    background-color: #f06e5c;
+    border-radius: 0 0 10px 10px;
+  }
 }

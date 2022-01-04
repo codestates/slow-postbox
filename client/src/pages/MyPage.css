@@ -1,9 +1,10 @@
 .mypage-container {
   max-width: 1024px;
   min-width: 768px;
-  width: 60%;
+  height: 670px;
+  width: 95%;
   margin: 0 auto;
-  margin-top: 70px;
+  margin-top: 50px;
   border: 1px solid rgb(235, 235, 235);
   border-radius: 20px;
   box-shadow: 5px 10px 20px rgb(187, 187, 187);
@@ -16,6 +17,13 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 500px;
+}
+.mypage-container .guestNotice {
+  text-align: center;
+  margin-top: 250px;
+  font-weight: bold;
+  color: gray;
 }
 
 .mypage-container span.tab-divider {
@@ -30,17 +38,15 @@
 .mypage-container .tab-text,
 .mypage-container .tab-divider {
   margin-right: 15px;
+  font-size: 0.95em;
 }
 .mypage-container img.emptyImg {
   width: 100%;
   opacity: 0.4;
 }
 .mypage-container p.no-logs {
-  width: 300px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  width: auto;
+  margin-top: 150px;
   font-size: 1.2em;
   text-align: center;
   color: gray;
@@ -61,7 +67,7 @@
 .mypage-container .form-renewPw {
   width: 50%;
   height: 450px;
-  margin: 0 auto;
+  margin: 40px auto 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,7 +131,7 @@
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  border: 1px solid rgb(235, 235, 235);
+  /* border: 1px solid rgb(235, 235, 235); */
   border-radius: 20px;
 }
 .mypage-container .li-mail {
@@ -139,7 +145,6 @@
   flex: 0.2;
   height: 40px;
   padding-top: 4px;
-  /* border: 1px solid green; */
 }
 .mypage-container .li-title {
   display: inline-block;
@@ -159,14 +164,14 @@
 /*태블릿*/
 @media (min-width: 481px) and (max-width: 768px) {
   .mypage-container {
-    width: 100%;
+    min-width: 100%;
     margin: 0 auto;
+    font-size: 0.8em;
   }
   .mypage-container .li-icon {
-    flex: 0.2;
-    height: 50px;
+    flex: 0.18;
+    height: 40px;
     padding-top: 4px;
-    border: 1px solid green;
   }
   .mypage-container .form-renewPw {
     font-size: 1.3em;
@@ -183,18 +188,22 @@
 /*모바일*/
 @media (min-width: 320px) and (max-width: 480px) {
   .mypage-container {
-    width: 100%;
+    min-width: 100%;
     margin: 0 auto;
   }
-  .mypage-container .li-icon {
-    flex: 0.3;
-    height: 65px;
-    padding-top: 4px;
+  .mypage-container .li-title {
+    font-size: 0.85em;
   }
-  .mypage-container .form-renewPw {
-    font-size: 1.7em;
+  .mypage-container .li-date {
+    font-size: 0.75em;
+  }
+  .mypage-container .li-icon {
+    flex: 0.13;
+    height: 40px;
+    padding-top: 4px;
+    padding-left: 10px;
   }
   .mypage-container button {
-    font-size: 0.8em;
+    font-size: 0.55em;
   }
 }

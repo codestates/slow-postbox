@@ -1,7 +1,7 @@
 .home-container {
   margin: 0 auto;
-  height: 290vh;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .home-container .box-main {
@@ -197,14 +197,17 @@ div.animated-container {
   width: 100%;
   min-width: 768px;
   margin: 0 auto;
-  padding-top: 250px;
+  padding-top: 30%;
+  padding-bottom: 30%;
+  overflow-y: hidden;
+  
 }
 
 .home-container .box-script-1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 400px;
+  margin-bottom: 50%;
 }
 
 .home-container .img-script-1 img {
@@ -250,8 +253,8 @@ div.animated-container {
 @media (min-width: 481px) and (max-width: 768px) {
   .home-container {
     margin: 0 auto;
-    height: 305vh;
     overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   .home-container .box-main {
@@ -447,7 +450,9 @@ div.animated-container {
     width: 100%;
     min-width: 480px;
     margin: 0 auto;
-    padding-top: 250px;
+    padding-top: 30%;
+    padding-bottom: 30%;
+    overflow-y: hidden;
   }
 
   .home-container .box-script-1 {
@@ -455,7 +460,7 @@ div.animated-container {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 200px;
+    margin-bottom: 50%;
     text-align: center;
   }
 
@@ -511,8 +516,8 @@ div.animated-container {
 @media (min-width: 320px) and (max-width: 480px) {
   .home-container {
     margin: 0 auto;
-    height: 280vh;
     overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   .home-container .box-main {
@@ -709,7 +714,9 @@ div.animated-container {
     width: 100%;
     min-width: 320px;
     margin: 0 auto;
-    padding-top: 250px;
+    padding-top: 30%;
+    padding-bottom: 30%;
+    overflow-y: hidden;
   }
 
   .home-container .box-script-1 {
@@ -717,7 +724,7 @@ div.animated-container {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 200px;
+    margin-bottom: 50%;
     text-align: center;
   }
 

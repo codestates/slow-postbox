@@ -1,152 +1,134 @@
-import "./SignUp.css"
-import axios from "axios"
-import React, { useState, useEffect } from "react";
+import './SignUp.css';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-import CompleteSignUp from '../components/SignUp/CompleteSignUp'
-
+import CompleteSignUp from '../components/SignUp/CompleteSignUp';
 
 export default function SignUp() {
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    password: '',
+    passwordconfirm: '',
+    emailId: '',
+    emailDomain: '',
+    verificationCode: '',
+  });
 
-    const [userInfo, setUserInfo] = useState({
-        name: "",
-        password: "",
-        passwordconfirm: "",
-        emailId: "",
-        emailDomain: "",
-        verificationCode: "",
-    })
+  const [name, setName] = useState('');
+  const [emailCode, setEmailCode] = useState('');
+  const [isPossiblePassword, setIsPossiblePassword] = useState(0);
+  const [isConfirmPassword, setIsConfirmPassword] = useState(0);
+  const [isConfirmEmail, setIsConFirmEmail] = useState(0);
+  const [completeSignUp, setCompleteSignUp] = useState(0);
+  const [isSendCode, setIsSendCode] = useState(0);
 
+  const handleChange = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  };
 
-    const [name, setName] = useState("");
-    const [emailCode, setEmailCode] = useState("");
-    const [isPossiblePassword, setIsPossiblePassword] = useState(0);
-    const [isConfirmPassword, setIsConfirmPassword] = useState(0);
-    const [isConfirmEmail, setIsConFirmEmail] = useState(0);
-    const [completeSignUp, setCompleteSignUp] = useState(0)
-    const [isSendCode, setIsSendCode] = useState(0);
+  const handleConfirmEmail = () => {
+    if (emailCode === '') {
+      setIsConFirmEmail(2);
+    } else if (userInfo.verificationCode === emailCode) {
+      setIsConFirmEmail(1);
+    } else {
+      setIsConFirmEmail(-1);
+    }
+  };
 
+  const handleSubmit = async () => {
+    const { name, password, emailId, emailDomain } = userInfo;
+    const oauth = 0;
+    const admin = 0;
+    const email = `${emailId}@${emailDomain}`;
 
+    if (isConfirmEmail === -1 || isConfirmEmail === 0) {
+      return alert('이메일 인증 절차를 진행하세요');
+    }
 
-    const handleChange = (e) => {
-        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-    };
-
-
-
-    const handleConfirmEmail = () => {
-        if (emailCode === "") {
-            setIsConFirmEmail(2)
-        }
-        else if (userInfo.verificationCode === emailCode) {
-            setIsConFirmEmail(1)
-        } else {
-            setIsConFirmEmail(-1)
-        }
-    };
-
-    const handleSubmit = async () => {
-        const {
-            name,
-            password,
-            emailId,
-            emailDomain,
-        } = userInfo;
-        const oauth = 0
-        const admin = 0
-        const email = `${emailId}@${emailDomain}`;
-
-        if (isConfirmEmail === -1 || isConfirmEmail === 0) {
-            return alert("이메일 인증 절차를 진행하세요");
-        }
-
-        if (name && password && emailId && emailDomain && isConfirmPassword === 1) {
-            await axios({
-                url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
-                method: "post",
-                data: {
-                    name,
-                    password,
-                    email,
-                    oauth,
-                    admin
-                },
-            })
-                .then((res) => {
-                    console.log(res);
-                    setCompleteSignUp(1)
-
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        } else {
-            return alert("입력하지 않은 항목이 존재합니다.");
-        }
-        console.log('회원가입완료')
-    };
-
-
-    const handleConfirmPassword = (e) => {
-        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-        if (e.target.value !== userInfo.password) {
-            setIsConfirmPassword(-1);
-        }
-        if (e.target.value === userInfo.password) {
-            setIsConfirmPassword(1);
-        }
-    };
-
-    const verifyPassword = (password) => {
-        let reg = /^[a-zA-Z0-9]{10,15}$/; //숫자와 영문자 조합으로 10~15자리를 사용
-        return reg.test(password);
-    };
-
-
-    const handleEmailVerification = () => {
-        if (userInfo.emailId === "" || userInfo.emailDomain === "") {
-            alert("이메일을 입력해주세요.");
-        }
-        axios({
-            url: `${process.env.REACT_APP_SERVER_API}/user/mailverify`,
-            method: "post",
-            data: { receiver: `${userInfo.emailId}@${userInfo.emailDomain}` },
+    if (name && password && emailId && emailDomain && isConfirmPassword === 1) {
+      await axios({
+        url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
+        method: 'post',
+        data: {
+          name,
+          password,
+          email,
+          oauth,
+          admin,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          setCompleteSignUp(1);
         })
-            .then((res) => {
-                if (res.data.data) {
-                    //res.data.data 가 문자열일때 (이메일 계정으로 회원가입 가능)
-                    setEmailCode(res.data.data);
-                    setIsSendCode(1)
-                } else {
-                    setIsSendCode(-1)
-                }
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return alert('입력하지 않은 항목이 존재합니다.');
+    }
+    console.log('회원가입완료');
+  };
 
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+  const handleConfirmPassword = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    if (e.target.value !== userInfo.password) {
+      setIsConfirmPassword(-1);
+    }
+    if (e.target.value === userInfo.password) {
+      setIsConfirmPassword(1);
+    }
+  };
 
+  const verifyPassword = (password) => {
+    let reg = /^[a-zA-Z0-9]{10,15}$/; //숫자와 영문자 조합으로 10~15자리를 사용
+    return reg.test(password);
+  };
 
-    useEffect(() => {
-        setName(userInfo.name);
-    }, [userInfo.name]);
-
-
-    useEffect(() => {
-        //console.log(userInfo.password);
-        if (!verifyPassword(userInfo.password) && userInfo.password === "") {
-            setIsPossiblePassword(0);
-        } else if (verifyPassword(userInfo.password)) {
-            setIsPossiblePassword(1);
+  const handleEmailVerification = () => {
+    if (userInfo.emailId === '' || userInfo.emailDomain === '') {
+      alert('이메일을 입력해주세요.');
+    }
+    axios({
+      url: `${process.env.REACT_APP_SERVER_API}/user/mailverify`,
+      method: 'post',
+      data: { receiver: `${userInfo.emailId}@${userInfo.emailDomain}` },
+    })
+      .then((res) => {
+        if (res.data.data) {
+          //res.data.data 가 문자열일때 (이메일 계정으로 회원가입 가능)
+          setEmailCode(res.data.data);
+          setIsSendCode(1);
         } else {
-            setIsPossiblePassword(-1);
+          setIsSendCode(-1);
         }
-    }, [userInfo.password]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
+  useEffect(() => {
+    setName(userInfo.name);
+  }, [userInfo.name]);
 
+  useEffect(() => {
+    //console.log(userInfo.password);
+    if (!verifyPassword(userInfo.password) && userInfo.password === '') {
+      setIsPossiblePassword(0);
+    } else if (verifyPassword(userInfo.password)) {
+      setIsPossiblePassword(1);
+    } else {
+      setIsPossiblePassword(-1);
+    }
+  }, [userInfo.password]);
 
-
-    return (
+  return (
+    <>
+      {completeSignUp === 1 ? (
+        <CompleteSignUp />
+      ) : (
         <>
             {completeSignUp === 1
                 ? (
@@ -184,7 +166,7 @@ export default function SignUp() {
                                     <div className='section-auth'>
                                         <div className='title-auth'>인증코드</div>
                                         <input className='input-authcode' name='verificationCode' onChange={handleChange}></input>
-                                        <button className='check-auth' onClick={handleConfirmEmail}>인증코드 확인</button>
+                                        <button className='check-auth' onClick={handleConfirmEmail}>인증코드확인</button>
                                     </div>
                                     <div className='scetion-check-authcode'>
                                         {isConfirmEmail === 1 ? '인증에 성공하였습니다' : ''}
@@ -226,7 +208,7 @@ export default function SignUp() {
                     </>
                 )}
         </>
-
-
-    )
+      )}
+    </>
+  );
 }

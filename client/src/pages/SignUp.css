@@ -21,7 +21,7 @@
 
 .signUp-container .login-title {
   height: 50px;
-  width: 50px;
+  width: 20%;
   margin-right: 5px;
 }
 
@@ -34,7 +34,8 @@
 .signUp-container .signUp-section {
   font-size: 1.25em;
   border-top: solid #f06e5c 2px;
-  padding-left: 20px;
+  /* padding-left: px; */
+  padding-right: 20px;
   line-height: 50px;
   vertical-align: middle;
   text-align: center;
@@ -51,40 +52,43 @@
 
 .signUp-container .section-email {
   margin-top: 70px;
-  margin-right: auto;
+  /* margin-right: auto; */
   font-size: 1em;
-  width: 500px;
+  margin-left: 20px;
+  width: 95%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 .signUp-container .title-email {
-  width: 110px;
+  width: 20%;
+  margin-right: 10px;
 }
 .signUp-container .input-email {
-  height: 30px;
+  /* height: 30%; */
   padding: 5px;
   height: 30px;
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 120px;
+  width: 38%;
 }
 .signUp-container .input-domain {
-  height: 30px;
+  height: 5%;
   padding: 5px;
   height: 30px;
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 120px;
+  width: 40%;
 }
 .signUp-container .section-auth {
   font-size: 1em;
-  margin-right: auto;
+  /* margin-right: auto; */
+  margin-left: 20px;
   margin-top: 20px;
-  width: 500px;
+  width: 95%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -92,7 +96,9 @@
 }
 .signUp-container .title-auth {
   /* margin-right: 15px; */
-  width: 110px;
+  margin-left: -10px;
+  margin-right: 10px;
+  width: 20%;
 }
 .signUp-container .input-authcode {
   height: 30px;
@@ -101,7 +107,7 @@
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 270px;
+  width: 54%;
 }
 
 .signUp-container .send-authcode-button {
@@ -109,7 +115,7 @@
   text-align: center;
   background-color: #e84b35;
   color: white;
-  width: 90px;
+  width: 24%;
   height: 35px;
   border-radius: 10px;
   font-weight: 700;
@@ -118,19 +124,24 @@
   border: none;
   outline: none;
 }
+/* .signUp-container .input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */
 
 .signUp-container .section-name {
   margin-top: 20px;
   margin-right: auto;
   font-size: 1em;
-  width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 .signUp-container .title-name {
-  width: 110px;
-  margin-right: 8px;
+  width: 21%;
+  margin-right: 20px;
 }
 
 .signUp-container .input {
@@ -140,7 +151,7 @@
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 275px;
+  width: 54%;
 }
 
 .signUp-container .check-auth {
@@ -148,7 +159,7 @@
   text-align: center;
   background-color: #e84b35;
   color: white;
-  width: 90px;
+  width: 21%;
   height: 35px;
   border-radius: 10px;
   font-weight: 700;
@@ -167,7 +178,7 @@
   font-size: 13pt;
   font-weight: 600;
   background-color: #e84b35;
-  width: 200px;
+  width: 35%;
   height: 50px;
   border: none;
   outline: none;
@@ -182,13 +193,13 @@
   margin-top: 20px;
   margin-right: auto;
   font-size: 1em;
-  width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 .signUp-container .title-password {
-  width: 110px;
+  width: 23%;
   margin-right: 10px;
 }
 
@@ -199,21 +210,17 @@
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 275px;
+  width: 100%;
 }
 
 .signUp-container .section-password {
   margin-top: 30px;
   margin-right: auto;
   font-size: 1em;
-  width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-.signUp-container .title-password {
-  width: 110px;
-  margin-right: 8px;
 }
 
 .signUp-container .input-password {
@@ -223,7 +230,7 @@
   background-color: #fff;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  width: 275px;
+  width: 100%;
 }
 
 .signUp-container .section-possible {
@@ -257,4 +264,42 @@
   height: 10px;
   margin-top: -10px;
   margin-bottom: 30px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .signUp-container {
+    min-width: 400px;
+    max-width: 70%;
+    height: 100%;
+    margin: 150px auto 150px auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f06e5c;
+    border-radius: 10px;
+  }
+  .signUp-container .title-password,
+  .title-email,
+  .title-name,
+  .title-auth {
+    font-size: 0.7em;
+  }
+  .signUp-container .send-authcode-button {
+    width: 60px;
+    font-size: 0.3em;
+  }
+  .signUp-container .check-auth {
+    font-size: 0.3em;
+    width: 55px;
+  }
+  .signUp-container .input-container {
+    font-size: 0.7em;
+    margin-left: -28px;
+  }
+  .signUp-container .input-email {
+    margin-left: 20px;
+    width: 36%;
+  }
+  .signUp-container .input-domain {
+    width: 75px;
+  }
 }
