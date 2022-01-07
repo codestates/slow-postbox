@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 const { getDateStr } = require('../../client/src/funcs/dateFuncs');
+const jwt = require('jsonwebtoken');
+
 module.exports = {
   arrivalAlert: async (name, receiverEmail, created_at) => {
     const sentDate = getDateStr(created_at);
@@ -154,11 +156,49 @@ module.exports = {
   table{display:table !important;width:100% !important}.email-flexible-footer .footer__share-button,.email-flexible-footer .email-footer__additional-info{margin-left:20px;margin-right:20px}}
   </style>`,
       });
-      // return res.status(201).json({ message: '메시지가 전송되었습니다' });
-      return;
+      return res.status(201).end();
     } catch (err) {
-      console.log(err);
-      // return res.status(500).json({ message: '서버 에러' });
+      throw err;
     }
+  },
+  getAccessToken: async (req, res) => {
+    const { accessToken } = req.cookies;
+    if (!accessToken) {
+      return res.status(400).json({
+        data: null,
+        path: '/users/auth',
+        message: 'no accessToken',
+      });
+    } else {
+      const verified = jwt.verify(
+        accessToken,
+        process.env.ACCESS_SECRET,
+        (err, decoded) => {
+          if (err) return null;
+          return decoded;
+        }
+      );
+      if (!verified) {
+        return res.status(401).json({
+          data: null,
+          path: '/users/auth',
+          message: 'invalid accessToken',
+        });
+      }
+      return verified;
+    }
+  },
+  createAccessToken: async (req, res, payload) => {
+    const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET, {
+      expiresIn: '1d',
+    });
+    res
+      .cookie('accessToken', accessToken, {
+        maxAge: 24 * 6 * 60 * 10000,
+      })
+      .status(200)
+      .json({
+        data: { accessToken: accessToken, payload },
+      });
   },
 };

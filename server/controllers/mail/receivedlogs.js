@@ -1,8 +1,10 @@
 const db = require('../../db');
-
+const { getAccessToken } = require('../../funcs/index');
 module.exports = async (req, res) => {
   try {
-    const receiverEmail = req.query.receiverEmail;
+    const verified = await getAccessToken(req, res);
+
+    const receiverEmail = verified.email;
     const sql =
       'SELECT id, title, reserved_at FROM mails WHERE receiverEmail = ? ORDER BY reserved_at DESC';
     const params = [receiverEmail];

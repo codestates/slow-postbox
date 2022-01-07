@@ -40,7 +40,7 @@ function MailForm() {
 
   const isAuthenticated = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
         withCredentials: true,
       })
       .catch((err) => {
@@ -58,7 +58,7 @@ function MailForm() {
   };
   const sendMail = () => {
     axios
-      .post(`${process.env.REACT_APP_SERVER_API}/mail/create`, {
+      .post(`${process.env.REACT_APP_SERVER_API}/mails`, {
         writerEmail: email,
         receiverEmail: formInfo.receiver,
         title: formInfo.title,
@@ -68,7 +68,7 @@ function MailForm() {
       .then((res) => {
         console.log('worked');
         axios
-          .post(`${process.env.REACT_APP_SERVER_API}/user/alertmail`, {
+          .post(`${process.env.REACT_APP_SERVER_API}/users/reservationNotice`, {
             name,
             receiverEmail: formInfo.receiver,
             reserved_at: formInfo.reservedDate,

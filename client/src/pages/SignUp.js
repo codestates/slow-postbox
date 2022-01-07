@@ -48,7 +48,7 @@ export default function SignUp() {
 
     if (name && password && emailId && emailDomain && isConfirmPassword === 1) {
       await axios({
-        url: `${process.env.REACT_APP_SERVER_API}/user/signup`,
+        url: `${process.env.REACT_APP_SERVER_API}/users/signup`,
         method: 'post',
         data: {
           name,
@@ -89,7 +89,7 @@ export default function SignUp() {
       alert('이메일을 입력해주세요.');
     }
     axios({
-      url: `${process.env.REACT_APP_SERVER_API}/user/mailverify`,
+      url: `${process.env.REACT_APP_SERVER_API}/users/emailVerification`,
       method: 'post',
       data: { receiver: `${userInfo.emailId}@${userInfo.emailDomain}` },
     })

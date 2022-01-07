@@ -3,13 +3,13 @@ const {
   kakaologin,
   login,
   logout,
-  mailverify,
+  emailVerification,
   info,
   signup,
-  withdraw,
-  alertmail,
+  withdrawal,
+  reservationNotice,
   finduserinfo,
-  kakaowithdraw,
+  kakaoWithdrawal,
   guest,
 } = require('../controllers/user');
 const express = require('express');
@@ -19,12 +19,12 @@ router.get('/auth', auth);
 router.post('/kakaologin', kakaologin);
 router.post('/login', login);
 router.post('/logout', logout);
-router.post('/mailverify', mailverify);
+router.post('/emailVerification', emailVerification);
 router.post('/finduserinfo', finduserinfo);
 router.patch('/info', info);
 router.post('/signup', signup);
-router.delete('/withdraw', withdraw);
-router.post('/alertmail', alertmail);
-router.delete('/kakaowithdraw', kakaowithdraw);
+router.delete('/withdrawal', withdrawal);
+router.post('/reservationNotice', reservationNotice);
+router.delete('/kakaoWithdrawal', kakaoWithdrawal);
 router.post('/guest', guest);
 module.exports = router;
