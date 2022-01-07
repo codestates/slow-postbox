@@ -1,6 +1,5 @@
 module.exports = {
   auth: require('./auth'),
-  duplication: require('./duplication'),
   kakaologin: require('./kakaologin'),
   login: require('./login'),
   logout: require('./logout'),
@@ -11,5 +10,5 @@ module.exports = {
   withdraw: require('./withdraw'),
   alertmail: require('./alertmail'),
   kakaowithdraw: require('./kakaowithdraw'),
-  guest : require('./guest')
+  guest: require('./guest'),
 };

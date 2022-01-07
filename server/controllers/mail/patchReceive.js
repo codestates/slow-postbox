@@ -1,4 +1,3 @@
-const e = require('express');
 const db = require('../../db');
 
 module.exports = async (req, res) => {
@@ -16,6 +15,20 @@ module.exports = async (req, res) => {
       return res.status(200).send();
     }
   } catch (err) {
-    throw err;
+    if (err instanceof ReferenceError) {
+      return res.status(400).json({
+        err: err.name,
+        message: err.message,
+      });
+    } else {
+      if (err instanceof ReferenceError) {
+        return res.status(400).json({
+          err: err.name,
+          message: err.message,
+        });
+      } else {
+        throw err;
+      }
+    }
   }
 };

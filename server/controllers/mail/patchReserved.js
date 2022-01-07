@@ -1,11 +1,11 @@
-const db = require("../../db");
+const db = require('../../db');
 
 module.exports = async (req, res) => {
   try {
-    const email = req.body.email
+    const email = req.body.email;
 
     const sql1 = `update mails set isChecked = 1 
-                  where receiverEmail = "${email}" and date(reserved_at) > date_format(now(), '%Y%m%d');`
+                  where receiverEmail = "${email}" and date(reserved_at) > date_format(now(), '%Y%m%d');`;
 
     const [rows1, fields1, err1] = await db.query(sql1);
 
@@ -16,9 +16,14 @@ module.exports = async (req, res) => {
     if (rows1) {
       return res.status(200).send();
     }
-
-  }
-  catch (err) {
-    throw err
+  } catch (err) {
+    if (err instanceof ReferenceError) {
+      return res.status(400).json({
+        err: err.name,
+        message: err.message,
+      });
+    } else {
+      throw err;
+    }
   }
 };

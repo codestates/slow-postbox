@@ -9,13 +9,13 @@ module.exports = async (req, res) => {
     // if (row1.length === 0) {
     //   return res.json({ message: 'not authorized' });
     // } else {
-    const sql2 = 'DELETE FROM users WHERE email = ?';
-    const params2 = [email];
-    await db.query(sql2, params2);
+    const sql = 'DELETE FROM users WHERE email = ?';
+    const params = [email];
+    await db.query(sql, params);
 
-    res.status(204);
+    res.status(204).end();
     //}
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };

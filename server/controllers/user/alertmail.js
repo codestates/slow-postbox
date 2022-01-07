@@ -158,8 +158,8 @@ module.exports = async (req, res) => {
 table{display:table !important;width:100% !important}.email-flexible-footer .footer__share-button,.email-flexible-footer .email-footer__additional-info{margin-left:20px;margin-right:20px}}
 </style>`,
     });
-    return res.status(201).json({ message: '메시지가 전송되었습니다' });
+    return res.status(201).end();
   } catch (err) {
-    return res.status(500).json({ message: '서버 에러' });
+    throw err;
   }
 };

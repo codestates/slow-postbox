@@ -1,6 +1,5 @@
 const {
   auth,
-  duplication,
   kakaologin,
   login,
   logout,
@@ -17,7 +16,6 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/auth', auth);
-router.get('/duplication', duplication);
 router.post('/kakaologin', kakaologin);
 router.post('/login', login);
 router.post('/logout', logout);

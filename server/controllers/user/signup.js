@@ -15,11 +15,10 @@ module.exports = async (req, res) => {
     const [result, fields, err] = await db.query(sql, params);
     if (err) throw err;
     else {
-      return res
-        .status(200)
-        .json({ data: result, message: '회원가입이 완료되었습니다' });
+      console.log(result);
+      return res.status(201).end();
     }
   } catch (err) {
-    return res.status(404).json({ data: null, message: '서버 에러' });
+    throw err;
   }
 };
