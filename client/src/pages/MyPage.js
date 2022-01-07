@@ -90,7 +90,7 @@ function MyPage() {
         }
       );
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/mail/receivedlogs?receiverEmail=${authCheck.data.data.email}`
+        `${process.env.REACT_APP_SERVER_API}/mails/receivedlogs?receiverEmail=${authCheck.data.data.email}`
       );
       setReceived(res.data.data);
       setLoading(false);
@@ -108,7 +108,7 @@ function MyPage() {
         }
       );
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/mail/sentlogs?writerEmail=${authCheck.data.data.email}`
+        `${process.env.REACT_APP_SERVER_API}/mails/sentlogs?writerEmail=${authCheck.data.data.email}`
       );
       setSent(res.data.data);
       setLoading(false);

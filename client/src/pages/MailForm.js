@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 
 function MailForm() {
 
-  const [ modalLogin, setModalLogin ] = useState(false);
+  const [modalLogin, setModalLogin] = useState(false);
   const { email, name } = useSelector((state) => state.loginReducer);
   //Editor에서 수정한 내용 업데이트
   const [formInfo, setFormInfo] = useState({
@@ -40,18 +40,18 @@ function MailForm() {
   };
 
   const isAuthenticated = () => {
-		axios
-		  .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
-			withCredentials: true,
-		  })
-		  .catch((err) => {
-			setModalLogin(true)
-		  });
-	  };
+    axios
+      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+        withCredentials: true,
+      })
+      .catch((err) => {
+        setModalLogin(true)
+      });
+  };
 
-    useEffect(()=>{
-      isAuthenticated();
-    },[])
+  useEffect(() => {
+    isAuthenticated();
+  }, [])
 
   //미리보기, 전송버튼 이벤트 핸들러
   const tempSave = () => {
@@ -59,7 +59,7 @@ function MailForm() {
   };
   const sendMail = () => {
     axios
-      .post(`${process.env.REACT_APP_SERVER_API}/mail/create`, {
+      .post(`${process.env.REACT_APP_SERVER_API}/mails/create`, {
         writerEmail: email,
         receiverEmail: formInfo.receiver,
         title: formInfo.title,
@@ -117,7 +117,7 @@ function MailForm() {
             formInfo={formInfo}
           />
         )}
-        {modalLogin && <ModalLogin/>}
+        {modalLogin && <ModalLogin />}
       </div>
     </>
   );

@@ -88,7 +88,7 @@ app.post('/uploads', MultipartyMiddleware, (req, res) => {
 
 app.use('/home', homeRouter);
 app.use('/admin', adminRouter);
-app.use('/mail', mailRouter);
+app.use('/mails', mailRouter);
 app.use('/user', userRouter);
 
 const PORT = 4000;
