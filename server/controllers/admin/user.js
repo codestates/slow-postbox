@@ -1,33 +1,9 @@
 const db = require('../../db');
-const jwt = require('jsonwebtoken');
+const { getAccessToken } = require('../../funcs/index');
 
 module.exports = async (req, res) => {
   try {
-    const accessToken = req.cookies.accessToken;
-    if (!accessToken) {
-      return res.status(400).json({
-        data: null,
-        path: 'admin/user',
-        message: 'no accessToken',
-      });
-    }
-
-    const verified = jwt.verify(
-      accessToken,
-      process.env.ACCESS_SECRET,
-      (err, decoded) => {
-        if (err) return null;
-        return decoded;
-      }
-    );
-
-    if (!verified) {
-      return res.status(401).json({
-        data: null,
-        path: '/admin/user',
-        message: 'invalid accessToken',
-      });
-    }
+    const verified = await getAccessToken(req, res);
 
     const sql1 = 'SELECT * FROM users WHERE id=?';
     const params1 = [verified.id];
@@ -59,6 +35,13 @@ module.exports = async (req, res) => {
       });
     }
   } catch (err) {
-    throw err;
+    if (err instanceof ReferenceError) {
+      return res.status(400).json({
+        err: err.name,
+        message: err.message,
+      });
+    } else {
+      throw err;
+    }
   }
 };

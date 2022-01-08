@@ -4,15 +4,18 @@ module.exports = async (req, res) => {
   try {
     const sql =
       'SELECT COUNT(id) AS count FROM mails WHERE reserved_at>DATE(NOW());';
-    const [rows, fields, err] = await db.query(sql);
-    if (err) {
-      res.status(404).send();
-    } else {
+    const [rows] = await db.query(sql);
       res.status(200).json({
         num: rows[0]['count'],
-      });
-    }
+    })
   } catch (err) {
-    throw err;
+    if (err instanceof ReferenceError) {
+      return res.status(400).json({
+        err: err.name,
+        message: err.message,
+      });
+    } else {
+      throw err;
+    }
   }
 };

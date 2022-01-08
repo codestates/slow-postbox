@@ -41,7 +41,7 @@ export default function AdminUser() {
   const getUserData = async () => {
     await setIsLoding(true);
     await axios.get(
-      `${process.env.REACT_APP_SERVER_API}/admin/user-list`,
+      `${process.env.REACT_APP_SERVER_API}/admin/userList`,
       { params: { page, name, email } }
     )
     .then((res)=>{
@@ -53,7 +53,7 @@ export default function AdminUser() {
 
   const getUserDataPage = async () => {
     axios.get(
-      `${process.env.REACT_APP_SERVER_API}/admin/user-list`,
+      `${process.env.REACT_APP_SERVER_API}/admin/userList`,
       { params: { page, name, email } }
     )
     .then((res)=>{
@@ -66,7 +66,7 @@ export default function AdminUser() {
     await setIsLoding(true);
     await setPage(1);
     const res = await axios.get(
-      `${process.env.REACT_APP_SERVER_API}/admin/user-list`,
+      `${process.env.REACT_APP_SERVER_API}/admin/userList`,
       { params: { page, name, email } }
     );
     await setData(res.data.data);

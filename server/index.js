@@ -86,7 +86,7 @@ app.post('/uploads', MultipartyMiddleware, (req, res) => {
   }
 });
 
-app.use('/home', homeRouter);
+app.use('/', homeRouter);
 app.use('/admin', adminRouter);
 app.use('/mails', mailRouter);
 app.use('/users', userRouter);

@@ -51,7 +51,7 @@ function App() {
       })
       .then((res) => {
         axios
-          .get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, {
+          .get(`${process.env.REACT_APP_SERVER_API}/checked-mail`, {
             params: { email: res.data.data.email },
           })
           .then((res) => {
