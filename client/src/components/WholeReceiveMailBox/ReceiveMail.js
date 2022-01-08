@@ -21,7 +21,7 @@ export default function ReceiveMail() {
   const getReceivedData = async () => {
     await setIsLoading(true)
     const authCheck = await axios.get(
-      `${process.env.REACT_APP_SERVER_API}/user/auth`,
+      `${process.env.REACT_APP_SERVER_API}/users/auth`,
       {
         withCredentials: true,
       }

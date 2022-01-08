@@ -48,7 +48,7 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 
 	const isAuthenticated = () => {
 		axios
-			.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+			.get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
 				withCredentials: true,
 			})
 			.catch((err) => {
@@ -63,7 +63,7 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 
 	const checkGuest = async () => {
 		const userData = await axios.get(
-			`${process.env.REACT_APP_SERVER_API}/user/auth`,
+			`${process.env.REACT_APP_SERVER_API}/users/auth`,
 			{
 				withCredentials: true,
 			})
