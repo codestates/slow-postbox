@@ -47,7 +47,7 @@ function MailViewModal({ SubModalOnOff, maildata, setModalmail, getReceivedDataP
   const { id, receiverEmail } = maildata
 
   const mailremove = async () => {
-    await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/receive`, {
+    await axios.patch(`${process.env.REACT_APP_SERVER_API}/mails`, {
       id, receiverEmail
     })
       .then((res) => {

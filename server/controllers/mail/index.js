@@ -1,18 +1,17 @@
 module.exports = {
-  getReceive: require('./getReceive'),
-  getReserved: require('./getReserved'),
-  getSent: require('./getSent'),
+  received: require('./received'),
+  receivedReservation: require('./receivedReservation'),
+  sent: require('./sent'),
   getReservedSent: require('./getReservedSent'),
-  patchReceive: require('./patchReceive'),
-  patchReserved: require('./patchReserved'),
-  patchSent: require('./patchSent'),
-  viewReceive: require('./viewReceive'),
+  reservedCheck: require('./reservedCheck'),
+  viewReceived: require('./viewReceived'),
   viewSent: require('./viewSent'),
   receivedlogs: require('./receivedlogs'),
   sentlogs: require('./sentlogs'),
   getPaginatedMails: require('./getPaginatedMails'),
-  check: require('./check'),
+  notiCount: require('./notiCount'),
   checkedReceived: require('./checkedReceived'),
+  email: require('./email'),
   create: async (req, res) => {
     try {
       const { writerEmail, receiverEmail, content, reserved_at } = req.body;

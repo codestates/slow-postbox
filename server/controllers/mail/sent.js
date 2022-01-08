@@ -14,15 +14,13 @@ module.exports = async (req, res) => {
     LIMIT ?,5;`;
     const params = [(Number(page) - 1) * 5];
 
-    const [rows1] = await db.query(sql1, params);
+    const sql2 = `select COUNT(id) AS count from mails where writerEmail = "${email}" and date(reserved_at) <= date_format(now(), '%Y%m%d');`
 
-    const sql2 = `select COUNT(id) AS count from mails where writerEmail = "${email}" and date(reserved_at) <= date_format(now(), '%Y%m%d');`;
+    const [rows1] = await db.query(sql1, params);
     const [rows2] = await db.query(sql2);
 
-    return res.status(200).json({
-      data: rows1,
-      count: rows2[0]['count'],
-    });
+    return res.status(200).json({ data: rows1, count: rows2[0]['count'] });
+
   } catch (err) {
     if (err instanceof ReferenceError) {
       return res.status(400).json({
@@ -34,13 +32,3 @@ module.exports = async (req, res) => {
     }
   }
 };
-
-// const sql4 = `select users.name from users where email = ${el.receiverEmail};`
-// const [rows2, fields2, err2] = db.query(sql4);
-// if (err2) {
-//   return res.status(401).send();
-// }
-// console.log(rows2)
-// if (rows2) {
-//   const removeMailUser = rows2[0]
-// }

@@ -28,7 +28,7 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 
 
 	const handleCheckReserved = async () => {
-		await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/reserved`,
+		await axios.patch(`${process.env.REACT_APP_SERVER_API}/mails/reserved/notiCheck`,
 			{ email })
 			.then((res) => {
 				getReservedChecked();
@@ -40,7 +40,7 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 	}
 
 	const getReservedChecked = async () => {
-		axios.get(`${process.env.REACT_APP_SERVER_API}/mail/check`, { params: { email } })
+		axios.get(`${process.env.REACT_APP_SERVER_API}/mails/notiCount`, { params: { email } })
 			.then((res) => {
 				setIsChecked(res.data.count)
 			})

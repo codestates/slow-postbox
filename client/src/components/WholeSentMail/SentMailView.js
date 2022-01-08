@@ -50,7 +50,7 @@ function SentMailViewModal({ SubModalOnOff, getSentDataPage, setModalmail, maild
 
   const { id, writerEmail } = maildata
   const mailremove = async () => {
-    await axios.patch(`${process.env.REACT_APP_SERVER_API}/mail/sent`, {
+    await axios.patch(`${process.env.REACT_APP_SERVER_API}/mails`, {
       id, writerEmail
     })
       .then((res) => {

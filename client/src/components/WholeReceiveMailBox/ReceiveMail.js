@@ -26,7 +26,7 @@ export default function ReceiveMail() {
         withCredentials: true,
       }
     )
-    await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/receive`, { params: { email: authCheck.data.data.email, page } })
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/mails/received`, { params: { email: authCheck.data.data.email, page } })
       .then((res) => {
         setData(res.data.data);
         setCount(res.data.count)
@@ -35,7 +35,7 @@ export default function ReceiveMail() {
   }
 
   const getReceivedDataPage = async () => {
-    axios.get(`${process.env.REACT_APP_SERVER_API}/mail/receive`, { params: { email, page } })
+    axios.get(`${process.env.REACT_APP_SERVER_API}/mails/receive`, { params: { email, page } })
       .then((res) => {
         setData(res.data.data);
         setCount(res.data.count)
@@ -51,7 +51,7 @@ export default function ReceiveMail() {
   }, [page])
 
   const getMailcontent = async (el) => {
-    await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/receive/${el}`)
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/mails/viewReceived/${el}`)
       .then((res) => {
         setMailData(res.data.data)
         setModalmail(true)
@@ -64,7 +64,7 @@ export default function ReceiveMail() {
 
 
   return (
-    <div className="mailradius">
+    <div>
       <div className='box-received-mail'>
         {modalmail
           ? <MailView maildata={maildata} setModalmail={setModalmail} getReceivedDataPage={getReceivedDataPage} />

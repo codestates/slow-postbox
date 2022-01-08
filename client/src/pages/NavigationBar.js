@@ -11,18 +11,10 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
     (state) => state.loginReducer
   );
   const handleCheckReceived = () => {
-    axios
-      .patch(`${process.env.REACT_APP_SERVER_API}/mails/checked-received`, {
-        email,
-      })
+    axios.patch(`${process.env.REACT_APP_SERVER_API}/mails/checked-received`, { email })
       .then((res) => {
-        axios
-          .get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, {
-            params: { email },
-          })
-          .then((res) => {
-            setIsChecked(res.data.isChecked);
-          });
+        axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email } })
+          .then((res) => { setIsChecked(res.data.isChecked) })
       });
   };
 
