@@ -23,7 +23,7 @@ export default function SentMail() {
 	const getSentData = async () => {
 		await setIsLoding(true)
 		const authCheck = await axios.get(
-			`${process.env.REACT_APP_SERVER_API}/user/auth`,
+			`${process.env.REACT_APP_SERVER_API}/users/auth`,
 			{
 				withCredentials: true,
 			}
