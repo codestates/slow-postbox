@@ -6,23 +6,40 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
 
-
 export default function NavigationBar({ isChecked, setIsChecked }) {
-  const { email, isLogin, isAdmin } = useSelector((state) => state.loginReducer);
+  const { email, isLogin, isAdmin } = useSelector(
+    (state) => state.loginReducer
+  );
   const handleCheckReceived = () => {
+<<<<<<< HEAD
     axios.patch(`${process.env.REACT_APP_SERVER_API}/mails/checked-received`, { email })
       .then((res) => {
         axios.get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, { params: { email } })
           .then((res) => { setIsChecked(res.data.isChecked) })
+=======
+    axios
+      .patch(`${process.env.REACT_APP_SERVER_API}/mails/checked-received`, {
+        email,
+>>>>>>> af085e89c695ac008428fb4d80ed871d91c8d3aa
       })
-  }
+      .then((res) => {
+        axios
+          .get(`${process.env.REACT_APP_SERVER_API}/home/checked-mail`, {
+            params: { email },
+          })
+          .then((res) => {
+            setIsChecked(res.data.isChecked);
+          });
+      });
+  };
 
   const handleLogout = async () => {
-    axios.post(`${process.env.REACT_APP_SERVER_API}/user/logout`, "", { withCredentials: true })
-      .then(window.location.replace("/"))
-  }
-
-
+    axios
+      .post(`${process.env.REACT_APP_SERVER_API}/users/logout`, '', {
+        withCredentials: true,
+      })
+      .then(window.location.replace('/'));
+  };
 
   return (
     <>
@@ -47,16 +64,12 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
           <Link
             to='/mailbox'
             style={{ color: 'inherit', textDecoration: 'inherit' }}
-            className={
-              isLogin ? 'mailBox' : 'mailBox hidden'
-            }
+            className={isLogin ? 'mailBox' : 'mailBox hidden'}
             onClick={handleCheckReceived}
           >
-            <div className={
-              isChecked
-                ? 'mailBox noti-on'
-                : ''
-            }>받은 편지함</div>
+            <div className={isChecked ? 'mailBox noti-on' : ''}>
+              받은 편지함
+            </div>
           </Link>
           <Link
             to='/sent-mailbox'
@@ -81,7 +94,7 @@ export default function NavigationBar({ isChecked, setIsChecked }) {
               >
                 <div>마이페이지</div>
               </Link>
-              <div >
+              <div>
                 <span onClick={handleLogout}>로그아웃</span>
               </div>
             </>

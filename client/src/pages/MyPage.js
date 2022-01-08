@@ -40,7 +40,7 @@ function MyPage() {
       isMatching === '비밀번호가 일치합니다'
     ) {
       axios
-        .patch(`${process.env.REACT_APP_SERVER_API}/user/info`, {
+        .patch(`${process.env.REACT_APP_SERVER_API}/users/info`, {
           email,
           password: passwords.newPassword,
         })
@@ -71,7 +71,7 @@ function MyPage() {
 
   const isAuthenticated = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
         withCredentials: true,
       })
       .catch((err) => {
@@ -84,13 +84,20 @@ function MyPage() {
     const fetchReceived = async () => {
       setLoading(true);
       const authCheck = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/user/auth`,
+        `${process.env.REACT_APP_SERVER_API}/users/auth`,
         {
           withCredentials: true,
         }
       );
       const res = await axios.get(
+<<<<<<< HEAD
         `${process.env.REACT_APP_SERVER_API}/mails/receivedlogs?receiverEmail=${authCheck.data.data.email}`
+=======
+        `${process.env.REACT_APP_SERVER_API}/mails/receivedlogs`,
+        {
+          withCredentials: true,
+        }
+>>>>>>> af085e89c695ac008428fb4d80ed871d91c8d3aa
       );
       setReceived(res.data.data);
       setLoading(false);
@@ -102,13 +109,20 @@ function MyPage() {
     const fetchSent = async () => {
       setLoading(true);
       const authCheck = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/user/auth`,
+        `${process.env.REACT_APP_SERVER_API}/users/auth`,
         {
           withCredentials: true,
         }
       );
       const res = await axios.get(
+<<<<<<< HEAD
         `${process.env.REACT_APP_SERVER_API}/mails/sentlogs?writerEmail=${authCheck.data.data.email}`
+=======
+        `${process.env.REACT_APP_SERVER_API}/mails/sentlogs`,
+        {
+          withCredentials: true,
+        }
+>>>>>>> af085e89c695ac008428fb4d80ed871d91c8d3aa
       );
       setSent(res.data.data);
       setLoading(false);
@@ -156,7 +170,7 @@ function MyPage() {
   }, [confirmedPassword, passwords.matchingPassword]);
   const checkGuest = async () => {
     const userData = await axios.get(
-      `${process.env.REACT_APP_SERVER_API}/user/auth`,
+      `${process.env.REACT_APP_SERVER_API}/users/auth`,
       {
         withCredentials: true,
       }

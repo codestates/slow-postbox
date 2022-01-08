@@ -18,7 +18,7 @@ function Withdrawal() {
     }
     if (!oauth && window.confirm('정말 탈퇴하시겠습니까?')) {
       axios
-        .delete(`${process.env.REACT_APP_SERVER_API}/user/withdraw`, {
+        .delete(`${process.env.REACT_APP_SERVER_API}/users/withdrawal`, {
           data: {
             email,
             password,
@@ -39,7 +39,7 @@ function Withdrawal() {
         });
     } else if (oauth && window.confirm('정말 탈퇴하시겠습니까?')) {
       axios
-        .delete(`${process.env.REACT_APP_SERVER_API}/user/kakaowithdraw`, {
+        .delete(`${process.env.REACT_APP_SERVER_API}/users/kakaoWithdrawal`, {
           data: {
             email: password,
           },

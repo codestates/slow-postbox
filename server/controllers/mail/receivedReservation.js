@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     Where A.receiverEmail = ? and date(reserved_at) > date_format(now(), '%Y%m%d')  
     GROUP BY A.id, users.name
     ORDER BY A.reserved_at
-    LIMIT ?,5;`
+    LIMIT ?,5;`;
     const params = [email, (Number(page) - 1) * 5];
 
     const [rows1] = await db.query(sql1, params);
