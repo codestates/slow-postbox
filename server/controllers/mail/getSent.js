@@ -14,21 +14,24 @@ module.exports = async (req, res) => {
     LIMIT ?,5;`;
     const params = [(Number(page) - 1) * 5];
 
-    const [rows1, fields1, err1] = await db.query(sql1, params);
-    if (err1) {
-      return res.status(401).send();
-    }
-    const sql2 = `select COUNT(id) AS count from mails where writerEmail = "${email}" and date(reserved_at) <= date_format(now(), '%Y%m%d');`
-    const [rows2, fields2, err2] = await db.query(sql2);
-    if (err2) {
-      return res.status(401).send();
-    }
+    const [rows1] = await db.query(sql1, params);
+
+    const sql2 = `select COUNT(id) AS count from mails where writerEmail = "${email}" and date(reserved_at) <= date_format(now(), '%Y%m%d');`;
+    const [rows2] = await db.query(sql2);
+
     return res.status(200).json({
       data: rows1,
-      count: rows2[0]['count']
+      count: rows2[0]['count'],
     });
   } catch (err) {
-    throw err;
+    if (err instanceof ReferenceError) {
+      return res.status(400).json({
+        err: err.name,
+        message: err.message,
+      });
+    } else {
+      throw err;
+    }
   }
 };
 
