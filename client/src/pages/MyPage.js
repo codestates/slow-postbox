@@ -90,14 +90,10 @@ function MyPage() {
         }
       );
       const res = await axios.get(
-<<<<<<< HEAD
-        `${process.env.REACT_APP_SERVER_API}/mails/receivedlogs?receiverEmail=${authCheck.data.data.email}`
-=======
         `${process.env.REACT_APP_SERVER_API}/mails/receivedlogs`,
         {
           withCredentials: true,
         }
->>>>>>> af085e89c695ac008428fb4d80ed871d91c8d3aa
       );
       setReceived(res.data.data);
       setLoading(false);
@@ -115,14 +111,10 @@ function MyPage() {
         }
       );
       const res = await axios.get(
-<<<<<<< HEAD
-        `${process.env.REACT_APP_SERVER_API}/mails/sentlogs?writerEmail=${authCheck.data.data.email}`
-=======
         `${process.env.REACT_APP_SERVER_API}/mails/sentlogs`,
         {
           withCredentials: true,
         }
->>>>>>> af085e89c695ac008428fb4d80ed871d91c8d3aa
       );
       setSent(res.data.data);
       setLoading(false);
