@@ -1,3 +1,5 @@
+const db = require('../../db');
+
 module.exports = {
   received: require('./received'),
   receivedReservation: require('./receivedReservation'),
