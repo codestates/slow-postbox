@@ -17,7 +17,7 @@ export default function Home() {
 
   const getMailNum = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/home/total-mails`)
+      .get(`${process.env.REACT_APP_SERVER_API}`)
       .then((res) => {
         setNum(res.data.num);
       });

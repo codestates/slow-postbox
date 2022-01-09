@@ -23,13 +23,13 @@ export default function SentMail() {
 	const getSentData = async () => {
 		await setIsLoding(true)
 		const authCheck = await axios.get(
-			`${process.env.REACT_APP_SERVER_API}/user/auth`,
+			`${process.env.REACT_APP_SERVER_API}/users/auth`,
 			{
 				withCredentials: true,
 			}
 		);
 
-		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/sent`, {
+		await axios.get(`${process.env.REACT_APP_SERVER_API}/mails/sent`, {
 			params: { email: authCheck.data.data.email, page }
 		})
 			.then((res) => {
@@ -45,7 +45,7 @@ export default function SentMail() {
 	}
 
 	const getSentDataPage = async () => {
-		axios.get(`${process.env.REACT_APP_SERVER_API}/mail/sent`, {
+		axios.get(`${process.env.REACT_APP_SERVER_API}/mails/sent`, {
 			params: { email, page }
 		})
 			.then((res) => {
@@ -68,7 +68,7 @@ export default function SentMail() {
 
 
 	const getMailcontent = async (el) => {
-		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/sent/${el}`)
+		await axios.get(`${process.env.REACT_APP_SERVER_API}/mails/viewSent/${el}`)
 			.then((res) => {
 				setMailData(res.data.data)
 				setModalmail(true)

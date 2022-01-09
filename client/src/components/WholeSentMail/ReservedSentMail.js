@@ -39,7 +39,7 @@ export default function ReservedSentMail() {
 
 	const getReservedSent = async () => {
 		await setIsLoading(true)
-		await axios.get(`${process.env.REACT_APP_SERVER_API}/mail/reservedsent`, {
+		await axios.get(`${process.env.REACT_APP_SERVER_API}/mails/reservedsent`, {
 			params: { email, page }
 		})
 			.then((res) => {
@@ -53,7 +53,7 @@ export default function ReservedSentMail() {
 	}
 
 	const getReservedSentPage = async () => {
-		axios.get(`${process.env.REACT_APP_SERVER_API}/mail/reservedsent`, {
+		axios.get(`${process.env.REACT_APP_SERVER_API}/mails/reservedsent`, {
 			params: { email, page }
 		})
 			.then((res) => {

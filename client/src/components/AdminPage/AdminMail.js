@@ -47,7 +47,7 @@ export default function AdminMail() {
   const getMailData = async () => {
     await setIsLoding(true);
     await axios.get(
-      `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
+      `${process.env.REACT_APP_SERVER_API}/admin/mailList`,
       { params: { page, receiverEmail, writerEmail } }
     )
       .then((res) => {
@@ -59,7 +59,7 @@ export default function AdminMail() {
 
   const getMailDataPage = async () => {
     axios.get(
-      `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
+      `${process.env.REACT_APP_SERVER_API}/admin/mailList`,
       { params: { page, receiverEmail, writerEmail } }
     )
       .then((res) => {
@@ -72,7 +72,7 @@ export default function AdminMail() {
     await setIsLoding(true);
     await setPage(1);
     const res = await axios.get(
-      `${process.env.REACT_APP_SERVER_API}/admin/mail-list`,
+      `${process.env.REACT_APP_SERVER_API}/admin/mailList`,
       { params: { page, receiverEmail, writerEmail } }
     );
     await setData(res.data.data);
