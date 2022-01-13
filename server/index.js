@@ -17,29 +17,23 @@ const { getDateStr } = require('../client/src/funcs/dateFuncs');
 const { arrivalAlert } = require('./funcs/index');
 
 const rule = new schedule.RecurrenceRule();
-rule.hour = 22;
-rule.minute = 6;
+rule.hour = 24;
+rule.minute = 0;
 
 schedule.scheduleJob(rule, async function sendAlertMail() {
   const realTime = getDateStr(new Date());
   try {
-    console.log('it works');
     //유저이름, 전송날짜를 joined 테이블에서 받아온다
     //조인 기준은 users.mail = mails.writerEmail
     const sql = `SELECT users.name, mails.created_at, mails.receiverEmail FROM mails INNER JOIN users ON users.email=mails.writerEmail WHERE reserved_at=?`;
-    const [rows, fields, error] = await db.query(sql, [realTime]);
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(rows);
-      for (let i = 0; i < rows.length; i++) {
-        arrivalAlert(
-          rows[i]['name'],
-          rows[i]['receiverEmail'],
-          rows[i]['created_at']
-        );
-        console.log('sending alert mail');
-      }
+    const [rows] = await db.query(sql, [realTime]);
+
+    for (let i = 0; i < rows.length; i++) {
+      arrivalAlert(
+        rows[i]['name'],
+        rows[i]['receiverEmail'],
+        rows[i]['created_at']
+      );
     }
   } catch (error) {
     throw error;

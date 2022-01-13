@@ -1,3 +1,4 @@
+const db = require('../../db');
 module.exports = {
   received: require('./received'),
   receivedReservation: require('./receivedReservation'),
@@ -36,6 +37,7 @@ module.exports = {
           content,
           reserved_at,
         ];
+
         await db.query(sql, params);
 
         return res.status(201).end();
