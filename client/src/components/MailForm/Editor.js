@@ -10,7 +10,6 @@ function Editor({ formInfo, setFormInfo }) {
       ...formInfo,
       content: data,
     });
-    console.log(data);
   };
 
   return (
