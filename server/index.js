@@ -79,7 +79,7 @@ app.post('/uploads', MultipartyMiddleware, (req, res) => {
     fs.rename(tempPathfile, targetPathUrl, (err) => {
       res.status(200).json({
         uploaded: true,
-        url: `${process.env.SERVER_API}/${tempFile.originalFilename}`,
+        url: `${process.env.REACT_APP_SERVER_API}/${tempFile.originalFilename}`,
       });
       if (err) return console.log(err);
     });

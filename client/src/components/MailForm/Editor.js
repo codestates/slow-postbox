@@ -10,7 +10,6 @@ function Editor({ formInfo, setFormInfo }) {
       ...formInfo,
       content: data,
     });
-    console.log(data);
   };
 
   return (
@@ -21,10 +20,10 @@ function Editor({ formInfo, setFormInfo }) {
         onChange={handleCkeditorState}
         config={{
           ckfinder: {
-            uploadUrl: `http://localhost:4000/uploads`,
+            uploadUrl: `${process.env.REACT_APP_SERVER_API}/uploads`,
           },
         }}
-        className='ck-editor__ediable'
+        className='ck-editor__editable'
       />
     </>
   );
