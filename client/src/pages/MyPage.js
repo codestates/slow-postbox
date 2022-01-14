@@ -45,7 +45,6 @@ function MyPage() {
           password: passwords.newPassword,
         })
         .then((res) => {
-          console.log(res);
           if (res.status === 204) {
             window.location.replace('/mypage');
           } else {
