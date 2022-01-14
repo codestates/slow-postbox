@@ -82,7 +82,14 @@ function MailForm() {
           });
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response) {
+          console.log(err.response.status);
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log('Error', err.message);
+        }
       });
   };
   return (

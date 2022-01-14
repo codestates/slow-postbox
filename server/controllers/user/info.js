@@ -5,10 +5,13 @@ module.exports = async (req, res) => {
   try {
     const { email, password } = req.body;
     const newSalt = crypto.randomBytes(128).toString('base64');
+    // const hashPassword = crypto
+    //   .createHash('sha512')
+    //   .update(password + newSalt)
+    //   .digest('hex');
     const hashPassword = crypto
-      .createHash('sha512')
-      .update(password + newSalt)
-      .digest('hex');
+      .pbkdf2Sync(password, newSalt, 100000, 64, 'sha512')
+      .toString('hex');
 
     const sql = 'UPDATE users SET salt=?, password=? WHERE email=?';
     const params = [newSalt, hashPassword, email];
