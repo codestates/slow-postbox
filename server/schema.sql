@@ -4,8 +4,8 @@ CREATE TABLE `users` (
   `email` varchar(255),
   `salt` varchar(255),
   `password` varchar(255),
-  `oauth` boolean,
-  `admin` boolean,
+  `oauth` boolean DEFAULT 0,
+  `admin` boolean DEFAULT 0,
   `isGuest` boolean DEFAULT 0,
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
