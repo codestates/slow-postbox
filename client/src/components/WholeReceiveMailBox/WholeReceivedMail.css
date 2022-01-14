@@ -38,10 +38,6 @@
 }
 
 
-.wholeMailBox-container .toggle-boxcheck-hide{
-  display: none;
-}
-
 
 .tabmenu-container{
   height: 100%;
@@ -94,11 +90,16 @@
 }
 
 
+.wholeMailBox-container .toggle-boxcheck-hide{
+  display: none;
+}
+
+
 .wholeMailBox-container .toggle-boxcheck{
   position : absolute;
   color: #b63e2e;
-  font-size: 15px;
-  left: 85px;
+  font-size: 13px;
+  left: 60%;
   bottom: 10px;  
   z-index: 100;
 }
@@ -135,6 +136,15 @@
     width: 100px;
   }
   
+
+.wholeMailBox-container .toggle-boxcheck{
+  font-size: 10px;
+  left: 50%;
+}
+
+
+
+
 
 }
 
