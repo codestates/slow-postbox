@@ -50,6 +50,7 @@ export default function kakaoLoginClickHandler() {
                                 `${process.env.REACT_APP_SERVER_API}/users/login`,
                                 {
                                     email: email,
+                                    password: 'asdf'
                                 },
                                 { withCredentials: true }
                             )

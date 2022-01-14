@@ -3,7 +3,9 @@ const crypto = require('crypto');
 
 module.exports = async (req, res) => {
   try {
-    const { name, email, oauth, password, admin } = req.body;
+    const { name, email, oauth, admin } = req.body;
+    let { password } = req.body
+    password = password || 'asdf'
     const salt = crypto.randomBytes(128).toString('base64');
     const hashPassword = crypto
       .createHash('sha512')
