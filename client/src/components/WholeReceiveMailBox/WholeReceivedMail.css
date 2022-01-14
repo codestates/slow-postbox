@@ -97,9 +97,9 @@
 
 .wholeMailBox-container .toggle-boxcheck{
   position : absolute;
-  color: #b63e2e;
+  color: rgb(250, 127, 127);
   font-size: 13px;
-  left: 60%;
+  left: 50px;
   bottom: 10px;  
   z-index: 100;
 }
@@ -139,7 +139,7 @@
 
 .wholeMailBox-container .toggle-boxcheck{
   font-size: 10px;
-  left: 50%;
+  left: 40px;
 }
 
 
