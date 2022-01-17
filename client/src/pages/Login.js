@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState, React } from 'react';
 
 import axios from 'axios';
-import kakaoLoginClickHandler from '../components/SignUp/kakao';
+import kakaoLoginClickHandler from '../components/Kakao/kakao';
 
 export default function Login() {
   // let history = useHistory();

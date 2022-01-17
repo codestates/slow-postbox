@@ -1,6 +1,7 @@
 const {
   auth,
   kakaologin,
+  kakaoSignup,
   login,
   logout,
   emailVerification,
@@ -17,6 +18,7 @@ const router = express.Router();
 
 router.get('/auth', auth);
 router.post('/kakaologin', kakaologin);
+router.post('/kakaoSignup', kakaoSignup)
 router.post('/login', login);
 router.post('/logout', logout);
 router.post('/emailVerification', emailVerification);

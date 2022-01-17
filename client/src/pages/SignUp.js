@@ -91,7 +91,7 @@ export default function SignUp() {
     axios({
       url: `${process.env.REACT_APP_SERVER_API}/users/emailVerification`,
       method: 'post',
-      data: { receiver: `${userInfo.emailId}@${userInfo.emailDomain}` },
+      data: { email: `${userInfo.emailId}@${userInfo.emailDomain}` },
     })
       .then((res) => {
         if (res.data.data) {

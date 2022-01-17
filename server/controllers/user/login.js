@@ -21,14 +21,8 @@ module.exports = async (req, res) => {
     } else {
       //가저온 salt로 비밀번호 해쉬 후 db의 값과 비교하기
       const salt = saltresult[0].salt;
-      // console.log(salt);
       const email = req.body.email;
-      // const password = req.body.password;
       const password = req.body.password;
-      // const hashPassword = crypto
-      //   .createHash('sha512')
-      //   .update(password + salt)
-      //   .digest('hex');
       const hashPassword = crypto
         .pbkdf2Sync(password, salt, 100000, 64, 'sha512')
         .toString('hex');
