@@ -100,11 +100,11 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 						? (
 							<div className="bar-tabmenu">
 								<div className='guest'>
-									<div className="toggle-boxcheck-hide" style={{ color: "#E84B35" }}> ● </div>
+									<div className="toggle-boxcheck-hide" > ● </div>
 									받은 편지함
 								</div>
 								<div className='guest' >
-									<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "#E84B35" }}> ● </div>
+									<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "rgb(250, 127, 127)" }} > ● </div>
 									도착 예정함
 								</div>
 							</div>
@@ -112,11 +112,11 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 						: (
 							<div className="bar-tabmenu">
 								<div className={view === 'ReceiveMail' ? "tab-selected " : "toggle-onoff"} onClick={tabMenu1}>
-									<div className="toggle-boxcheck-hide" style={{ color: "#E84B35" }}> ● </div>
+									<div className="toggle-boxcheck-hide" > ● </div>
 									받은 편지함
 								</div>
 								<div className={view === 'ReservedMail' ? "tab-selected" : "toggle-onoff"} onClick={tabMenu2}>
-									<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "#E84B35" }}> ● </div>
+									<div className={isChecked ? "toggle-boxcheck" : "toggle-boxcheck-hide"} style={{ color: "rgb(250, 127, 127)" }}> ● </div>
 									도착 예정함
 								</div>
 							</div>
