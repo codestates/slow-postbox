@@ -21,8 +21,9 @@ module.exports = async (req, res) => {
     } else {
       //가저온 salt로 비밀번호 해쉬 후 db의 값과 비교하기
       const salt = saltresult[0].salt;
-      console.log(salt);
-      const email = [req.body.email];
+      // console.log(salt);
+      const email = req.body.email;
+      // const password = req.body.password;
       const password = req.body.password;
       // const hashPassword = crypto
       //   .createHash('sha512')
