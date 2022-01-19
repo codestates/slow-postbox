@@ -20,10 +20,9 @@
 
 .wholeMailBox-container .guest-text{
   text-align: center;
-  font-weight: 600;
-  font-size: large;
-  height: 100%;
-
+  margin: 276px 0;
+  font-weight: bold;
+  color: gray;
 }
 
 .wholeMailBox-grid > div{

@@ -39,6 +39,24 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 			})
 	}
 
+	const checkGuest = async () => {
+		const userData = await axios.get(
+			`${process.env.REACT_APP_SERVER_API}/users/auth`,
+			{
+				withCredentials: true,
+			})
+
+		if (userData.data.data.isGuest) {
+			setView('guest')
+		}
+	}
+
+	useEffect(() => {
+		checkGuest();
+	}, [])
+
+
+
 	const getReservedChecked = async () => {
 		axios.get(`${process.env.REACT_APP_SERVER_API}/mails/notiCount`, { params: { email } })
 			.then((res) => {
@@ -61,21 +79,6 @@ export default function WholeReceivedMail({ hadleisChecked }) {
 		getReservedChecked();
 	}, [])
 
-	const checkGuest = async () => {
-		const userData = await axios.get(
-			`${process.env.REACT_APP_SERVER_API}/users/auth`,
-			{
-				withCredentials: true,
-			})
-
-		if (userData.data.data.isGuest) {
-			setView('guest')
-		}
-	}
-
-	useEffect(() => {
-		checkGuest();
-	}, [])
 
 
 	function tabMenu1() {
