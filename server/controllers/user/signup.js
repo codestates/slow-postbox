@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
     let { password } = req.body
     password = password || 'asdf'
     const salt = crypto.randomBytes(128).toString('base64');
-    const hashPassword = crypto
-      .pbkdf2Sync(password, newSalt, 100000, 64, 'sha512')
+      const hashPassword = crypto
+      .pbkdf2Sync(password, salt, 100000, 64, 'sha512')
       .toString('hex');
     const sql =
       'INSERT INTO users (name, email, salt, password, oauth, admin) VALUES(?,?,?,?,?,?)';
