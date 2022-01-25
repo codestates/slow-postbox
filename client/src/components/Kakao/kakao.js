@@ -28,7 +28,7 @@ export default function kakaoLoginClickHandler() {
                         const oauth = 1;
                         const admin = 0;
                         await axios({
-                            url: `${process.env.REACT_APP_SERVER_API}/users/signup`,
+                            url: `${process.env.REACT_APP_SERVER_API}/users/kakaoSignup`,
                             method: 'post',
                             data: {
                                 name,
@@ -44,24 +44,24 @@ export default function kakaoLoginClickHandler() {
                             .catch((err) => {
                                 console.log(err);
                             });
-                    } else {
-                        axios
-                            .post(
-                                `${process.env.REACT_APP_SERVER_API}/users/login`,
-                                {
-                                    email: email,
-                                    password: 'asdf'
-                                },
-                                { withCredentials: true }
-                            )
-                            .then((res) => {
-                                console.log('로그인성공');
-                                console.log(res.data);
-                                window.location.replace('/');
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                            });
+                    } else if (response.data.data) {
+                        // axios
+                        //     .post(
+                        //         `${process.env.REACT_APP_SERVER_API}/users/login`,
+                        //         {
+                        //             email: email,
+                        //             password: 'asdf'
+                        //         },
+                        //         { withCredentials: true }
+                        //     )
+                        //     .then((res) => {
+                        console.log('로그인성공');
+                        console.log(res.data);
+                        window.location.replace('/');
+                        // })
+                        // .catch((err) => {
+                        //     console.log(err);
+                        // });
                     }
                 },
             });

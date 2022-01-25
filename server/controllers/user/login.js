@@ -6,14 +6,12 @@ module.exports = async (req, res) => {
     //salt select sql
     const saltSql = 'SELECT salt FROM users WHERE email=?';
     const saltparams = [req.body.email];
-    const [saltresult, saltfields, salterr] = await db.query(
+    const [saltresult] = await db.query(
       saltSql,
       saltparams
     );
 
-    if (salterr) {
-      return res.status(404).send(salterr);
-    } else if (saltresult.length === 0) {
+    if (saltresult.length === 0) {
       return res.json({
         data: null,
         message: '회원정보를 확인해주세요',
@@ -21,28 +19,21 @@ module.exports = async (req, res) => {
     } else {
       //가저온 salt로 비밀번호 해쉬 후 db의 값과 비교하기
       const salt = saltresult[0].salt;
-      // console.log(salt);
       const email = req.body.email;
-      // const password = req.body.password;
       const password = req.body.password;
-      // const hashPassword = crypto
-      //   .createHash('sha512')
-      //   .update(password + salt)
-      //   .digest('hex');
       const hashPassword = crypto
         .pbkdf2Sync(password, salt, 100000, 64, 'sha512')
         .toString('hex');
       const sql = 'SELECT * FROM users WHERE email=? AND password=?';
       const params = [email, hashPassword];
-      const [result, fields, err] = await db.query(sql, params);
+      const [result] = await db.query(sql, params);
 
-      if (err) {
-        return res.status(404).send(err);
-      } else if (result.length === 0) {
+      if (result.length === 0) {
         //결과가 없을경우
         return res.json({
           data: null,
-          message: '일치하는 로그인 정보가 없습니다',
+          path: "/users/login",
+          message: "wrong email or password"
         });
       } else {
         //결과가 있는경우
@@ -66,7 +57,6 @@ module.exports = async (req, res) => {
           .status(200)
           .json({
             data: { accessToken: accessToken, payload },
-            message: '로그인되었습니다',
           });
       }
     }

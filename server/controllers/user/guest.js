@@ -16,23 +16,21 @@ module.exports = async (req, res) => {
       'INSERT INTO users (name, email, oauth, admin, isGuest) VALUES(?,?,?,?,?)';
     const params = ['게스트', `게스트${randomSet}`, 0, 0, 1];
     await db.query(sql, params);
-    const [result, fields, err] = await db.query(
+    const [result] = await db.query(
       'SELECT * FROM users WHERE email=?',
       [`게스트${randomSet}`]
     );
-    if (err) throw err;
-    else {
-      const { id, name, email, oauth, admin, isGuest } = result[0];
-      const payload = {
-        id,
-        name,
-        email,
-        oauth,
-        admin,
-        isGuest,
-      };
-      await createAccessToken(req, res, payload);
-    }
+    const { id, name, email, oauth, admin, isGuest } = result[0];
+    const payload = {
+      id,
+      name,
+      email,
+      oauth,
+      admin,
+      isGuest,
+    };
+    await createAccessToken(req, res, payload);
+
   } catch (err) {
     throw err;
   }
