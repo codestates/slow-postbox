@@ -6,13 +6,14 @@ module.exports = async (req, res) => {
   try {
     const sql = "SELECT * FROM users WHERE email=?";
     const params = [req.body.email];
-    const [result, fields, err] = await db.query(sql, params)
-    if (err) throw err;
+    const [result] = await db.query(sql, params)
+
     //db에 일치하는 로그인 정보가 없을때
-    else if (result.length === 0) {
-      return res.json({
+    if (result.length === 0) {
+      return res.status(404).json({
         data: null,
-        message: "일치하는 로그인 정보가 없습니다?",
+        path: "/users/kakaoLogin",
+        message: "user data not found",
       });
     }
     //db에 일치하는 로그인 정보가 있을때
@@ -37,13 +38,8 @@ module.exports = async (req, res) => {
         .cookie("accessToken", accessToken, {
           maxAge: 24 * 6 * 60 * 10000,
         })
-        .status(200)
-        .json({
-          data: { accessToken: accessToken, payload },
-          message: "로그인되었습니다",
-        });
+        .status(204).end()
     }
-
   } catch (err) {
     throw err;
   }

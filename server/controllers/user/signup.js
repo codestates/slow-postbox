@@ -13,12 +13,10 @@ module.exports = async (req, res) => {
     const sql =
       'INSERT INTO users (name, email, salt, password, oauth, admin) VALUES(?,?,?,?,?,?)';
     const params = [name, email, salt, hashPassword, oauth, admin];
-    const [result, fields, err] = await db.query(sql, params);
-    if (err) throw err;
-    else {
-      console.log(result);
-      return res.status(201).end();
-    }
+    const [result] = await db.query(sql, params);
+    console.log(result);
+    return res.status(201).end();
+
   } catch (err) {
     throw err;
   }

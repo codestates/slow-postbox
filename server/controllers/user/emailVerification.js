@@ -9,10 +9,7 @@ module.exports = async (req, res) => {
   try {
     const sql = `SELECT email FROM users WHERE email = ?`;
     const params = [email];
-    const [result, fields, err] = await db.query(sql, params);
-    if (err) {
-      throw err;
-    }
+    const [result] = await db.query(sql, params);
     if (result.length === 0) {
       //일치하는 이메일이 없는 경우 (해당 이메일로 회원가입 가능하므로 인증번호 보내기)
 

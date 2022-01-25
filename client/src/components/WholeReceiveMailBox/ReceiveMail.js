@@ -35,7 +35,7 @@ export default function ReceiveMail() {
   }
 
   const getReceivedDataPage = async () => {
-    axios.get(`${process.env.REACT_APP_SERVER_API}/mails/receive`, { params: { email, page } })
+    axios.get(`${process.env.REACT_APP_SERVER_API}/mails/received`, { params: { email, page } })
       .then((res) => {
         setData(res.data.data);
         setCount(res.data.count)
