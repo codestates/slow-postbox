@@ -1,7 +1,6 @@
 module.exports = {
   auth: require('./auth'),
   kakaologin: require('./kakaologin'),
-  kakaoSignup: require('./kakaoSignup'),
   login: require('./login'),
   logout: require('./logout'),
   emailVerification: require('./emailVerification'),
