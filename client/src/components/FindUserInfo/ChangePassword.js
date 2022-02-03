@@ -38,7 +38,7 @@ export default function ChangePassword({ userEmail }) {
           password: userInfo.password,
         })
         .then((res) => {
-          if (res.status === 200) {
+          if (res.status === 204) {
             alert('비밀번호변경이 완료되었습니다');
             window.location.replace('/login');
           }

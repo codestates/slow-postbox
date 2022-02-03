@@ -9,11 +9,8 @@ module.exports = async (req, res) => {
   try {
     const sql = `SELECT email FROM users WHERE email = ?`;
     const params = [receiver];
-    const [result, fields, err] = await db.query(sql, params);
-    if (err) {
-      console.log(err);
-      return;
-    }
+    const [result] = await db.query(sql, params);
+
     if (result.length !== 0) {
       //일치하는 이메일이 없는 경우 (해당 이메일로 회원가입 가능하므로 인증번호 보내기)
 
@@ -170,16 +167,18 @@ module.exports = async (req, res) => {
       // send mail with defined transport object
       let info = await transporter.sendMail(message);
       //console.log("Message sent: %s", info.messageId);
-      return res.status(200).json({
-        data: `${str}`,
-        email: `${receiver}`,
-        message: '메시지가 전송되었습니다',
+      return res.status(201).json({
+        data: `${str}`
       });
     } else {
       //console.log("이미 가입된 이메일 존재");
       return res
         .status(200)
-        .json({ data: null, message: '이미 가입된 이메일입니다' });
+        .json({
+          data: null,
+          path: "/users/finduserinfo",
+          message: "data does not exist"
+        });
     }
   } catch (err) {
     console.log(err);

@@ -4,15 +4,12 @@ const nodemailer = require('nodemailer');
 
 // async..await is not allowed in global scope, must use a wrapper
 module.exports = async (req, res) => {
-  const { receiver } = req.body;
+  const { email } = req.body;
   // console.log(receiver)
   try {
     const sql = `SELECT email FROM users WHERE email = ?`;
-    const params = [receiver];
-    const [result, fields, err] = await db.query(sql, params);
-    if (err) {
-      throw err;
-    }
+    const params = [email];
+    const [result] = await db.query(sql, params);
     if (result.length === 0) {
       //일치하는 이메일이 없는 경우 (해당 이메일로 회원가입 가능하므로 인증번호 보내기)
 
@@ -44,7 +41,7 @@ module.exports = async (req, res) => {
       generatedRandomCode();
       const message = {
         from: process.env.ACCOUNT_USER, // sender address
-        to: `${receiver}`, // list of receivers
+        to: `${email}`, // list of receivers
         subject: '💌느린우체통 회원가입 인증코드가 도착했습니다💌', // Subject line
         text: `느린 우체통 이메일 인증 코드입니다.${str}`, // plain text body
         html: `<table class="wrapper" style="border-collapse: collapse;table-layout: fixed;min-width: 320px;width: 100%;background-color: #fff;" cellpadding="0" cellspacing="0" role="presentation"><tbody><tr><td>

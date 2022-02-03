@@ -4,12 +4,9 @@ const crypto = require('crypto');
 module.exports = async (req, res) => {
   try {
     const { email, password } = req.body;
-    //console.log(email, password);
     const sql1 = 'SELECT salt,password as decoded FROM users WHERE email=?';
     const params1 = [email];
     const [row1] = await db.query(sql1, params1);
-
-    //console.log(row); [{salt:'111', decoded:'helloworld'}]
     const hashPassword = crypto
       .createHash('sha512')
       .update(password + row1[0]['salt'])
