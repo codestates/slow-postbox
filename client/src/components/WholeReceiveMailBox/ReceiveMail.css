@@ -26,8 +26,8 @@
 
 .wholeMailBox-container .mailradius{
   border-radius: 25px;
-  align-self: center;
   padding-bottom: 10px;
+  
 }
 
 .box-received-mail{
@@ -62,10 +62,10 @@
 
 
 
-.box-received-mail  img{
+.mailradius img{
   height: 50vh;
   width: 10%;
-
+  padding-left: 45%;
 }
 
 .mailIcon{

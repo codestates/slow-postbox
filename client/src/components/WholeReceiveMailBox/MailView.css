@@ -38,7 +38,8 @@
   padding: 1% 1% 0 5%;
   grid-template-columns: 95% 5% ;
   grid-template-rows: 0.5fr 5fr;
-  
+  position: relative;
+
 }
 
 .mailview-container .mail-text{
@@ -102,9 +103,9 @@
   cursor: pointer;
   border: none;
   outline: none;
-  position:relative;
   justify-self: center;
   font-size: 1.3rem;
+  margin-bottom: 10px;
 }
 
 .mailview-container  .btn_close_s{
@@ -134,20 +135,22 @@
   left: 0;
 }
 
-.mailViewModal-contanier .modal-show{
+.modal-flex .modal-show{
   position : absolute;
-  top: 45%;
-  right: 18%;
+  border-radius: 5px;
+  top : 30px;
+  right: 20px;
   background-color: white;
   width: 133px;
-
+  z-index: 11;
 }
 
 
-.mailViewModal-contanier .btn-Modalclose{ 
-  background-color: rgb(253, 163, 163);
+.modal-flex .btn-Modalclose{ 
+  background-color: rgb(255, 210, 210);
   text-align: right;
   font-size: 20px;
+  border-radius: 5px;
 
 }
 
@@ -164,6 +167,8 @@
     font-size: 16px;
 
   }
+
+  
 
 }
 
@@ -184,6 +189,9 @@
     font-size: 16px;
 
   }
+
+
+  
 
 }
 
