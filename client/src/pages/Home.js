@@ -45,9 +45,6 @@ export default function Home() {
       <div className='home-container'>
         <div className='box-main'>
           <div className='box-animation'>
-            {/* <animated.div {...bind()} style={{ x, y }}>
-                        <div id="img-mail"><FontAwesomeIcon id="img-mail" icon={faPaperPlane} /></div>
-                    </animated.div> */}
           </div>
           <div className='title'>느린 우체통</div>
           <div className='box-counting'>
