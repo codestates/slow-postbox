@@ -17,11 +17,9 @@ export default function MailView({ maildata, setMailView, getReceivedDataPage, g
   useEffect(() => {
     if (path === '/mailbox') {
       getReceivedDataPage();
-      console.log('recievi', location.pathname)
     }
     if (path === '/sent-mailbox') {
       getSentDataPage()
-      console.log('sent?zz', location.pathname)
     }
 
   }, [])
