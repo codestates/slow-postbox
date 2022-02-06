@@ -66,6 +66,7 @@ export default function ReceiveMail() {
   const getInfo = (info) => {
     const { name, writerEmail, reserved_at } = info
     const writer = name ? name : writerEmail.split('(삭제)').join("")
+
     return `보낸사람 : ${writer} / ${reserved_at.slice(0, 10)}`
   }
 

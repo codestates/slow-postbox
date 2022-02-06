@@ -6,14 +6,13 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Pagination from "react-js-pagination";
 import Loding from '../Loding/Loding';
-import SentMailView from './SentMailView';
-
+import MailView from '../WholeReceiveMailBox/MailView';
 
 export default function SentMail() {
 	const [page, setPage] = useState(1);
 	const [count, setCount] = useState(0)
 	const [maildata, setMailData] = useState({})
-	const [modalmail, setModalmail] = useState(false)
+	const [mailView, setMailView] = useState(false)
 	const [data, setData] = useState([])
 	const [isLoading, setIsLoding] = useState(false)
 
@@ -71,45 +70,43 @@ export default function SentMail() {
 		await axios.get(`${process.env.REACT_APP_SERVER_API}/mails/viewSent/${el}`)
 			.then((res) => {
 				setMailData(res.data.data)
-				setModalmail(true)
+				setMailView(true)
 			})
 			.catch((err) => {
 				console.log(err)
 			})
 
 	}
+	if (isLoading) return <Loding />
+	if (mailView) return <MailView maildata={maildata} setMailView={setMailView} getSentDataPage={getSentDataPage} />
 
 
 	return (
 		<>
 			<div className='box-received-mail'>
-				{modalmail
-					? <SentMailView maildata={maildata} setModalmail={setModalmail} getSentDataPage={getSentDataPage} />
-					: isLoading ? (
-						<Loding />
-					) : (data.length === 0
-						? <div className="mailbox-container-empty"> 보낸 편지가 없습니다.</div>
-						: data.map((el, idx) => {
-							return (
-								<div className="mailbox-container select" key={idx} onClick={() => { getMailcontent(el.id) }}>
-									<div className="sort-readCheck"> {el.isRead === 0 ? "안읽음" : "읽음"} </div>
-									<div className="icon-mail">
-										{el.isRead === 0
-											? <GoMail className='mailIcon' />
-											: <GoMailRead className='mailIcon' />}
-									</div>
-									<div className="text-mail"> {el.title} </div>
-									<div className="text-mail" >{`받는사람 : 
-									${el.name
-											? el.name
-											: el.receiverEmail.split('(삭제)').join("")} / ${el.reserved_at.slice(0, 10)}`}
-									</div>
+				{(data.length === 0
+					? <div className="mailbox-container-empty"> 보낸 편지가 없습니다.</div>
+					: data.map((el, idx) => {
+						return (
+							<div className="mailbox-container select" key={idx} onClick={() => { getMailcontent(el.id) }}>
+								<div className="sort-readCheck"> {el.isRead === 0 ? "안읽음" : "읽음"} </div>
+								<div className="icon-mail">
+									{el.isRead === 0
+										? <GoMail className='mailIcon' />
+										: <GoMailRead className='mailIcon' />}
 								</div>
-							)
-						}))
+								<div className="text-mail"> {el.title} </div>
+								<div className="text-mail" >{`받는사람 : 
+									${el.name
+										? el.name
+										: el.receiverEmail.split('(삭제)').join("")} / ${el.reserved_at.slice(0, 10)}`}
+								</div>
+							</div>
+						)
+					}))
 				}
 			</div>
-			{!modalmail && (
+			{!mailView && (
 				< Pagination
 					activePage={page}
 					itemsCountPerPage={5}
