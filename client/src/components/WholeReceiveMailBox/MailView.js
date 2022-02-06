@@ -56,9 +56,6 @@ export default function MailView({ maildata, setMailView, getReceivedDataPage, g
 
 function MailViewModal({ SubModalOnOff, maildata, setMailView, getReceivedDataPage, getSentDataPage, path }) {
   const { id, receiverEmail, writerEmail } = maildata
-
-  console.log(id, receiverEmail, writerEmail, path)
-
   const mailremove = async () => {
 
     if (path === '/mailbox') {
