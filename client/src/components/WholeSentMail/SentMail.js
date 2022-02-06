@@ -44,7 +44,6 @@ export default function SentMail() {
 	}
 
 	const getSentDataPage = async () => {
-		console.log('gd')
 		axios.get(`${process.env.REACT_APP_SERVER_API}/mails/sent`, {
 			params: { email, page }
 		})
